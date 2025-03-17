@@ -58,30 +58,93 @@
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
-        .timeline-item {
+        .timeline-wrapper {
             position: relative;
         }
 
-        .timeline-item::before {
+        .timeline-wrapper::before {
             content: '';
             position: absolute;
-            left: -25px;
+            left: 32px;
             top: 0;
             height: 100%;
             width: 2px;
             background-color: #CBD5E1;
-            z-index: -1;
+            z-index: 0;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-wrapper::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-item {
+                width: 50%;
+                padding-left: 0;
+                padding-right: 2.5rem;
+                align-self: flex-end;
+                margin-left: auto;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd) {
+                align-self: flex-start;
+                margin-right: auto;
+                margin-left: 0;
+                padding-left: 2.5rem;
+                padding-right: 0;
+                text-align: right;
+            }
         }
 
         .timeline-dot {
             position: absolute;
-            left: -29px;
-            top: 0;
-            width: 10px;
-            height: 10px;
+            left: 0;
+            top: 5px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background-color: var(--primary);
             z-index: 1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-item .timeline-dot {
+                left: -8px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot {
+                left: auto;
+                right: -8px;
+            }
+        }
+
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.2);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .timeline-content {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         .skill-pill {
@@ -176,6 +239,165 @@
             background-color: var(--primary);
             border-radius: 3px;
             animation: progressAnimation 1.5s ease-out;
+        }
+
+        /* Award badges animation */
+        @keyframes pulsate {
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+
+        .award-badge {
+            animation: pulsate 2s infinite;
+        }
+
+        /* Skills rating */
+        .skill-rating {
+            display: flex;
+            gap: 2px;
+        }
+
+        .skill-rating .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #E2E8F0;
+            transition: background-color 0.3s ease;
+        }
+
+        .skill-rating .dot.filled {
+            background-color: var(--primary);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 800px;
+            width: 90%;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Timeline filter buttons */
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            background-color: #F1F5F9;
+            color: #64748B;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-button.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Dark/Light mode toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 90;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Resume download button */
+        .download-resume {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #F1F5F9;
+            color: #334155;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .download-resume:hover {
+            background-color: #E2E8F0;
+            transform: translateY(-2px);
+        }
+
+        /* Timeline year indicator */
+        .timeline-year {
+            position: absolute;
+            left: 32px;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-year {
+                left: 50%;
+            }
         }
     </style>
 </head>
@@ -329,10 +551,12 @@
                     </div>
                 </div>
                 <div class="md:w-3/5">
+                    <!-- Resume Download -->
                     <div class="bg-slate-50 rounded-xl p-8 shadow-sm">
                         <h3 class="text-xl font-semibold mb-6 text-slate-900">Key Skills & Competencies</h3>
 
                         <div class="space-y-6">
+                            <!-- Skill Progress Bars -->
                             <div>
                                 <div class="flex justify-between mb-2">
                                     <span class="font-medium">Robotics & Control Systems</span>
@@ -709,63 +933,167 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Experience Section (Timeline) -->
     <section id="experience" class="py-20 bg-slate-50">
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4 text-slate-900">Experience</h2>
                 <p class="text-lg text-slate-700 max-w-3xl mx-auto">
-                    A comprehensive overview of my professional journey, from hands-on development roles to leadership
-                    positions in robotics and software engineering.
+                    A visual timeline of my professional journey—from hands-on development roles to leadership in
+                    robotics and software engineering.
                 </p>
             </div>
-            <div class="space-y-12">
-                <!-- Experience Item -->
-                <div class="flex flex-col md:flex-row gap-6 items-start">
-                    <div class="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full">
-                        <i class="fas fa-briefcase text-blue-500 text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900">Software Engineering Coordinator, LA2 Dynamics</h3>
+            <div class="timeline-wrapper relative space-y-12">
+                <!-- Timeline Item 1: Software Engineering Coordinator -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900">
+                            Software Engineering Coordinator, LA2 Dynamics
+                            <span class="text-sm text-green-600">(Current)</span>
+                        </h3>
                         <span class="text-slate-600">Apr 2024 - Present | Istanbul, Türkiye</span>
                         <p class="text-slate-700 mt-2">
-                            Overseeing the development and integration of software for quadruped robots, establishing
-                            offline infrastructures and CI/CD pipelines.
+                            Overseeing software development, establishing CI/CD pipelines, and managing a growing team
+                            to drive innovation in quadruped robotics.
                         </p>
+                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
+                            data-modal="modal-coordinator">
+                            View Details
+                        </button>
                     </div>
                 </div>
-                <!-- Experience Item -->
-                <div class="flex flex-col md:flex-row gap-6 items-start">
-                    <div class="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full">
-                        <i class="fas fa-briefcase text-blue-500 text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900">Team Captain, ITU AUV Team</h3>
+                <!-- Timeline Item 2: Team Captain -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900">
+                            Team Captain, ITU AUV Team
+                            <span class="text-sm text-green-600">(Current)</span>
+                        </h3>
                         <span class="text-slate-600">Oct 2021 - Present | Istanbul, Türkiye</span>
                         <p class="text-slate-700 mt-2">
-                            Leading the technical team in developing autonomous underwater vehicles, achieving top
-                            placements in international competitions.
+                            Leading cross-disciplinary teams to develop autonomous underwater vehicles; achieved
+                            international recognition at major competitions.
                         </p>
+                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
+                            data-modal="modal-auv">
+                            View Details
+                        </button>
                     </div>
                 </div>
-                <!-- Experience Item -->
-                <div class="flex flex-col md:flex-row gap-6 items-start">
-                    <div class="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full">
-                        <i class="fas fa-briefcase text-blue-500 text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900">Software Developer, Poly Design 3D</h3>
+                <!-- Timeline Item 3: Software Developer -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900">
+                            Software Developer, Poly Design 3D
+                            <span class="text-sm text-green-600">(Current)</span>
+                        </h3>
                         <span class="text-slate-600">Jan 2019 - Present | Istanbul, Türkiye</span>
                         <p class="text-slate-700 mt-2">
-                            Founded and developed innovative plugins for 3D modeling applications, enhancing the
-                            workflow for artists and designers.
+                            Founded a business creating innovative plugins for 3D modeling software, significantly
+                            enhancing creative workflows.
                         </p>
+                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
+                            data-modal="modal-poly">
+                            View Details
+                        </button>
                     </div>
                 </div>
-                <!-- Add more experience items as needed -->
+                <!-- Timeline Item 4: Software Engineer at LA2 Dynamics -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900">
+                            Software Engineer, LA2 Dynamics
+                        </h3>
+                        <span class="text-slate-600">Oct 2023 - Apr 2024 | Istanbul, Türkiye</span>
+                        <p class="text-slate-700 mt-2">
+                            Rejoined as a full-time engineer to refine locomotion and control systems for quadruped
+                            robots.
+                        </p>
+                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
+                            data-modal="modal-engineer">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                <!-- Timeline Item 5: Software Engineer at Turkish Aerospace -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900">
+                            Software Engineer, Turkish Aerospace
+                        </h3>
+                        <span class="text-slate-600">Jul 2023 - Aug 2023 | Ankara, Türkiye</span>
+                        <p class="text-slate-700 mt-2">
+                            Developed a virtual joystick application for a flight simulator using C++ and Qt.
+                        </p>
+                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
+                            data-modal="modal-aerospace">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                <!-- Timeline Item 6: Robotics Engineer -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900">
+                            Robotics Engineer, LA2 Dynamics
+                        </h3>
+                        <span class="text-slate-600">Feb 2023 - Jul 2023 | Istanbul, Türkiye</span>
+                        <p class="text-slate-700 mt-2">
+                            Contributed to hardware and software selection for a new quadruped robot project by
+                            designing and developing embedded and high-level software.
+                        </p>
+                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
+                            data-modal="modal-robotics">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                <!-- Timeline Item 7: Education Researcher -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900">
+                            Education Researcher, ITU Robotics Laboratory
+                        </h3>
+                        <span class="text-slate-600">Oct 2022 - Feb 2023 | Istanbul, Türkiye</span>
+                        <p class="text-slate-700 mt-2">
+                            Conducted research on quadruped robots by testing walking algorithms on real robots,
+                            deepening my understanding of control systems.
+                        </p>
+                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
+                            data-modal="modal-education">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                <!-- Timeline Item 8: Software Developer at SOGA Design Office -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900">
+                            Software Developer, SOGA Design Office
+                        </h3>
+                        <span class="text-slate-600">Jul 2018 - Aug 2018 | Istanbul, Türkiye</span>
+                        <p class="text-slate-700 mt-2">
+                            Developed a plugin using Maxscript and assisted with various 3D modeling tasks for a global
+                            architectural firm.
+                        </p>
+                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
+                            data-modal="modal-soga">
+                            View Details
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
 
     <!-- Awards Section -->
     <section id="awards" class="py-20 bg-white">
@@ -780,33 +1108,33 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Award Item -->
                 <div class="flex items-center gap-4">
-                    <div class="bg-blue-100 p-4 rounded-full">
-                        <i class="fas fa-trophy text-blue-500 text-3xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900">Singapore AUV Challenge - First Place</h3>
-                        <p class="text-slate-700">Dover, Singapore | Sep 2022</p>
-                    </div>
-                </div>
-                <!-- Award Item -->
-                <div class="flex items-center gap-4">
-                    <div class="bg-blue-100 p-4 rounded-full">
-                        <i class="fas fa-trophy text-blue-500 text-3xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900">European Robotics League RAMI Competition - Second
-                            Place &amp; Best Presentation</h3>
-                        <p class="text-slate-700">La Spezia, Italy | Jul 2023</p>
-                    </div>
-                </div>
-                <!-- Award Item -->
-                <div class="flex items-center gap-4">
-                    <div class="bg-blue-100 p-4 rounded-full">
+                    <div class="bg-blue-100 p-4 rounded-full award-badge">
                         <i class="fas fa-trophy text-blue-500 text-3xl"></i>
                     </div>
                     <div>
                         <h3 class="text-xl font-bold text-slate-900">Roboboat Competition - First Place</h3>
-                        <p class="text-slate-700">Sarasota, Florida, USA | Feb 2024</p>
+                        <p class="text-slate-700">Feb 2024 | Sarasota, Florida, USA</p>
+                    </div>
+                </div>
+                <!-- Award Item -->
+                <div class="flex items-center gap-4">
+                    <div class="bg-blue-100 p-4 rounded-full award-badge">
+                        <i class="fas fa-trophy text-blue-500 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">European Robotics League RAMI Competition - Second
+                            Place & Best Presentation</h3>
+                        <p class="text-slate-700">Jul 2023 | La Spezia, Italy</p>
+                    </div>
+                </div>
+                <!-- Award Item -->
+                <div class="flex items-center gap-4">
+                    <div class="bg-blue-100 p-4 rounded-full award-badge">
+                        <i class="fas fa-trophy text-blue-500 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">Singapore AUV Challenge - First Place</h3>
+                        <p class="text-slate-700">Sep 2022 | Dover, Singapore</p>
                     </div>
                 </div>
             </div>
@@ -819,8 +1147,8 @@
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4 text-slate-900">Contact</h2>
                 <p class="text-lg text-slate-700 max-w-3xl mx-auto">
-                    Let's connect! Whether you're interested in a project or simply want to chat about technology, feel
-                    free to get in touch.
+                    Let's connect! Whether you're interested in collaboration, projects, or just a conversation about
+                    technology, feel free to reach out.
                 </p>
             </div>
             <div class="max-w-2xl mx-auto">
@@ -855,20 +1183,83 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Navigation & Scroll Animations -->
+    <!-- Modal Structure -->
+    <div id="modal-coordinator" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Software Engineering Coordinator, LA2 Dynamics</h3>
+            <p class="text-slate-700">
+                As the Software Engineering Coordinator, I oversee the expansion of our team and manage the development
+                process. My role includes establishing robust offline server infrastructure, documentation systems, and
+                implementing CI/CD pipelines to ensure quality and efficiency.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal-auv" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Team Captain, ITU AUV Team</h3>
+            <p class="text-slate-700">
+                Leading the ITU AUV Team, I coordinate cross-disciplinary efforts to design and develop autonomous
+                underwater vehicles. Under my leadership, our team secured international awards and continuously pushes
+                the boundaries of underwater robotics technology.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal-poly" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Software Developer, Poly Design 3D</h3>
+            <p class="text-slate-700">
+                I founded Poly Design 3D to create innovative plugins for Autodesk 3ds Max and Blender, streamlining
+                workflows for 3D artists and designers. My work here combines technical proficiency with creative
+                problem-solving.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal-engineer" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Software Engineer, LA2 Dynamics</h3>
+            <p class="text-slate-700">
+                In this role, I further refined the locomotion and control systems for quadruped robots, integrating
+                both embedded and high-level software components to enhance performance.
+            </p>
+        </div>
+    </div>
+
+    <div id="modal-aerospace" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Software Engineer, Turkish Aerospace</h3>
+            <p class="text-slate-700">
+                During my internship at Turkish Aerospace, I developed a virtual joystick application for a flight
+                simulator using C++ and Qt, while gaining insight into complex aerospace system architectures.
+            </p>
+        </div>
+    </div>
+
+    <!-- Dark/Light Mode Toggle -->
+    <div class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon text-slate-800"></i>
+    </div>
+
+    <!-- JavaScript -->
     <script>
-        // Mobile navigation toggle
+        // Mobile Navigation Toggle
         document.getElementById('mobile-nav-toggle').addEventListener('click', function () {
             document.getElementById('mobile-nav').classList.toggle('hidden');
         });
 
-        // Scroll animations for elements with the "fade-in" class
+        // Scroll Animation (Fade-In)
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
         };
-
         const appearOnScroll = new IntersectionObserver(function (entries, observer) {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
@@ -876,9 +1267,50 @@
                 observer.unobserve(entry.target);
             });
         }, appearOptions);
-
         faders.forEach(fader => {
             appearOnScroll.observe(fader);
+        });
+
+        // Modal Functionality
+        const openModalButtons = document.querySelectorAll('.open-modal');
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const modalId = this.getAttribute('data-modal');
+                document.getElementById(modalId).classList.add('show');
+            });
+        });
+        closeModalButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                this.closest('.modal').classList.remove('show');
+            });
+        });
+        window.addEventListener('click', function (e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('show');
+            }
+        });
+
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('bg-slate-800');
+            document.body.classList.toggle('text-slate-200');
+            // Toggle other elements as needed for dark mode
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.toggle('text-slate-700');
+                link.classList.toggle('hover:text-blue-500');
+            });
+            // Toggle icon inside the theme toggle button
+            const toggleIcon = themeToggle.querySelector('i');
+            if (toggleIcon.classList.contains('fa-moon')) {
+                toggleIcon.classList.remove('fa-moon');
+                toggleIcon.classList.add('fa-sun');
+            } else {
+                toggleIcon.classList.remove('fa-sun');
+                toggleIcon.classList.add('fa-moon');
+            }
         });
     </script>
 </body>
