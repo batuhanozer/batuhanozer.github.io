@@ -399,6 +399,26 @@
                 left: 50%;
             }
         }
+
+        .hero-section {
+            position: relative;
+            /* Optionally, set an explicit height if needed */
+            /* height: 100vh; */
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
     </style>
 </head>
 
@@ -445,8 +465,10 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="pt-24 pb-16 md:pt-32 md:pb-24 hero-gradient text-white">
-        <div class="container mx-auto px-6 md:px-12">
+    <section id="hero"
+        class="hero-section relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24 hero-gradient text-white">
+        <div id="particles-js" class="absolute inset-0 z-0"></div>
+        <div class="hero-content container mx-auto px-6 md:px-12">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-3/5 mb-12 md:mb-0">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -1313,6 +1335,33 @@
             }
         });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#3b82f6" },
+                opacity: { value: 0.5 },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#3b82f6", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, out_mode: "bounce", bounce: true }
+            },
+            interactivity: {
+                detect_on: "window",  // Change from "canvas" to "window"
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                },
+                modes: {
+                    push: { particles_nb: 4 },  // Fewer particles for a softer effect
+                    repulse: { distance: 100, duration: 0.4 }
+                }
+            }
+        });
+
+    </script>
+
 </body>
 
 </html>
