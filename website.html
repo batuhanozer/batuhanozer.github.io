@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batuhan Ozer | Robotics Engineer & Software Developer</title>
+    <meta name="description"
+        content="Portfolio of Batuhan Ozer - Robotics Engineer specializing in quadruped robots, autonomous underwater vehicles, computer vision and software development.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --secondary: #10B981;
+            --dark: #1E293B;
+            --light: #F8FAFC;
+            --accent: #F97316;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+        }
+
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item {
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #CBD5E1;
+            z-index: -1;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -29px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            z-index: 1;
+        }
+
+        .skill-pill {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .skill-pill:hover {
+            transform: scale(1.05);
+            background-color: var(--primary-dark);
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Navigation highlight for current section */
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+
+        /* Progress bars animation */
+        @keyframes progressAnimation {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: var(--progress-width);
+            }
+        }
+
+        .progress-bar {
+            position: relative;
+            height: 6px;
+            background-color: #E2E8F0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: var(--progress-width);
+            background-color: var(--primary);
+            border-radius: 3px;
+            animation: progressAnimation 1.5s ease-out;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed w-full bg-white bg-opacity-95 shadow-sm z-50 py-4 backdrop-blur-sm">
+        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold text-slate-900">
+                <span class="text-blue-500">B</span>atuhan <span class="text-blue-500">O</span>zer
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link text-slate-700 hover:text-blue-500 transition">About</a>
+                <a href="#expertise" class="nav-link text-slate-700 hover:text-blue-500 transition">Expertise</a>
+                <a href="#projects" class="nav-link text-slate-700 hover:text-blue-500 transition">Projects</a>
+                <a href="#experience" class="nav-link text-slate-700 hover:text-blue-500 transition">Experience</a>
+                <a href="#awards" class="nav-link text-slate-700 hover:text-blue-500 transition">Awards</a>
+                <a href="#contact" class="nav-link text-slate-700 hover:text-blue-500 transition">Contact</a>
+            </div>
+
+            <!-- Mobile Navigation Toggle -->
+            <button id="mobile-nav-toggle" class="md:hidden text-slate-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-nav"
+            class="md:hidden hidden bg-white shadow-md absolute top-full left-0 right-0 border-t border-slate-100">
+            <div class="container mx-auto px-6 py-3 flex flex-col space-y-4">
+                <a href="#about" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">About</a>
+                <a href="#expertise" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">Expertise</a>
+                <a href="#projects" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">Projects</a>
+                <a href="#experience" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">Experience</a>
+                <a href="#awards" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">Awards</a>
+                <a href="#contact" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-24 pb-16 md:pt-32 md:pb-24 hero-gradient text-white">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-3/5 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        Robotics Engineer <br>& Software Developer
+                    </h1>
+                    <p class="text-xl text-slate-300 mb-8 max-w-2xl">
+                        Specializing in quadruped robotics, autonomous underwater vehicles, and developing innovative
+                        software solutions that push technological boundaries.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects"
+                            class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition flex items-center">
+                            <i class="fas fa-project-diagram mr-2"></i> View Projects
+                        </a>
+                        <a href="#contact"
+                            class="bg-transparent hover:bg-white hover:text-slate-900 text-white font-medium py-3 px-6 rounded-lg border border-white transition flex items-center">
+                            <i class="fas fa-envelope mr-2"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-2/5 flex justify-center">
+                    <div
+                        class="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 p-1 floating">
+                        <div class="absolute inset-2 rounded-full bg-slate-800 flex items-center justify-center">
+                            <!-- Replace with your actual profile image -->
+                            <div class="text-5xl text-blue-400">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technologies Badge Bar -->
+            <div class="mt-16 py-4 bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-xl">
+                <div class="container mx-auto px-6">
+                    <div class="flex justify-between items-center flex-wrap gap-6">
+                        <div class="flex items-center">
+                            <i class="fab fa-cuttlefish text-2xl text-blue-400 mr-3"></i>
+                            <span>C/C++</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fab fa-python text-2xl text-blue-400 mr-3"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-code text-2xl text-blue-400 mr-3"></i>
+                            <span>ROS</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fab fa-docker text-2xl text-blue-400 mr-3"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-microchip text-2xl text-blue-400 mr-3"></i>
+                            <span>Embedded</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-eye text-2xl text-blue-400 mr-3"></i>
+                            <span>Perception</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-cubes text-2xl text-blue-400 mr-3"></i>
+                            <span>3D Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-2/5">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-900">About Me</h2>
+                    <p class="text-lg text-slate-700 mb-6">
+                        I'm a Robotics Engineer and Software Developer with extensive experience in developing
+                        cutting-edge robotic systems. Currently serving as a Software Engineering Coordinator at LA2
+                        Dynamics, I focus on building and enhancing software for quadruped robots.
+                    </p>
+                    <p class="text-lg text-slate-700 mb-6">
+                        As Team Captain of the ITU AUV Team, I've led our team to international success, securing first
+                        place at the Singapore AUV Challenge and second place at the European Robotics League RAMI
+                        Competition.
+                    </p>
+                    <p class="text-lg text-slate-700 mb-6">
+                        I also run my own business, Poly Design 3D, where I develop innovative plugins for 3D modeling
+                        applications, enhancing the workflow of artists and designers worldwide.
+                    </p>
+                    <div class="flex gap-4 mt-8">
+                        <a href="https://www.linkedin.com/in/batuhanozer/" target="_blank"
+                            class="bg-blue-100 hover:bg-blue-200 text-blue-800 p-3 rounded-full transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:batuhanozer52@gmail.com"
+                            class="bg-blue-100 hover:bg-blue-200 text-blue-800 p-3 rounded-full transition">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <!-- Add more social links as needed -->
+                    </div>
+                </div>
+                <div class="md:w-3/5">
+                    <div class="bg-slate-50 rounded-xl p-8 shadow-sm">
+                        <h3 class="text-xl font-semibold mb-6 text-slate-900">Key Skills & Competencies</h3>
+
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Robotics & Control Systems</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="progress-bar" style="--progress-width: 95%"></div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">C/C++ Programming</span>
+                                    <span>92%</span>
+                                </div>
+                                <div class="progress-bar" style="--progress-width: 92%"></div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Computer Vision & AI</span>
+                                    <span>88%</span>
+                                </div>
+                                <div class="progress-bar" style="--progress-width: 88%"></div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">ROS & System Integration</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="progress-bar" style="--progress-width: 90%"></div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">3D Modeling & Plugin Development</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="progress-bar" style="--progress-width: 95%"></div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Team Leadership</span>
+                                    <span>94%</span>
+                                </div>
+                                <div class="progress-bar" style="--progress-width: 94%"></div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8">
+                            <h3 class="text-xl font-semibold mb-4 text-slate-900">Education</h3>
+                            <div class="flex items-start gap-4">
+                                <div class="mt-1 text-blue-500 text-lg">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-slate-900">Bachelor's Degree in Engineering</h4>
+                                    <p class="text-slate-600">Istanbul Technical University (2018 - 2024)</p>
+                                    <p class="text-slate-600">GPA: 3.26 / 4.00</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="mt-1 text-blue-500 text-lg">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-slate-900">Highschool</h4>
+                                    <p class="text-slate-600">Private Bilfen Science Highschool (2014 - 2018)</p>
+                                    <p class="text-slate-600">GPA: 96 / 100</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Areas Section -->
+    <section id="expertise" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-slate-900">Areas of Expertise</h2>
+                <p class="text-lg text-slate-700 max-w-3xl mx-auto">
+                    My work spans several specialized domains in robotics and software development, with a focus on
+                    creating robust, efficient systems that solve complex challenges.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Quadruped Robotics Card -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                    <div class="p-6">
+                        <div class="text-4xl text-blue-500 mb-4">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Quadruped Robotics</h3>
+                        <p class="text-slate-700">
+                            Developing advanced locomotion algorithms, control systems, and embedded software for legged
+                            robots. Specializing in NMPC integration and reinforcement learning-based control
+                            strategies.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">C++</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">MPC</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">ROS</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">STM32</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Underwater Robotics Card -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                    <div class="p-6">
+                        <div class="text-4xl text-blue-500 mb-4">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Underwater Robotics</h3>
+                        <p class="text-slate-700">
+                            Building autonomous underwater vehicles with robust navigation, state-machine control, and
+                            perception systems. Specializing in underwater computer vision and sensor fusion.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Python</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">OpenCV</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Control
+                                Systems</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Sensor
+                                Fusion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Computer Vision Card -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                    <div class="p-6">
+                        <div class="text-4xl text-blue-500 mb-4">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Computer Vision & AI</h3>
+                        <p class="text-slate-700">
+                            Implementing vision systems for robotics applications, including YOLO-based object
+                            detection, visual odometry, stereo vision, and point cloud processing for 3D reconstruction.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">CUDA</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">YOLO</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Machine
+                                Learning</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Point
+                                Cloud</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Software Development Card -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                    <div class="p-6">
+                        <div class="text-4xl text-blue-500 mb-4">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-900">3D Software Development</h3>
+                        <p class="text-slate-700">
+                            Creating plugins and tools for 3D modeling applications such as Autodesk 3ds Max and
+                            Blender, enhancing artist workflows and automating complex tasks.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">C++</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Python</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Maxscript</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">3D
+                                Graphics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DevOps & System Administration Card -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                    <div class="p-6">
+                        <div class="text-4xl text-blue-500 mb-4">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-900">DevOps & Infrastructure</h3>
+                        <p class="text-slate-700">
+                            Setting up and maintaining development infrastructure including offline GitLab instances,
+                            CI/CD pipelines, and documentation systems for efficient software development.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Docker</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Git</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">CI/CD</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Linux</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Leadership Card -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                    <div class="p-6">
+                        <div class="text-4xl text-blue-500 mb-4">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Team Leadership</h3>
+                        <p class="text-slate-700">
+                            Leading technical teams in competitive environments, coordinating between different
+                            disciplines, and managing complex projects from conception to completion.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Project
+                                Management</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Team
+                                Coordination</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Technical
+                                Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-slate-900">Featured Projects</h2>
+                <p class="text-lg text-slate-700 max-w-3xl mx-auto">
+                    A selection of my most notable work, demonstrating my expertise in robotics, software development,
+                    and system design.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Quadruped Robot Project -->
+                <div class="bg-slate-50 rounded-xl overflow-hidden shadow-sm fade-in">
+                    <div class="h-60 bg-slate-200 flex items-center justify-center">
+                        <!-- Placeholder for project image -->
+                        <div class="text-5xl text-slate-400">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Quadruped Robot Control System</h3>
+                        <p class="text-slate-700 mb-4">
+                            Developed the complete control system for a quadruped robot, including embedded firmware,
+                            NMPC/WBC and RL based locomotion algorithms, and a tablet-based remote control interface.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">C++</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">ROS</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">STM32</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Qt</span>
+                        </div>
+                        <button class="text-blue-500 hover:text-blue-700 font-medium transition flex items-center">
+                            <span>View Details</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AUV Competition Project -->
+                <div class="bg-slate-50 rounded-xl overflow-hidden shadow-sm fade-in">
+                    <div class="h-60 bg-slate-200 flex items-center justify-center">
+                        <!-- Placeholder for project image -->
+                        <div class="text-5xl text-slate-400">
+                            <i class="fas fa-water"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Competition-Winning AUV</h3>
+                        <p class="text-slate-700 mb-4">
+                            Led the software development for an autonomous underwater vehicle that secured first place
+                            at the Singapore AUV Challenge and second place at the European Robotics League.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Python</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">OpenCV</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">YOLO</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">ROS</span>
+                        </div>
+                        <button class="text-blue-500 hover:text-blue-700 font-medium transition flex items-center">
+                            <span>View Details</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3D Plugin Suite -->
+                <div class="bg-slate-50 rounded-xl overflow-hidden shadow-sm fade-in">
+                    <div class="h-60 bg-slate-200 flex items-center justify-center">
+                        <!-- Placeholder for project image -->
+                        <div class="text-5xl text-slate-400">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-slate-900">3D Plugin Suite</h3>
+                        <p class="text-slate-700 mb-4">
+                            Developed a suite of plugins for Autodesk 3ds Max and Blender that streamline 3D modeling
+                            tasks and enhance creative workflows.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">C++</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Python</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Maxscript</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">3ds
+                                Max</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Blender</span>
+                        </div>
+                        <button class="text-blue-500 hover:text-blue-700 font-medium transition flex items-center">
+                            <span>View Details</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- DevOps & Infrastructure Project -->
+                <div class="bg-slate-50 rounded-xl overflow-hidden shadow-sm fade-in">
+                    <div class="h-60 bg-slate-200 flex items-center justify-center">
+                        <!-- Placeholder for project image -->
+                        <div class="text-5xl text-slate-400">
+                            <i class="fas fa-server"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-slate-900">DevOps & Infrastructure</h3>
+                        <p class="text-slate-700 mb-4">
+                            Established offline GitLab instances, CI/CD pipelines, and robust development
+                            infrastructures to streamline software delivery and enhance team productivity.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Docker</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Git</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">CI/CD</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Linux</span>
+                        </div>
+                        <button class="text-blue-500 hover:text-blue-700 font-medium transition flex items-center">
+                            <span>View Details</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-slate-900">Experience</h2>
+                <p class="text-lg text-slate-700 max-w-3xl mx-auto">
+                    A comprehensive overview of my professional journey, from hands-on development roles to leadership
+                    positions in robotics and software engineering.
+                </p>
+            </div>
+            <div class="space-y-12">
+                <!-- Experience Item -->
+                <div class="flex flex-col md:flex-row gap-6 items-start">
+                    <div class="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-briefcase text-blue-500 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">Software Engineering Coordinator, LA2 Dynamics</h3>
+                        <span class="text-slate-600">Apr 2024 - Present | Istanbul, Türkiye</span>
+                        <p class="text-slate-700 mt-2">
+                            Overseeing the development and integration of software for quadruped robots, establishing
+                            offline infrastructures and CI/CD pipelines.
+                        </p>
+                    </div>
+                </div>
+                <!-- Experience Item -->
+                <div class="flex flex-col md:flex-row gap-6 items-start">
+                    <div class="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-briefcase text-blue-500 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">Team Captain, ITU AUV Team</h3>
+                        <span class="text-slate-600">Oct 2021 - Present | Istanbul, Türkiye</span>
+                        <p class="text-slate-700 mt-2">
+                            Leading the technical team in developing autonomous underwater vehicles, achieving top
+                            placements in international competitions.
+                        </p>
+                    </div>
+                </div>
+                <!-- Experience Item -->
+                <div class="flex flex-col md:flex-row gap-6 items-start">
+                    <div class="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full">
+                        <i class="fas fa-briefcase text-blue-500 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">Software Developer, Poly Design 3D</h3>
+                        <span class="text-slate-600">Jan 2019 - Present | Istanbul, Türkiye</span>
+                        <p class="text-slate-700 mt-2">
+                            Founded and developed innovative plugins for 3D modeling applications, enhancing the
+                            workflow for artists and designers.
+                        </p>
+                    </div>
+                </div>
+                <!-- Add more experience items as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="py-20 bg-white">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-slate-900">Honours & Awards</h2>
+                <p class="text-lg text-slate-700 max-w-3xl mx-auto">
+                    Recognition for my contributions in robotics and software development, including awards from
+                    international competitions.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Award Item -->
+                <div class="flex items-center gap-4">
+                    <div class="bg-blue-100 p-4 rounded-full">
+                        <i class="fas fa-trophy text-blue-500 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">Singapore AUV Challenge - First Place</h3>
+                        <p class="text-slate-700">Dover, Singapore | Sep 2022</p>
+                    </div>
+                </div>
+                <!-- Award Item -->
+                <div class="flex items-center gap-4">
+                    <div class="bg-blue-100 p-4 rounded-full">
+                        <i class="fas fa-trophy text-blue-500 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">European Robotics League RAMI Competition - Second
+                            Place &amp; Best Presentation</h3>
+                        <p class="text-slate-700">La Spezia, Italy | Jul 2023</p>
+                    </div>
+                </div>
+                <!-- Award Item -->
+                <div class="flex items-center gap-4">
+                    <div class="bg-blue-100 p-4 rounded-full">
+                        <i class="fas fa-trophy text-blue-500 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">Roboboat Competition - First Place</h3>
+                        <p class="text-slate-700">Sarasota, Florida, USA | Feb 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-slate-900">Contact</h2>
+                <p class="text-lg text-slate-700 max-w-3xl mx-auto">
+                    Let's connect! Whether you're interested in a project or simply want to chat about technology, feel
+                    free to get in touch.
+                </p>
+            </div>
+            <div class="max-w-2xl mx-auto">
+                <form class="space-y-6">
+                    <div>
+                        <input type="text" placeholder="Your Name"
+                            class="w-full border border-slate-300 p-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Your Email"
+                            class="w-full border border-slate-300 p-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    </div>
+                    <div>
+                        <textarea placeholder="Your Message" rows="5"
+                            class="w-full border border-slate-300 p-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit"
+                            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-4 rounded transition">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-white border-t border-slate-200">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <p class="text-sm text-slate-600">&copy; 2025 Batuhan Ozer. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Navigation & Scroll Animations -->
+    <script>
+        // Mobile navigation toggle
+        document.getElementById('mobile-nav-toggle').addEventListener('click', function () {
+            document.getElementById('mobile-nav').classList.toggle('hidden');
+        });
+
+        // Scroll animations for elements with the "fade-in" class
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
+</body>
+
+</html>
