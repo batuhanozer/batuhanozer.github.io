@@ -380,23 +380,132 @@
             transform: translateY(-2px);
         }
 
-        /* Timeline year indicator */
-        .timeline-year {
+        /* Updated Timeline Styles */
+        .timeline-wrapper {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-wrapper::before {
+            content: '';
             position: absolute;
-            left: 32px;
-            transform: translateX(-50%);
-            background-color: var(--primary);
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -3px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateX(5px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: var(--primary);
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 1rem;
-            font-weight: 500;
             font-size: 0.875rem;
-            z-index: 1;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-company {
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            font-size: 0.9375rem;
+        }
+
+        .timeline-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            font-size: 0.9375rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-duration {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         @media (min-width: 768px) {
-            .timeline-year {
+            .timeline-wrapper {
+                padding-left: 0;
+            }
+
+            .timeline-wrapper::before {
                 left: 50%;
+                transform: translateX(-1px);
+            }
+
+            .timeline-item {
+                width: 48%;
+                padding-left: 0;
+                padding-right: 2rem;
+                margin-left: auto;
+            }
+
+            .timeline-item:nth-child(odd) {
+                margin-left: 0;
+                margin-right: auto;
+                padding-left: 2rem;
+                padding-right: 0;
+                text-align: right;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot {
+                left: auto;
+                right: -4px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: -4px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-date,
+            .timeline-item:nth-child(odd) .timeline-duration {
+                justify-content: flex-end;
             }
         }
 
@@ -955,161 +1064,163 @@
         </div>
     </section>
 
-    <!-- Experience Section (Timeline) -->
+    <!-- Experience Section -->
     <section id="experience" class="py-20 bg-slate-50">
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4 text-slate-900">Experience</h2>
+                <h2 class="text-3xl font-bold mb-4 text-slate-900">Professional Journey</h2>
                 <p class="text-lg text-slate-700 max-w-3xl mx-auto">
-                    A visual timeline of my professional journey—from hands-on development roles to leadership in
-                    robotics and software engineering.
+                    A chronological overview of my career progression and key achievements
                 </p>
             </div>
-            <div class="timeline-wrapper relative space-y-12">
-                <!-- Timeline Item 1: Software Engineering Coordinator -->
+
+            <div class="timeline-wrapper">
+                <!-- Current Coordinator Position -->
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900">
-                            Software Engineering Coordinator, LA2 Dynamics
-                            <span class="text-sm text-green-600">(Current)</span>
-                        </h3>
-                        <span class="text-slate-600">Apr 2024 - Present | Istanbul, Türkiye</span>
-                        <p class="text-slate-700 mt-2">
-                            Overseeing software development, establishing CI/CD pipelines, and managing a growing team
-                            to drive innovation in quadruped robotics.
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024 - Current</span>
+                        <h3 class="timeline-title">Software Engineering Coordinator</h3>
+                        <div class="timeline-company">LA2 Dynamics</div>
+                        <p class="timeline-description">
+                            Leading software team expansion and infrastructure development for quadruped robotics
+                            systems.
+                            Established CI/CD pipelines and documentation systems.
                         </p>
-                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
-                            data-modal="modal-coordinator">
-                            View Details
-                        </button>
+                        <div class="timeline-duration">
+                            <i class="fas fa-map-marker-alt text-sm"></i>
+                            Istanbul, Türkiye
+                        </div>
                     </div>
                 </div>
-                <!-- Timeline Item 2: Team Captain -->
+
+                <!-- AUV Team Captain -->
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900">
-                            Team Captain, ITU AUV Team
-                            <span class="text-sm text-green-600">(Current)</span>
-                        </h3>
-                        <span class="text-slate-600">Oct 2021 - Present | Istanbul, Türkiye</span>
-                        <p class="text-slate-700 mt-2">
-                            Leading cross-disciplinary teams to develop autonomous underwater vehicles; achieved
-                            international recognition at major competitions.
+                    <div class="timeline-content">
+                        <span class="timeline-date">2021 - Current</span>
+                        <h3 class="timeline-title">Team Captain</h3>
+                        <div class="timeline-company">ITU AUV Team</div>
+                        <p class="timeline-description">
+                            Led development of award-winning autonomous underwater vehicles. Coordinated
+                            cross-disciplinary
+                            team of 25 members for international competitions.
                         </p>
-                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
-                            data-modal="modal-auv">
-                            View Details
-                        </button>
+                        <div class="timeline-duration">
+                            <i class="fas fa-trophy text-sm"></i>
+                            1st Place Singapore AUV Challenge 2022
+                        </div>
                     </div>
                 </div>
-                <!-- Timeline Item 3: Software Developer -->
+
+                <!-- Poly Design 3D -->
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900">
-                            Software Developer, Poly Design 3D
-                            <span class="text-sm text-green-600">(Current)</span>
-                        </h3>
-                        <span class="text-slate-600">Jan 2019 - Present | Istanbul, Türkiye</span>
-                        <p class="text-slate-700 mt-2">
-                            Founded a business creating innovative plugins for 3D modeling software, significantly
-                            enhancing creative workflows.
+                    <div class="timeline-content">
+                        <span class="timeline-date">2019 - Current</span>
+                        <h3 class="timeline-title">Founder & Developer</h3>
+                        <div class="timeline-company">Poly Design 3D</div>
+                        <p class="timeline-description">
+                            Developed commercial plugins for 3ds Max and Blender with 500+ active users. Automated
+                            complex
+                            3D modeling tasks and optimized artist workflows.
                         </p>
-                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
-                            data-modal="modal-poly">
-                            View Details
-                        </button>
+                        <div class="timeline-duration">
+                            <i class="fas fa-users text-sm"></i>
+                            500+ Users Worldwide
+                        </div>
                     </div>
                 </div>
-                <!-- Timeline Item 4: Software Engineer at LA2 Dynamics -->
+
+                <!-- LA2 Dynamics Full-time -->
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900">
-                            Software Engineer, LA2 Dynamics
-                        </h3>
-                        <span class="text-slate-600">Oct 2023 - Apr 2024 | Istanbul, Türkiye</span>
-                        <p class="text-slate-700 mt-2">
-                            Rejoined as a full-time engineer to refine locomotion and control systems for quadruped
-                            robots.
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 - 2024</span>
+                        <h3 class="timeline-title">Software Engineer</h3>
+                        <div class="timeline-company">LA2 Dynamics</div>
+                        <p class="timeline-description">
+                            Developed locomotion algorithms and control systems for quadruped robots. Implemented sensor
+                            fusion and real-time communication systems.
                         </p>
-                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
-                            data-modal="modal-engineer">
-                            View Details
-                        </button>
+                        <div class="timeline-duration">
+                            <i class="fas fa-microchip text-sm"></i>
+                            STM32 · ROS · C++
+                        </div>
                     </div>
                 </div>
-                <!-- Timeline Item 5: Software Engineer at Turkish Aerospace -->
+
+                <!-- Turkish Aerospace -->
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900">
-                            Software Engineer, Turkish Aerospace
-                        </h3>
-                        <span class="text-slate-600">Jul 2023 - Aug 2023 | Ankara, Türkiye</span>
-                        <p class="text-slate-700 mt-2">
-                            Developed a virtual joystick application for a flight simulator using C++ and Qt.
+                    <div class="timeline-content">
+                        <span class="timeline-date">Summer 2023</span>
+                        <h3 class="timeline-title">Software Engineering Intern</h3>
+                        <div class="timeline-company">Turkish Aerospace</div>
+                        <p class="timeline-description">
+                            Developed virtual joystick application for flight simulators using C++/Qt. Gained experience
+                            in
+                            aerospace software development processes.
                         </p>
-                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
-                            data-modal="modal-aerospace">
-                            View Details
-                        </button>
+                        <div class="timeline-duration">
+                            <i class="fas fa-plane text-sm"></i>
+                            Ankara, Türkiye
+                        </div>
                     </div>
                 </div>
-                <!-- Timeline Item 6: Robotics Engineer -->
+
+                <!-- Robotics Engineer -->
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900">
-                            Robotics Engineer, LA2 Dynamics
-                        </h3>
-                        <span class="text-slate-600">Feb 2023 - Jul 2023 | Istanbul, Türkiye</span>
-                        <p class="text-slate-700 mt-2">
-                            Contributed to hardware and software selection for a new quadruped robot project by
-                            designing and developing embedded and high-level software.
+                    <div class="timeline-content">
+                        <span class="timeline-date">Early 2023</span>
+                        <h3 class="timeline-title">Robotics Engineer</h3>
+                        <div class="timeline-company">LA2 Dynamics</div>
+                        <p class="timeline-description">
+                            Designed hardware/software architecture for new quadruped platform. Developed embedded
+                            systems
+                            and sensor integration solutions.
                         </p>
-                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
-                            data-modal="modal-robotics">
-                            View Details
-                        </button>
+                        <div class="timeline-duration">
+                            <i class="fas fa-robot text-sm"></i>
+                            Robotics System Design
+                        </div>
                     </div>
                 </div>
-                <!-- Timeline Item 7: Education Researcher -->
+
+                <!-- Education Researcher -->
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900">
-                            Education Researcher, ITU Robotics Laboratory
-                        </h3>
-                        <span class="text-slate-600">Oct 2022 - Feb 2023 | Istanbul, Türkiye</span>
-                        <p class="text-slate-700 mt-2">
-                            Conducted research on quadruped robots by testing walking algorithms on real robots,
-                            deepening my understanding of control systems.
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022 - 2023</span>
+                        <h3 class="timeline-title">Research Engineer</h3>
+                        <div class="timeline-company">ITU Robotics Lab</div>
+                        <p class="timeline-description">
+                            Researched quadruped locomotion algorithms. Conducted real-world testing and validation of
+                            control systems on physical platforms.
                         </p>
-                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
-                            data-modal="modal-education">
-                            View Details
-                        </button>
+                        <div class="timeline-duration">
+                            <i class="fas fa-flask text-sm"></i>
+                            Motion Planning Research
+                        </div>
                     </div>
                 </div>
-                <!-- Timeline Item 8: Software Developer at SOGA Design Office -->
+
+                <!-- SOGA Design -->
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900">
-                            Software Developer, SOGA Design Office
-                        </h3>
-                        <span class="text-slate-600">Jul 2018 - Aug 2018 | Istanbul, Türkiye</span>
-                        <p class="text-slate-700 mt-2">
-                            Developed a plugin using Maxscript and assisted with various 3D modeling tasks for a global
-                            architectural firm.
+                    <div class="timeline-content">
+                        <span class="timeline-date">2018</span>
+                        <h3 class="timeline-title">3D Developer</h3>
+                        <div class="timeline-company">SOGA Design Office</div>
+                        <p class="timeline-description">
+                            Developed custom 3ds Max plugins for architectural visualization. Assisted in 3D modeling
+                            workflows for international projects.
                         </p>
-                        <button class="mt-4 text-blue-500 hover:text-blue-700 font-medium open-modal"
-                            data-modal="modal-soga">
-                            View Details
-                        </button>
+                        <div class="timeline-duration">
+                            <i class="fas fa-cube text-sm"></i>
+                            Maxscript · 3D Modeling
+                        </div>
                     </div>
                 </div>
             </div>
