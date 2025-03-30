@@ -57,7 +57,7 @@
     </script>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -124,6 +124,22 @@
             /* Slate 800 */
             --border-color: #334155;
             /* Slate 700 */
+        }
+
+        html {
+            /* Default font size for desktop and larger */
+            font-size: 16px;
+            /* Explicitly set the default */
+        }
+
+        @media (max-width: 639px) {
+
+            /* Targets screens smaller than sm breakpoint */
+            html {
+                /* Reduce root font size for mobile */
+                /* Experiment with values like 14px or 15px */
+                font-size: 14px;
+            }
         }
 
         body {
@@ -634,7 +650,7 @@
 
         /* KEEPING: New Skill section styles (for About Me) */
         .skill-category {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         .skill-item {
@@ -823,28 +839,35 @@
 
     <!-- About Section -->
     <!-- KEEPING: New About Section with Skills List -->
-    <section id="about" class="py-24 bg-bg-primary dark:bg-slate-800">
+    <section id="about" class="py-20 bg-bg-primary dark:bg-slate-800">
         <div class="container mx-auto px-6 md:px-12">
             <div class="flex flex-col lg:flex-row items-start gap-16">
                 <!-- About Me Text -->
                 <div class="lg:w-2/5 fade-in-scroll">
                     <h2 class="text-3xl font-bold mb-6 text-text-primary dark:text-slate-100">About Me</h2>
                     <p class="text-lg text-text-secondary dark:text-slate-300 mb-6 leading-relaxed">
-                        I'm a Robotics Engineer & Software Developer driven by a passion for creating intelligent
-                        machines and robust software. Currently coordinating software efforts at <strong
-                            class="text-primary dark:text-primary-dark font-semibold">LA2 Dynamics</strong>, focusing on
-                        advancing quadruped robot capabilities.
+                        I'm a Robotics Engineer and Software Developer driven by the challenge of creating intelligent,
+                        autonomous systems. My focus is on building robust software and integrating complex hardware to
+                        bring advanced robotic capabilities to life.
                     </p>
                     <p class="text-lg text-text-secondary dark:text-slate-300 mb-6 leading-relaxed">
-                        My journey includes leading the <strong
-                            class="text-primary dark:text-primary-dark font-semibold">ITU AUV Team</strong> to
-                        international victories, showcasing my commitment to teamwork and technical excellence in
-                        underwater robotics.
+                        Currently, at <strong class="text-primary dark:text-primary-dark font-semibold">LA2
+                            Dynamics</strong>, I coordinate software development efforts, concentrating on
+                        enhancing the locomotion, perception, and overall intelligence of quadruped robots through
+                        well-architected software solutions.
                     </p>
                     <p class="text-lg text-text-secondary dark:text-slate-300 mb-8 leading-relaxed">
-                        Additionally, I run <strong class="text-primary dark:text-primary-dark font-semibold">Poly
-                            Design 3D</strong>, developing tools that empower 3D artists globally, blending my
-                        engineering skills with creative software development.
+                        Previously, leading the <strong class="text-primary dark:text-primary-dark font-semibold">ITU
+                            AUV Team</strong> provided invaluable experience in managing technical
+                        projects and fostering collaboration, culminating in international competition victories in the
+                        demanding field of underwater robotics.
+                    </p>
+                    <p class="text-lg text-text-secondary dark:text-slate-300 mb-8 leading-relaxed">
+                        Complementing this, I founded <strong
+                            class="text-primary dark:text-primary-dark font-semibold">Poly
+                            Design 3D</strong>, where I
+                        develop practical software tools that bridge engineering principles with the creative needs of
+                        3D artists worldwide.
                     </p>
                     <!-- Social Links & Resume -->
                     <div class="flex flex-wrap gap-4 items-center">
@@ -876,28 +899,31 @@
                         </h3>
 
                         <!-- New Skills Section -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-10">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-6 mb-10">
                             <div class="skill-category">
                                 <h4
                                     class="font-semibold text-lg mb-4 text-primary dark:text-blue-400 border-b border-border-color dark:border-slate-700 pb-2">
                                     Languages & Core</h4>
                                 <div class="skill-item"><i class="fab fa-cuttlefish"></i> <span>C / C++</span></div>
                                 <div class="skill-item"><i class="fab fa-python"></i> <span>Python</span></div>
-                                <div class="skill-item"><i class="fas fa-database"></i> <span>SQL</span></div>
+                                <div class="skill-item"><i class="fa-brands fa-microsoft"></i> <span>C#</span></div>
+                                <div class="skill-item"><i class="fab fa-js"></i> <span>JavaScript</span></div>
+                                <div class="skill-item"><i class="fa-solid fa-terminal"></i> <span>Maxscript</span>
+                                </div>
                                 <div class="skill-item"><i class="fab fa-linux"></i> <span>Linux / Bash</span></div>
                             </div>
                             <div class="skill-category">
                                 <h4
                                     class="font-semibold text-lg mb-4 text-primary dark:text-blue-400 border-b border-border-color dark:border-slate-700 pb-2">
                                     Robotics & AI</h4>
-                                <div class="skill-item"><i class="fas fa-robot"></i> <span>ROS / ROS2</span></div>
+                                <div class="skill-item"><i class="fas fa-robot"></i> <span>ROS</span></div>
                                 <div class="skill-item"><i class="fas fa-cogs"></i> <span>Control Systems (MPC,
                                         WBC)</span></div>
-                                <div class="skill-item"><i class="fas fa-brain"></i> <span>Computer Vision (OpenCV,
-                                        YOLO)</span></div>
-                                <div class="skill-item"><i class="fas fa-microchip"></i> <span>Embedded Systems
-                                        (STM32)</span></div>
+                                <div class="skill-item"><i class="fas fa-eye"></i> <span>Computer Vision</span></div>
+                                <div class="skill-item"><i class="fas fa-microchip"></i> <span>Embedded</span></div>
                                 <div class="skill-item"><i class="fas fa-layer-group"></i> <span>Sensor Fusion</span>
+                                </div>
+                                <div class="skill-item"><i class="fas fa-network-wired"></i> <span>Networking</span>
                                 </div>
                             </div>
                             <div class="skill-category">
@@ -907,9 +933,9 @@
                                 <div class="skill-item"><i class="fab fa-git-alt"></i> <span>Git / GitLab</span></div>
                                 <div class="skill-item"><i class="fab fa-docker"></i> <span>Docker</span></div>
                                 <div class="skill-item"><i class="fas fa-terminal"></i> <span>CI/CD</span></div>
-                                <div class="skill-item"><i class="fas fa-cubes"></i> <span>3ds Max / Blender API</span>
-                                </div>
-                                <div class="skill-item"><i class="fab fa-qt"></i> <span>Qt Framework</span></div>
+                                <div class="skill-item"><i class="fas fa-cubes"></i> <span>3dsMax SDK</span></div>
+                                <div class="skill-item"><i class="fas fa-cubes"></i> <span>Blender API</span></div>
+                                <div class="skill-item"><i class="fas fa-gear"></i> <span>Qt Framework</span></div>
                             </div>
                             <div class="skill-category">
                                 <h4
@@ -935,7 +961,7 @@
                                 </div>
                                 <div>
                                     <h5 class="font-medium text-text-primary dark:text-slate-100">Bachelor's Degree in
-                                        Engineering</h5>
+                                        Control & Automation Engineering</h5>
                                     <p class="text-text-secondary dark:text-slate-400 text-sm">Istanbul Technical
                                         University (2018 - 2024)</p>
                                     <p class="text-text-secondary dark:text-slate-400 text-sm">GPA: 3.26 / 4.00</p>
@@ -1150,7 +1176,7 @@
     <!-- KEPT: Enhanced card content structure -->
     <!-- REVERTED: Project Images to original placeholders -->
     <!-- ADDED: Dark mode classes -->
-    <section id="projects" class="py-24 bg-bg-primary dark:bg-slate-800"> <!-- Adjusted padding -->
+    <section id="projects" class="py-20 bg-bg-primary dark:bg-slate-800"> <!-- Adjusted padding -->
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-16 fade-in-scroll"> <!-- Kept enhanced title section -->
                 <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Featured Projects</h2>
@@ -1161,11 +1187,11 @@
             </div>
 
             <!-- Kept enhanced grid layout -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <!-- Quadruped Robot Project -->
                 <!-- Added dark mode classes, kept enhanced card content -->
                 <div
-                    class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl overflow-hidden shadow-lg border border-border-color dark:border-slate-700/50 fade-in-scroll">
+                    class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl overflow-hidden shadow-lg border border-border-color dark:border-slate-700/50 fade-in-scroll project-card">
                     <!-- REVERTED: Original Image Placeholder -->
                     <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
                         <div class="text-5xl text-slate-400 dark:text-slate-500">
@@ -1199,7 +1225,7 @@
                 </div>
 
                 <!-- AUV Competition Project -->
-                <div class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl overflow-hidden shadow-lg border border-border-color dark:border-slate-700/50 fade-in-scroll"
+                <div class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl overflow-hidden shadow-lg border border-border-color dark:border-slate-700/50 fade-in-scroll  project-card"
                     style="animation-delay: 0.1s;">
                     <!-- REVERTED: Original Image Placeholder -->
                     <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
@@ -1232,7 +1258,7 @@
                 </div>
 
                 <!-- 3D Plugin Suite -->
-                <div class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl overflow-hidden shadow-lg border border-border-color dark:border-slate-700/50 fade-in-scroll"
+                <div class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl overflow-hidden shadow-lg border border-border-color dark:border-slate-700/50 fade-in-scroll project-card"
                     style="animation-delay: 0.2s;">
                     <!-- REVERTED: Original Image Placeholder -->
                     <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
@@ -1264,48 +1290,13 @@
                         </button>
                     </div>
                 </div>
-
-                <!-- DevOps & Infrastructure Project -->
-                <div class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl overflow-hidden shadow-lg border border-border-color dark:border-slate-700/50 fade-in-scroll"
-                    style="animation-delay: 0.3s;">
-                    <!-- REVERTED: Original Image Placeholder -->
-                    <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
-                        <div class="text-5xl text-slate-400 dark:text-slate-500">
-                            <i class="fas fa-server"></i>
-                        </div>
-                    </div>
-                    <!-- Kept enhanced content below image -->
-                    <div class="p-8">
-                        <h3 class="text-xl font-semibold mb-3 text-text-primary dark:text-slate-100">DevOps &
-                            Infrastructure Setup</h3>
-                        <p class="text-text-secondary dark:text-slate-300 mb-5 leading-relaxed">
-                            Established offline GitLab instances, CI/CD pipelines, and robust development
-                            infrastructures to streamline software delivery and enhance team productivity.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <!-- Used accent2 for these pills -->
-                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Docker</span>
-                            <span class="skill-pill text-xs px-3 py-1 rounded-full">GitLab CI</span>
-                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Linux</span>
-                            <span class="skill-pill text-xs px-3 py-1 rounded-full">MkDocs</span>
-                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Ansible</span>
-                        </div>
-                        <button data-modal="project-devops" class="open-modal text-primary dark:text-blue-400
-                            hover:text-primary-dark dark:hover:text-blue-300 font-medium transition duration-300 flex
-                            items-center group">
-                            <span>View Details</span>
-                            <i
-                                class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
     <!-- KEEPING: New Timeline Style -->
-    <section id="experience" class="py-24 bg-bg-secondary dark:bg-slate-900">
+    <section id="experience" class="py-20 bg-bg-secondary dark:bg-slate-900">
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-20 fade-in-scroll">
                 <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Professional Journey</h2>
@@ -1461,7 +1452,7 @@
     <!-- Awards Section -->
     <!-- KEPT: Enhanced Style but refined -->
     <!-- ADDED: Emphasis classes and optional link -->
-    <section id="awards" class="py-24 bg-bg-primary dark:bg-slate-800"> <!-- Adjusted padding -->
+    <section id="awards" class="py-20 bg-bg-primary dark:bg-slate-800"> <!-- Adjusted padding -->
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-16 fade-in-scroll">
                 <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Honours & Awards</h2>
