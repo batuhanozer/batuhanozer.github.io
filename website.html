@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Apply 'dark' class here via JS or manually for testing -->
+<html lang="en" class="">
 
 <head>
     <meta charset="UTF-8">
@@ -10,6 +11,50 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind config for dark mode and custom colors -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: 'var(--primary)',
+                            dark: 'var(--primary-dark)',
+                        },
+                        secondary: 'var(--secondary)',
+                        accent: 'var(--accent)',
+                        accent2: 'var(--accent2)', // Fuchsia/Magenta
+                        dark: 'var(--dark)',
+                        light: 'var(--light)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'float': 'float 4s ease-in-out infinite',
+                        'pulsate': 'pulsate 2s infinite', // Kept for potential use
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }, // Reverted float distance
+                        },
+                        pulsate: {
+                            '0%, 100%': { boxShadow: '0 0 0 0 rgba(var(--primary-rgb), 0.4)' },
+                            '70%': { boxShadow: '0 0 0 10px rgba(var(--primary-rgb), 0)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,17 +68,70 @@
 
     <style>
         :root {
+            /* Light Mode Colors */
             --primary: #3B82F6;
+            /* Blue 500 */
+            --primary-rgb: 59, 130, 246;
             --primary-dark: #2563EB;
+            /* Blue 600 */
             --secondary: #10B981;
-            --dark: #1E293B;
-            --light: #F8FAFC;
+            /* Emerald 500 */
             --accent: #F97316;
+            /* Orange 500 */
+            --accent2: #8826d3;
+            /* Fuchsia 600 */
+            --accent2-rgb: 192, 38, 211;
+            --dark: #1E293B;
+            /* Slate 800 */
+            --light: #F8FAFC;
+            /* Slate 50 */
+            --text-primary: #1E293B;
+            /* Slate 800 */
+            --text-secondary: #475569;
+            /* Slate 600 */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            /* Slate 50 */
+            --border-color: #E2E8F0;
+            /* Slate 200 */
+        }
+
+        .dark {
+            /* Dark Mode Colors */
+            --primary: #60A5FA;
+            /* Blue 400 */
+            --primary-rgb: 96, 165, 250;
+            --primary-dark: #3B82F6;
+            /* Blue 500 */
+            --secondary: #34D399;
+            /* Emerald 400 */
+            --accent: #FB923C;
+            /* Orange 400 */
+            --accent2: #9d46ef;
+            /* Fuchsia 500 */
+            --accent2-rgb: 217, 70, 239;
+            --dark: #F8FAFC;
+            /* Slate 50 - used for text in dark mode */
+            --light: #1E293B;
+            /* Slate 800 - used for bg in dark mode */
+            --text-primary: #F1F5F9;
+            /* Slate 100 */
+            --text-secondary: #94A3B8;
+            /* Slate 400 */
+            --bg-primary: #0F172A;
+            /* Slate 900 */
+            --bg-secondary: #1E293B;
+            /* Slate 800 */
+            --border-color: #334155;
+            /* Slate 700 */
         }
 
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         h1,
@@ -43,234 +141,393 @@
         h5,
         h6 {
             font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-primary);
         }
 
+        /* REVERTED: Original Hero Gradient Style */
         .hero-gradient {
             background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            color: #F8FAFC;
+            /* Ensure light text on dark gradient */
         }
 
+        /* Keep particles styling */
+        #particles-js,
+        #contact-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .hero-content,
+        .contact-content {
+            /* Ensure content is above particles */
+            position: relative;
+            z-index: 10;
+        }
+
+        /* REVERTED: Original Project Card hover (kept class name) */
         .project-card {
+            background-color: var(--bg-primary);
+            /* Apply theme bg */
+            border: 1px solid var(--border-color);
+            /* Apply theme border */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
+            /* Original hover effect */
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
+        .dark .project-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark .project-card:hover {
+            box-shadow: 0 10px 25px -5px rgba(var(--primary-rgb), 0.15), 0 8px 10px -6px rgba(var(--primary-rgb), 0.15);
+        }
+
+
+        /* KEEPING: New Timeline Styles (with minor theme adjustments) */
         .timeline-wrapper {
             position: relative;
+            padding-left: 2rem;
         }
 
         .timeline-wrapper::before {
             content: '';
             position: absolute;
-            left: 32px;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background-color: #CBD5E1;
-            z-index: 0;
-        }
-
-        @media (min-width: 768px) {
-            .timeline-wrapper::before {
-                left: 50%;
-                transform: translateX(-50%);
-            }
+            left: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent2));
+            border-radius: 1.5px;
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             padding-left: 2.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .timeline-item {
-                width: 50%;
-                padding-left: 0;
-                padding-right: 2.5rem;
-                align-self: flex-end;
-                margin-left: auto;
-                text-align: left;
-            }
-
-            .timeline-item:nth-child(odd) {
-                align-self: flex-start;
-                margin-right: auto;
-                margin-left: 0;
-                padding-left: 2.5rem;
-                padding-right: 0;
-                text-align: right;
-            }
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 0;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            z-index: 1;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        @media (min-width: 768px) {
-            .timeline-item .timeline-dot {
-                left: -8px;
-            }
-
-            .timeline-item:nth-child(odd) .timeline-dot {
-                left: auto;
-                right: -8px;
-            }
-        }
-
-        .timeline-item:hover .timeline-dot {
-            transform: scale(1.2);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
-        }
-
-        .timeline-content {
-            background-color: white;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .timeline-item:hover .timeline-content {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .skill-pill {
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-
-        .skill-pill:hover {
-            transform: scale(1.05);
-            background-color: var(--primary-dark);
-        }
-
-        /* Scroll animations */
-        .fade-in {
+            transition: all 0.3s ease;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .fade-in.visible {
+        .timeline-item.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
+        .timeline-dot {
+            position: absolute;
+            left: -9px;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid var(--bg-secondary);
+            /* Use bg for cutout */
+            box-shadow: 0 0 0 4px var(--primary);
+            z-index: 2;
+            transition: all 0.3s ease;
         }
 
-        .floating {
-            animation: float 4s ease-in-out infinite;
+        .timeline-item:hover .timeline-dot {
+            background: var(--accent2);
+            box-shadow: 0 0 0 4px var(--accent2);
+            transform: scale(1.1);
         }
 
-        /* Navigation highlight for current section */
-        .nav-link.active {
-            color: var(--primary);
+        .timeline-content {
+            background: var(--bg-primary);
+            border-radius: 0.75rem;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .dark .timeline-content {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .dark .timeline-item:hover .timeline-content {
+            box-shadow: 0 6px 25px rgba(var(--accent2-rgb), 0.2);
+            border-color: var(--accent2);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
             font-weight: 500;
+            margin-bottom: 0.75rem;
         }
 
-        /* Custom Scrollbar */
+        .timeline-item:hover .timeline-date {
+            background: var(--accent2);
+        }
+
+        .timeline-company {
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            font-size: 0.9375rem;
+        }
+
+        .dark .timeline-company {
+            color: var(--primary);
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-duration {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .timeline-duration i {
+            color: var(--primary);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-wrapper {
+                padding-left: 0;
+            }
+
+            .timeline-wrapper::before {
+                left: 50%;
+                transform: translateX(-1.5px);
+            }
+
+            .timeline-item {
+                width: 48%;
+                padding-left: 0;
+                padding-right: 2.5rem;
+                margin-left: auto;
+            }
+
+            .timeline-item:nth-child(odd) {
+                margin-left: 0;
+                margin-right: auto;
+                padding-left: 2.5rem;
+                padding-right: 0;
+                text-align: right;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot {
+                left: auto;
+                right: -10px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: -10px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-date,
+            .timeline-item:nth-child(odd) .timeline-duration {
+                justify-content: flex-end;
+            }
+
+            .timeline-item:nth-child(odd):hover .timeline-content {
+                transform: translateX(-5px);
+            }
+
+            .timeline-item:nth-child(even):hover .timeline-content {
+                transform: translateX(5px);
+            }
+        }
+
+        /* KEEPING: New skill pill style */
+        .skill-pill {
+            background-color: var(--primary);
+            color: white;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            display: inline-block;
+            /* Ensure proper display */
+            font-weight: 500;
+            /* Make tags bolder */
+        }
+
+        .skill-pill:hover {
+            transform: scale(1.05);
+            background-color: var(--accent2);
+        }
+
+        .dark .skill-pill {
+            background-color: var(--primary-dark);
+        }
+
+        .dark .skill-pill:hover {
+            background-color: var(--accent2);
+        }
+
+        /* Scroll animation class (used by JS) */
+        .fade-in-scroll {
+            opacity: 100;
+        }
+
+        .fade-in-scroll.visible {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Navigation highlight (Keep enhanced style) */
+        .nav-link.active {
+            color: var(--primary) !important;
+            /* Use important to override base color */
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        /* Ensure mobile active links also get highlighted */
+        #mobile-nav .nav-link.active {
+            color: var(--primary) !important;
+            background-color: rgba(var(--primary-rgb), 0.1);
+            border-radius: 4px;
+        }
+
+        #mobile-nav .nav-link.active::after {
+            display: none;
+        }
+
+        /* No underline needed on mobile */
+
+        /* Custom Scrollbar (Keep enhanced) */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: var(--bg-secondary);
         }
 
         ::-webkit-scrollbar-thumb {
             background: #CBD5E1;
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: #94A3B8;
         }
 
-        /* Progress bars animation */
-        @keyframes progressAnimation {
-            from {
-                width: 0;
-            }
-
-            to {
-                width: var(--progress-width);
-            }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
         }
 
-        .progress-bar {
-            position: relative;
-            height: 6px;
-            background-color: #E2E8F0;
-            border-radius: 3px;
-            overflow: hidden;
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #64748B;
         }
 
-        .progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: var(--progress-width);
-            background-color: var(--primary);
-            border-radius: 3px;
-            animation: progressAnimation 1.5s ease-out;
+        /* MODIFIED: Enhanced Awards Card Style */
+        .award-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Award badges animation */
-        @keyframes pulsate {
-            0% {
-                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
-            }
+        .award-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px -5px rgba(var(--primary-rgb), 0.1);
+            border-color: var(--primary);
+        }
 
-            70% {
-                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
-            }
+        .dark .award-card {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
 
-            100% {
-                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-            }
+        .dark .award-card:hover {
+            box-shadow: 0 10px 25px -5px rgba(var(--primary-rgb), 0.2);
+            border-color: var(--primary);
         }
 
         .award-badge {
-            animation: pulsate 2s infinite;
+            /* Badge within the card */
+            background-color: rgba(var(--primary-rgb), 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
-        /* Skills rating */
+        .award-card:hover .award-badge {
+            transform: scale(1.1);
+            background-color: rgba(var(--accent2-rgb), 0.15);
+        }
+
+        .award-badge i {
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        .award-card:hover .award-badge i {
+            color: var(--accent2);
+        }
+
+        .award-card.rank-1 h3,
+        .award-card.rank-2 h3 {
+            /* Emphasis for rank */
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .dark .award-card.rank-1 h3,
+        .dark .award-card.rank-2 h3 {
+            color: var(--primary);
+            /* Keep bright in dark mode */
+        }
+
+
+        /* KEEPING: New skill rating dots style (if used in future) */
         .skill-rating {
             display: flex;
-            gap: 2px;
+            gap: 4px;
         }
 
         .skill-rating .dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background-color: #E2E8F0;
+            background-color: var(--border-color);
             transition: background-color 0.3s ease;
         }
 
@@ -278,7 +535,7 @@
             background-color: var(--primary);
         }
 
-        /* Modal styles */
+        /* KEEPING: New Modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -288,7 +545,8 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -301,46 +559,45 @@
         }
 
         .modal-content {
-            background-color: white;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             margin: auto;
-            padding: 2rem;
-            border-radius: 0.5rem;
+            padding: 2.5rem;
+            border-radius: 0.75rem;
             max-width: 800px;
             width: 90%;
-            transform: translateY(20px);
+            transform: scale(0.95) translateY(10px);
             transition: transform 0.3s ease;
             position: relative;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .modal-content {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .modal.show .modal-content {
-            transform: translateY(0);
+            transform: scale(1) translateY(0);
         }
 
         .close-modal {
             position: absolute;
             right: 1.5rem;
             top: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            line-height: 1;
             cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
-        /* Timeline filter buttons */
-        .filter-button {
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            background-color: #F1F5F9;
-            color: #64748B;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .close-modal:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
         }
 
-        .filter-button.active {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        /* Dark/Light mode toggle */
+        /* KEEPING: New Theme toggle style */
         .theme-toggle {
             position: fixed;
             bottom: 2rem;
@@ -348,8 +605,10 @@
             width: 3rem;
             height: 3rem;
             border-radius: 50%;
-            background-color: white;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -359,198 +618,92 @@
         }
 
         .theme-toggle:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
         }
 
-        /* Resume download button */
-        .download-resume {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background-color: #F1F5F9;
-            color: #334155;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        .dark .theme-toggle {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .download-resume:hover {
-            background-color: #E2E8F0;
-            transform: translateY(-2px);
+        .dark .theme-toggle:hover {
+            box-shadow: 0 6px 15px rgba(var(--accent2-rgb), 0.2);
+            color: var(--accent2);
         }
 
-        /* Updated Timeline Styles */
-        .timeline-wrapper {
-            position: relative;
-            padding-left: 2rem;
-        }
 
-        .timeline-wrapper::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--primary) 0%, var(--primary-dark) 100%);
-        }
-
-        .timeline-item {
-            position: relative;
+        /* KEEPING: New Skill section styles (for About Me) */
+        .skill-category {
             margin-bottom: 2rem;
-            padding-left: 2.5rem;
-            transition: all 0.3s ease;
         }
 
-        .timeline-dot {
-            position: absolute;
-            left: -3px;
-            top: 5px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: 3px solid white;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
-            z-index: 2;
-        }
-
-        .timeline-content {
-            background: white;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s ease;
-        }
-
-        .timeline-item:hover .timeline-content {
-            transform: translateX(5px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .timeline-date {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.875rem;
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             margin-bottom: 0.75rem;
         }
 
-        .timeline-company {
-            color: var(--primary-dark);
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            font-size: 0.9375rem;
+        .skill-item i {
+            width: 20px;
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.1rem;
         }
 
-        .timeline-title {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 0.5rem;
+        .skill-item span {
+            color: var(--text-primary);
+            font-weight: 500;
         }
 
-        .timeline-description {
-            font-size: 0.9375rem;
-            color: #64748b;
-            line-height: 1.5;
-            margin-bottom: 0.5rem;
+        .dark .skill-item span {
+            color: var(--text-primary);
         }
 
-        .timeline-duration {
-            font-size: 0.875rem;
-            color: #94a3b8;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        /* Ensure text color in dark mode */
+        .dark .skill-item i {
+            color: var(--primary);
         }
 
-        @media (min-width: 768px) {
-            .timeline-wrapper {
-                padding-left: 0;
-            }
+        /* Ensure icon color in dark mode */
 
-            .timeline-wrapper::before {
-                left: 50%;
-                transform: translateX(-1px);
-            }
-
-            .timeline-item {
-                width: 48%;
-                padding-left: 0;
-                padding-right: 2rem;
-                margin-left: auto;
-            }
-
-            .timeline-item:nth-child(odd) {
-                margin-left: 0;
-                margin-right: auto;
-                padding-left: 2rem;
-                padding-right: 0;
-                text-align: right;
-            }
-
-            .timeline-item:nth-child(odd) .timeline-dot {
-                left: auto;
-                right: -4px;
-            }
-
-            .timeline-item:nth-child(even) .timeline-dot {
-                left: -4px;
-            }
-
-            .timeline-item:nth-child(odd) .timeline-date,
-            .timeline-item:nth-child(odd) .timeline-duration {
-                justify-content: flex-end;
-            }
-        }
-
-        .hero-section {
-            position: relative;
-            /* Optionally, set an explicit height if needed */
-            /* height: 100vh; */
-        }
-
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-        }
+        /* REMOVED: Unused progress bar styles */
+        /* REMOVED: Unused timeline filter button styles */
+        /* REMOVED: Original timeline styles (replaced by new ones) */
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-bg-secondary text-text-primary">
+
     <!-- Navigation -->
-    <nav id="main-nav" class="fixed w-full bg-white bg-opacity-95 shadow-sm z-50 py-4 backdrop-blur-sm">
+    <!-- REVERTED: Original Navbar Structure -->
+    <!-- ADDED: Dark mode classes for theme compatibility -->
+    <nav id="main-nav"
+        class="fixed w-full bg-white/95 dark:bg-slate-900/80 shadow-sm z-50 py-4 backdrop-blur-sm border-b border-border-color dark:border-slate-700/50 transition-colors duration-300">
         <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold text-slate-900">
-                <span class="text-blue-500">B</span>atuhan <span class="text-blue-500">O</span>zer
+            <a href="#hero" class="text-2xl font-bold text-slate-900 dark:text-slate-100">
+                Batuhan Ozer
             </a>
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-8">
-                <a href="#about" class="nav-link text-slate-700 hover:text-blue-500 transition">About</a>
-                <a href="#expertise" class="nav-link text-slate-700 hover:text-blue-500 transition">Expertise</a>
-                <a href="#projects" class="nav-link text-slate-700 hover:text-blue-500 transition">Projects</a>
-                <a href="#experience" class="nav-link text-slate-700 hover:text-blue-500 transition">Experience</a>
-                <a href="#awards" class="nav-link text-slate-700 hover:text-blue-500 transition">Awards</a>
-                <a href="#contact" class="nav-link text-slate-700 hover:text-blue-500 transition">Contact</a>
+                <!-- Added dark mode text colors -->
+                <a href="#about"
+                    class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary transition">About</a>
+                <a href="#expertise"
+                    class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary transition">Expertise</a>
+                <a href="#projects"
+                    class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary transition">Projects</a>
+                <a href="#experience"
+                    class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary transition">Experience</a>
+                <a href="#awards"
+                    class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary transition">Awards</a>
+                <a href="#contact"
+                    class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary transition">Contact</a>
             </div>
 
             <!-- Mobile Navigation Toggle -->
-            <button id="mobile-nav-toggle" class="md:hidden text-slate-700 focus:outline-none">
+            <button id="mobile-nav-toggle" class="md:hidden text-slate-700 dark:text-slate-300 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
@@ -560,27 +713,37 @@
         </div>
 
         <!-- Mobile Navigation Menu -->
+        <!-- Added dark mode bg/text/border colors -->
         <div id="mobile-nav"
-            class="md:hidden hidden bg-white shadow-md absolute top-full left-0 right-0 border-t border-slate-100">
+            class="md:hidden hidden bg-white dark:bg-slate-800 shadow-md absolute top-full left-0 right-0 border-t border-slate-100 dark:border-slate-700">
             <div class="container mx-auto px-6 py-3 flex flex-col space-y-4">
-                <a href="#about" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">About</a>
-                <a href="#expertise" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">Expertise</a>
-                <a href="#projects" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">Projects</a>
-                <a href="#experience" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">Experience</a>
-                <a href="#awards" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">Awards</a>
-                <a href="#contact" class="nav-link py-2 text-slate-700 hover:text-blue-500 transition">Contact</a>
+                <a href="#about"
+                    class="nav-link py-2 text-slate-700 dark:text-slate-300 hover:text-primary transition">About</a>
+                <a href="#expertise"
+                    class="nav-link py-2 text-slate-700 dark:text-slate-300 hover:text-primary transition">Expertise</a>
+                <a href="#projects"
+                    class="nav-link py-2 text-slate-700 dark:text-slate-300 hover:text-primary transition">Projects</a>
+                <a href="#experience"
+                    class="nav-link py-2 text-slate-700 dark:text-slate-300 hover:text-primary transition">Experience</a>
+                <a href="#awards"
+                    class="nav-link py-2 text-slate-700 dark:text-slate-300 hover:text-primary transition">Awards</a>
+                <a href="#contact"
+                    class="nav-link py-2 text-slate-700 dark:text-slate-300 hover:text-primary transition">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
+    <!-- REVERTED: Original Hero Structure -->
+    <!-- KEPT: Particles JS -->
+    <!-- ADDED: Subtle glow to profile picture -->
     <section id="hero"
         class="hero-section relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24 hero-gradient text-white">
         <div id="particles-js" class="absolute inset-0 z-0"></div>
         <div class="hero-content container mx-auto px-6 md:px-12">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-3/5 mb-12 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-slate-200">
                         Robotics Engineer <br>& Software Developer
                     </h1>
                     <p class="text-xl text-slate-300 mb-8 max-w-2xl">
@@ -589,11 +752,11 @@
                     </p>
                     <div class="flex flex-wrap gap-4">
                         <a href="#projects"
-                            class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition flex items-center">
+                            class="bg-blue-500 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition flex items-center transform hover:-translate-y-1 shadow-md hover:shadow-lg">
                             <i class="fas fa-project-diagram mr-2"></i> View Projects
                         </a>
                         <a href="#contact"
-                            class="bg-transparent hover:bg-white hover:text-slate-900 text-white font-medium py-3 px-6 rounded-lg border border-white transition flex items-center">
+                            class="bg-transparent hover:bg-white hover:text-slate-900 text-white font-medium py-3 px-6 rounded-lg border border-white transition flex items-center transform hover:-translate-y-1 hover:shadow-lg">
                             <i class="fas fa-envelope mr-2"></i> Contact Me
                         </a>
                     </div>
@@ -606,41 +769,50 @@
                             <div class="text-5xl text-blue-400">
                                 <i class="fas fa-robot"></i>
                             </div>
+                            <!-- Example using an image:
+                             <img src="/path/to/your-image.jpg" alt="Batuhan Ozer" class="w-full h-full object-cover rounded-full border-4 border-slate-700">
+                             -->
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Technologies Badge Bar -->
-            <div class="mt-16 py-4 bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-xl">
+            <!-- Skills Section -->
+            <div class="mt-16 py-4 bg-slate-800/50 dark:bg-black/30 backdrop-blur-sm rounded-xl">
                 <div class="container mx-auto px-6">
-                    <div class="flex justify-between items-center flex-wrap gap-6">
-                        <div class="flex items-center">
-                            <i class="fab fa-cuttlefish text-2xl text-blue-400 mr-3"></i>
+                    <div class="flex justify-between items-center flex-wrap gap-6 text-slate-200 dark:text-slate-300">
+                        <div class="flex items-center gap-2 group">
+                            <i
+                                class="fab fa-cuttlefish text-2xl text-blue-400 group-hover:text-accent2 transition-colors"></i>
                             <span>C/C++</span>
                         </div>
-                        <div class="flex items-center">
-                            <i class="fab fa-python text-2xl text-blue-400 mr-3"></i>
+                        <div class="flex items-center gap-2 group">
+                            <i
+                                class="fab fa-python text-2xl text-blue-400 group-hover:text-accent2 transition-colors"></i>
                             <span>Python</span>
                         </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-code text-2xl text-blue-400 mr-3"></i>
+                        <div class="flex items-center gap-2 group">
+                            <i
+                                class="fas fa-code text-2xl text-blue-400 group-hover:text-accent2 transition-colors"></i>
                             <span>ROS</span>
                         </div>
-                        <div class="flex items-center">
-                            <i class="fab fa-docker text-2xl text-blue-400 mr-3"></i>
+                        <div class="flex items-center gap-2 group">
+                            <i
+                                class="fab fa-docker text-2xl text-blue-400 group-hover:text-accent2 transition-colors"></i>
                             <span>Docker</span>
                         </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-microchip text-2xl text-blue-400 mr-3"></i>
+                        <div class="flex items-center gap-2 group">
+                            <i
+                                class="fas fa-microchip text-2xl text-blue-400 group-hover:text-accent2 transition-colors"></i>
                             <span>Embedded</span>
                         </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-eye text-2xl text-blue-400 mr-3"></i>
+                        <div class="flex items-center gap-2 group">
+                            <i class="fas fa-eye text-2xl text-blue-400 group-hover:text-accent2 transition-colors"></i>
                             <span>Perception</span>
                         </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-cubes text-2xl text-blue-400 mr-3"></i>
+                        <div class="flex items-center gap-2 group">
+                            <i
+                                class="fas fa-cubes text-2xl text-blue-400 group-hover:text-accent2 transition-colors"></i>
                             <span>3D Design</span>
                         </div>
                     </div>
@@ -650,113 +822,135 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <!-- KEEPING: New About Section with Skills List -->
+    <section id="about" class="py-24 bg-bg-primary dark:bg-slate-800">
         <div class="container mx-auto px-6 md:px-12">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-2/5">
-                    <h2 class="text-3xl font-bold mb-4 text-slate-900">About Me</h2>
-                    <p class="text-lg text-slate-700 mb-6">
-                        I'm a Robotics Engineer and Software Developer with extensive experience in developing
-                        cutting-edge robotic systems. Currently serving as a Software Engineering Coordinator at LA2
-                        Dynamics, I focus on building and enhancing software for quadruped robots.
+            <div class="flex flex-col lg:flex-row items-start gap-16">
+                <!-- About Me Text -->
+                <div class="lg:w-2/5 fade-in-scroll">
+                    <h2 class="text-3xl font-bold mb-6 text-text-primary dark:text-slate-100">About Me</h2>
+                    <p class="text-lg text-text-secondary dark:text-slate-300 mb-6 leading-relaxed">
+                        I'm a Robotics Engineer & Software Developer driven by a passion for creating intelligent
+                        machines and robust software. Currently coordinating software efforts at <strong
+                            class="text-primary dark:text-primary-dark font-semibold">LA2 Dynamics</strong>, focusing on
+                        advancing quadruped robot capabilities.
                     </p>
-                    <p class="text-lg text-slate-700 mb-6">
-                        As Team Captain of the ITU AUV Team, I've led our team to international success, securing first
-                        place at the Singapore AUV Challenge and second place at the European Robotics League RAMI
-                        Competition.
+                    <p class="text-lg text-text-secondary dark:text-slate-300 mb-6 leading-relaxed">
+                        My journey includes leading the <strong
+                            class="text-primary dark:text-primary-dark font-semibold">ITU AUV Team</strong> to
+                        international victories, showcasing my commitment to teamwork and technical excellence in
+                        underwater robotics.
                     </p>
-                    <p class="text-lg text-slate-700 mb-6">
-                        I also run my own business, Poly Design 3D, where I develop innovative plugins for 3D modeling
-                        applications, enhancing the workflow of artists and designers worldwide.
+                    <p class="text-lg text-text-secondary dark:text-slate-300 mb-8 leading-relaxed">
+                        Additionally, I run <strong class="text-primary dark:text-primary-dark font-semibold">Poly
+                            Design 3D</strong>, developing tools that empower 3D artists globally, blending my
+                        engineering skills with creative software development.
                     </p>
-                    <div class="flex gap-4 mt-8">
-                        <a href="https://www.linkedin.com/in/batuhanozer/" target="_blank"
-                            class="bg-blue-100 hover:bg-blue-200 text-blue-800 p-3 rounded-full transition">
-                            <i class="fab fa-linkedin-in"></i>
+                    <!-- Social Links & Resume -->
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <a href="https://www.linkedin.com/in/batuhanozer/" target="_blank" rel="noopener noreferrer"
+                            class="bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 text-primary dark:text-blue-400 p-3 rounded-full transition duration-300 transform hover:scale-110">
+                            <i class="fab fa-linkedin-in text-xl"></i>
                         </a>
                         <a href="mailto:batuhanozer52@gmail.com"
-                            class="bg-blue-100 hover:bg-blue-200 text-blue-800 p-3 rounded-full transition">
-                            <i class="fas fa-envelope"></i>
+                            class="bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 text-primary dark:text-blue-400 p-3 rounded-full transition duration-300 transform hover:scale-110">
+                            <i class="fas fa-envelope text-xl"></i>
                         </a>
-                        <!-- Add more social links as needed -->
+                        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer"
+                            class="bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 text-primary dark:text-blue-400 p-3 rounded-full transition duration-300 transform hover:scale-110">
+                            <i class="fab fa-github text-xl"></i> <!-- ADDED Github -->
+                        </a>
+                        <!-- ADDED Resume Download Button -->
+                        <a href="/path/to/your/resume.pdf" download="BatuhanOzer_Resume.pdf"
+                            class="ml-auto inline-flex items-center gap-2 px-5 py-2.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg font-medium hover:bg-slate-200 dark:hover:bg-slate-600 transition duration-300 transform hover:-translate-y-0.5">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
                     </div>
                 </div>
-                <div class="md:w-3/5">
-                    <!-- Resume Download -->
-                    <div class="bg-slate-50 rounded-xl p-8 shadow-sm">
-                        <h3 class="text-xl font-semibold mb-6 text-slate-900">Key Skills & Competencies</h3>
 
-                        <div class="space-y-6">
-                            <!-- Skill Progress Bars -->
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium">Robotics & Control Systems</span>
-                                    <span>95%</span>
-                                </div>
-                                <div class="progress-bar" style="--progress-width: 95%"></div>
+                <!-- Skills & Education -->
+                <div class="lg:w-3/5 mt-10 lg:mt-0 fade-in-scroll" style="animation-delay: 0.2s;">
+                    <div
+                        class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl p-8 shadow-md border border-border-color dark:border-slate-700/50">
+                        <h3 class="text-2xl font-semibold mb-8 text-text-primary dark:text-slate-100">Skills & Education
+                        </h3>
+
+                        <!-- New Skills Section -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-10">
+                            <div class="skill-category">
+                                <h4
+                                    class="font-semibold text-lg mb-4 text-primary dark:text-blue-400 border-b border-border-color dark:border-slate-700 pb-2">
+                                    Languages & Core</h4>
+                                <div class="skill-item"><i class="fab fa-cuttlefish"></i> <span>C / C++</span></div>
+                                <div class="skill-item"><i class="fab fa-python"></i> <span>Python</span></div>
+                                <div class="skill-item"><i class="fas fa-database"></i> <span>SQL</span></div>
+                                <div class="skill-item"><i class="fab fa-linux"></i> <span>Linux / Bash</span></div>
                             </div>
-
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium">C/C++ Programming</span>
-                                    <span>92%</span>
+                            <div class="skill-category">
+                                <h4
+                                    class="font-semibold text-lg mb-4 text-primary dark:text-blue-400 border-b border-border-color dark:border-slate-700 pb-2">
+                                    Robotics & AI</h4>
+                                <div class="skill-item"><i class="fas fa-robot"></i> <span>ROS / ROS2</span></div>
+                                <div class="skill-item"><i class="fas fa-cogs"></i> <span>Control Systems (MPC,
+                                        WBC)</span></div>
+                                <div class="skill-item"><i class="fas fa-brain"></i> <span>Computer Vision (OpenCV,
+                                        YOLO)</span></div>
+                                <div class="skill-item"><i class="fas fa-microchip"></i> <span>Embedded Systems
+                                        (STM32)</span></div>
+                                <div class="skill-item"><i class="fas fa-layer-group"></i> <span>Sensor Fusion</span>
                                 </div>
-                                <div class="progress-bar" style="--progress-width: 92%"></div>
                             </div>
-
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium">Computer Vision & AI</span>
-                                    <span>88%</span>
+                            <div class="skill-category">
+                                <h4
+                                    class="font-semibold text-lg mb-4 text-primary dark:text-blue-400 border-b border-border-color dark:border-slate-700 pb-2">
+                                    Tools & Platforms</h4>
+                                <div class="skill-item"><i class="fab fa-git-alt"></i> <span>Git / GitLab</span></div>
+                                <div class="skill-item"><i class="fab fa-docker"></i> <span>Docker</span></div>
+                                <div class="skill-item"><i class="fas fa-terminal"></i> <span>CI/CD</span></div>
+                                <div class="skill-item"><i class="fas fa-cubes"></i> <span>3ds Max / Blender API</span>
                                 </div>
-                                <div class="progress-bar" style="--progress-width: 88%"></div>
+                                <div class="skill-item"><i class="fab fa-qt"></i> <span>Qt Framework</span></div>
                             </div>
-
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium">ROS & System Integration</span>
-                                    <span>90%</span>
+                            <div class="skill-category">
+                                <h4
+                                    class="font-semibold text-lg mb-4 text-primary dark:text-blue-400 border-b border-border-color dark:border-slate-700 pb-2">
+                                    Concepts</h4>
+                                <div class="skill-item"><i class="fas fa-sitemap"></i> <span>System Architecture</span>
                                 </div>
-                                <div class="progress-bar" style="--progress-width: 90%"></div>
-                            </div>
-
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium">3D Modeling & Plugin Development</span>
-                                    <span>95%</span>
+                                <div class="skill-item"><i class="fas fa-tasks"></i> <span>Agile / Scrum</span></div>
+                                <div class="skill-item"><i class="fas fa-users"></i> <span>Team Leadership</span></div>
+                                <div class="skill-item"><i class="fas fa-lightbulb"></i> <span>Problem Solving</span>
                                 </div>
-                                <div class="progress-bar" style="--progress-width: 95%"></div>
-                            </div>
-
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium">Team Leadership</span>
-                                    <span>94%</span>
-                                </div>
-                                <div class="progress-bar" style="--progress-width: 94%"></div>
                             </div>
                         </div>
 
-                        <div class="mt-8">
-                            <h3 class="text-xl font-semibold mb-4 text-slate-900">Education</h3>
-                            <div class="flex items-start gap-4">
-                                <div class="mt-1 text-blue-500 text-lg">
-                                    <i class="fas fa-graduation-cap"></i>
+                        <!-- Education -->
+                        <div>
+                            <h4
+                                class="font-semibold text-lg mb-4 text-primary dark:text-blue-400 border-b border-border-color dark:border-slate-700 pb-2">
+                                Education</h4>
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="mt-1 text-primary dark:text-blue-400 text-xl">
+                                    <i class="fas fa-university"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-medium text-slate-900">Bachelor's Degree in Engineering</h4>
-                                    <p class="text-slate-600">Istanbul Technical University (2018 - 2024)</p>
-                                    <p class="text-slate-600">GPA: 3.26 / 4.00</p>
+                                    <h5 class="font-medium text-text-primary dark:text-slate-100">Bachelor's Degree in
+                                        Engineering</h5>
+                                    <p class="text-text-secondary dark:text-slate-400 text-sm">Istanbul Technical
+                                        University (2018 - 2024)</p>
+                                    <p class="text-text-secondary dark:text-slate-400 text-sm">GPA: 3.26 / 4.00</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
-                                <div class="mt-1 text-blue-500 text-lg">
-                                    <i class="fas fa-graduation-cap"></i>
+                                <div class="mt-1 text-primary dark:text-blue-400 text-xl">
+                                    <i class="fas fa-school"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-medium text-slate-900">Highschool</h4>
-                                    <p class="text-slate-600">Private Bilfen Science Highschool (2014 - 2018)</p>
-                                    <p class="text-slate-600">GPA: 96 / 100</p>
+                                    <h5 class="font-medium text-text-primary dark:text-slate-100">High School Diploma
+                                    </h5>
+                                    <p class="text-text-secondary dark:text-slate-400 text-sm">Private Bilfen Science
+                                        High School (2014 - 2018)</p>
+                                    <p class="text-text-secondary dark:text-slate-400 text-sm">GPA: 96 / 100</p>
                                 </div>
                             </div>
                         </div>
@@ -767,155 +961,183 @@
     </section>
 
     <!-- Expertise Areas Section -->
-    <section id="expertise" class="py-20 bg-slate-50">
+    <!-- REVERTED: Original Expertise Cards Structure -->
+    <!-- ADDED: Dark mode classes for theme compatibility -->
+    <section id="expertise" class="py-20 bg-bg-secondary dark:bg-slate-900"> <!-- Adjusted padding -->
         <div class="container mx-auto px-6 md:px-12">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4 text-slate-900">Areas of Expertise</h2>
-                <p class="text-lg text-slate-700 max-w-3xl mx-auto">
+            <div class="text-center mb-16 fade-in-scroll"> <!-- Kept enhanced title section -->
+                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Areas of Expertise</h2>
+                <p class="text-lg text-text-secondary dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
                     My work spans several specialized domains in robotics and software development, with a focus on
                     creating robust, efficient systems that solve complex challenges.
                 </p>
             </div>
 
+            <!-- Original Grid Structure -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Quadruped Robotics Card -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                <!-- Added dark mode classes to card bg/text and tags -->
+                <div
+                    class="bg-bg-primary dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden project-card fade-in-scroll">
                     <div class="p-6">
-                        <div class="text-4xl text-blue-500 mb-4">
+                        <div class="text-4xl text-primary dark:text-blue-400 mb-4">
                             <i class="fas fa-paw"></i>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Quadruped Robotics</h3>
-                        <p class="text-slate-700">
+                        <h3 class="text-xl font-semibold mb-3 text-text-primary dark:text-slate-100">Quadruped Robotics
+                        </h3>
+                        <p class="text-text-secondary dark:text-slate-300">
                             Developing advanced locomotion algorithms, control systems, and embedded software for legged
                             robots. Specializing in NMPC integration and reinforcement learning-based control
                             strategies.
                         </p>
                         <div class="mt-6 flex flex-wrap gap-2">
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">C++</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">C++</span>
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">MPC</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">MPC</span>
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">ROS</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">ROS</span>
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">STM32</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">STM32</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Underwater Robotics Card -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                <div class="bg-bg-primary dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden project-card fade-in-scroll"
+                    style="animation-delay: 0.1s;">
                     <div class="p-6">
-                        <div class="text-4xl text-blue-500 mb-4">
+                        <div class="text-4xl text-primary dark:text-blue-400 mb-4">
                             <i class="fas fa-water"></i>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Underwater Robotics</h3>
-                        <p class="text-slate-700">
+                        <h3 class="text-xl font-semibold mb-3 text-text-primary dark:text-slate-100">Underwater Robotics
+                        </h3>
+                        <p class="text-text-secondary dark:text-slate-300">
                             Building autonomous underwater vehicles with robust navigation, state-machine control, and
                             perception systems. Specializing in underwater computer vision and sensor fusion.
                         </p>
                         <div class="mt-6 flex flex-wrap gap-2">
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Python</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Python</span>
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">OpenCV</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Control
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">OpenCV</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Control
                                 Systems</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Sensor
+                            <span
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Sensor
                                 Fusion</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Computer Vision Card -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                <div class="bg-bg-primary dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden project-card fade-in-scroll"
+                    style="animation-delay: 0.2s;">
                     <div class="p-6">
-                        <div class="text-4xl text-blue-500 mb-4">
+                        <div class="text-4xl text-primary dark:text-blue-400 mb-4">
                             <i class="fas fa-eye"></i>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Computer Vision & AI</h3>
-                        <p class="text-slate-700">
+                        <h3 class="text-xl font-semibold mb-3 text-text-primary dark:text-slate-100">Computer Vision &
+                            AI</h3>
+                        <p class="text-text-secondary dark:text-slate-300">
                             Implementing vision systems for robotics applications, including YOLO-based object
                             detection, visual odometry, stereo vision, and point cloud processing for 3D reconstruction.
                         </p>
                         <div class="mt-6 flex flex-wrap gap-2">
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">CUDA</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">CUDA</span>
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">YOLO</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Machine
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">YOLO</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Machine
                                 Learning</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Point
+                            <span
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Point
                                 Cloud</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- 3D Software Development Card -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                <div
+                    class="bg-bg-primary dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden project-card fade-in-scroll">
+                    <!-- delay reset -->
                     <div class="p-6">
-                        <div class="text-4xl text-blue-500 mb-4">
+                        <div class="text-4xl text-primary dark:text-primary-400 mb-4">
                             <i class="fas fa-cubes"></i>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3 text-slate-900">3D Software Development</h3>
-                        <p class="text-slate-700">
+                        <h3 class="text-xl font-semibold mb-3 text-text-primary dark:text-slate-100">3D Software
+                            Development</h3>
+                        <p class="text-text-secondary dark:text-slate-300">
                             Creating plugins and tools for 3D modeling applications such as Autodesk 3ds Max and
                             Blender, enhancing artist workflows and automating complex tasks.
                         </p>
                         <div class="mt-6 flex flex-wrap gap-2">
+                            <!-- Use Accent 2 for tags here -->
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">C++</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">C++</span>
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Python</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Python</span>
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Maxscript</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">3D
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Maxscript</span>
+                            <span
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">3D
                                 Graphics</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- DevOps & System Administration Card -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                <!-- DevOps & Infrastructure Card -->
+                <div class="bg-bg-primary dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden project-card fade-in-scroll"
+                    style="animation-delay: 0.1s;">
                     <div class="p-6">
-                        <div class="text-4xl text-blue-500 mb-4">
+                        <div class="text-4xl text-primary dark:text-primary-400 mb-4">
                             <i class="fas fa-server"></i>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3 text-slate-900">DevOps & Infrastructure</h3>
-                        <p class="text-slate-700">
+                        <h3 class="text-xl font-semibold mb-3 text-text-primary dark:text-slate-100">DevOps &
+                            Infrastructure</h3>
+                        <p class="text-text-secondary dark:text-slate-300">
                             Setting up and maintaining development infrastructure including offline GitLab instances,
                             CI/CD pipelines, and documentation systems for efficient software development.
                         </p>
                         <div class="mt-6 flex flex-wrap gap-2">
+                            <!-- Use Accent 2 for tags here -->
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Docker</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Docker</span>
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Git</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Git</span>
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">CI/CD</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">CI/CD</span>
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Linux</span>
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Linux</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Team Leadership Card -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden project-card fade-in">
+                <div class="bg-bg-primary dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden project-card fade-in-scroll"
+                    style="animation-delay: 0.2s;">
                     <div class="p-6">
-                        <div class="text-4xl text-blue-500 mb-4">
+                        <div class="text-4xl text-primary dark:text-primary-400 mb-4">
                             <i class="fas fa-users"></i>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Team Leadership</h3>
-                        <p class="text-slate-700">
+                        <h3 class="text-xl font-semibold mb-3 text-text-primary dark:text-slate-100">Team Leadership
+                        </h3>
+                        <p class="text-text-secondary dark:text-slate-300">
                             Leading technical teams in competitive environments, coordinating between different
                             disciplines, and managing complex projects from conception to completion.
                         </p>
                         <div class="mt-6 flex flex-wrap gap-2">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Project
+                            <!-- Use Accent 2 for tags here -->
+                            <span
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Project
                                 Management</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Team
+                            <span
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Team
                                 Coordination</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Technical
+                            <span
+                                class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full">Technical
                                 Leadership</span>
                         </div>
                     </div>
@@ -925,138 +1147,155 @@
     </section>
 
     <!-- Featured Projects Section -->
-    <section id="projects" class="py-20 bg-white">
+    <!-- KEPT: Enhanced card content structure -->
+    <!-- REVERTED: Project Images to original placeholders -->
+    <!-- ADDED: Dark mode classes -->
+    <section id="projects" class="py-24 bg-bg-primary dark:bg-slate-800"> <!-- Adjusted padding -->
         <div class="container mx-auto px-6 md:px-12">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4 text-slate-900">Featured Projects</h2>
-                <p class="text-lg text-slate-700 max-w-3xl mx-auto">
+            <div class="text-center mb-16 fade-in-scroll"> <!-- Kept enhanced title section -->
+                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Featured Projects</h2>
+                <p class="text-lg text-text-secondary dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
                     A selection of my most notable work, demonstrating my expertise in robotics, software development,
                     and system design.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Kept enhanced grid layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <!-- Quadruped Robot Project -->
-                <div class="bg-slate-50 rounded-xl overflow-hidden shadow-sm fade-in">
-                    <div class="h-60 bg-slate-200 flex items-center justify-center">
-                        <!-- Placeholder for project image -->
-                        <div class="text-5xl text-slate-400">
+                <!-- Added dark mode classes, kept enhanced card content -->
+                <div
+                    class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl overflow-hidden shadow-lg border border-border-color dark:border-slate-700/50 fade-in-scroll">
+                    <!-- REVERTED: Original Image Placeholder -->
+                    <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+                        <div class="text-5xl text-slate-400 dark:text-slate-500">
                             <i class="fas fa-robot"></i>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Quadruped Robot Control System</h3>
-                        <p class="text-slate-700 mb-4">
+                    <!-- Kept enhanced content below image -->
+                    <div class="p-8">
+                        <h3 class="text-xl font-semibold mb-3 text-text-primary dark:text-slate-100">Quadruped Robot
+                            Control System</h3>
+                        <p class="text-text-secondary dark:text-slate-300 mb-5 leading-relaxed">
                             Developed the complete control system for a quadruped robot, including embedded firmware,
                             NMPC/WBC and RL based locomotion algorithms, and a tablet-based remote control interface.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">C++</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">ROS</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">STM32</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Qt</span>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <!-- Kept enhanced skill pills -->
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">C++</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">ROS</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">STM32</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Control Theory</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Qt</span>
                         </div>
-                        <button class="text-blue-500 hover:text-blue-700 font-medium transition flex items-center">
+                        <!-- Kept enhanced modal button -->
+                        <button data-modal="project-quadruped"
+                            class="open-modal text-primary dark:text-blue-400 hover:text-primary-dark dark:hover:text-blue-300 font-medium transition duration-300 flex items-center group">
                             <span>View Details</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
+                            <i
+                                class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                         </button>
                     </div>
                 </div>
 
                 <!-- AUV Competition Project -->
-                <div class="bg-slate-50 rounded-xl overflow-hidden shadow-sm fade-in">
-                    <div class="h-60 bg-slate-200 flex items-center justify-center">
-                        <!-- Placeholder for project image -->
-                        <div class="text-5xl text-slate-400">
+                <div class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl overflow-hidden shadow-lg border border-border-color dark:border-slate-700/50 fade-in-scroll"
+                    style="animation-delay: 0.1s;">
+                    <!-- REVERTED: Original Image Placeholder -->
+                    <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+                        <div class="text-5xl text-slate-400 dark:text-slate-500">
                             <i class="fas fa-water"></i>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3 text-slate-900">Competition-Winning AUV</h3>
-                        <p class="text-slate-700 mb-4">
+                    <!-- Kept enhanced content below image -->
+                    <div class="p-8">
+                        <h3 class="text-xl font-semibold mb-3 text-text-primary dark:text-slate-100">Competition-Winning
+                            AUV</h3>
+                        <p class="text-text-secondary dark:text-slate-300 mb-5 leading-relaxed">
                             Led the software development for an autonomous underwater vehicle that secured first place
                             at the Singapore AUV Challenge and second place at the European Robotics League.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Python</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">OpenCV</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">YOLO</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">ROS</span>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">OpenCV</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">YOLO</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">ROS</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Autonomy</span>
                         </div>
-                        <button class="text-blue-500 hover:text-blue-700 font-medium transition flex items-center">
+                        <button data-modal="project-auv"
+                            class="open-modal text-primary dark:text-blue-400 hover:text-primary-dark dark:hover:text-blue-300 font-medium transition duration-300 flex items-center group">
                             <span>View Details</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
+                            <i
+                                class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                         </button>
                     </div>
                 </div>
 
                 <!-- 3D Plugin Suite -->
-                <div class="bg-slate-50 rounded-xl overflow-hidden shadow-sm fade-in">
-                    <div class="h-60 bg-slate-200 flex items-center justify-center">
-                        <!-- Placeholder for project image -->
-                        <div class="text-5xl text-slate-400">
+                <div class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl overflow-hidden shadow-lg border border-border-color dark:border-slate-700/50 fade-in-scroll"
+                    style="animation-delay: 0.2s;">
+                    <!-- REVERTED: Original Image Placeholder -->
+                    <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+                        <div class="text-5xl text-slate-400 dark:text-slate-500">
                             <i class="fas fa-cubes"></i>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3 text-slate-900">3D Plugin Suite</h3>
-                        <p class="text-slate-700 mb-4">
+                    <!-- Kept enhanced content below image -->
+                    <div class="p-8">
+                        <h3 class="text-xl font-semibold mb-3 text-text-primary dark:text-slate-100">Poly Design 3D
+                            Plugin Suite</h3>
+                        <p class="text-text-secondary dark:text-slate-300 mb-5 leading-relaxed">
                             Developed a suite of plugins for Autodesk 3ds Max and Blender that streamline 3D modeling
                             tasks and enhance creative workflows.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">C++</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Python</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Maxscript</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">3ds
-                                Max</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Blender</span>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <!-- Used accent2 for these pills -->
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">C++ SDK</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Python API</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Maxscript</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">3ds Max</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Blender</span>
                         </div>
-                        <button class="text-blue-500 hover:text-blue-700 font-medium transition flex items-center">
+                        <button data-modal="project-poly"
+                            class="open-modal text-primary dark:text-blue-400 hover:text-primary-dark dark:hover:text-blue-300 font-medium transition duration-300 flex items-center group">
                             <span>View Details</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
+                            <i
+                                class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                         </button>
                     </div>
                 </div>
 
                 <!-- DevOps & Infrastructure Project -->
-                <div class="bg-slate-50 rounded-xl overflow-hidden shadow-sm fade-in">
-                    <div class="h-60 bg-slate-200 flex items-center justify-center">
-                        <!-- Placeholder for project image -->
-                        <div class="text-5xl text-slate-400">
+                <div class="bg-bg-secondary dark:bg-slate-900/50 rounded-xl overflow-hidden shadow-lg border border-border-color dark:border-slate-700/50 fade-in-scroll"
+                    style="animation-delay: 0.3s;">
+                    <!-- REVERTED: Original Image Placeholder -->
+                    <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+                        <div class="text-5xl text-slate-400 dark:text-slate-500">
                             <i class="fas fa-server"></i>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3 text-slate-900">DevOps & Infrastructure</h3>
-                        <p class="text-slate-700 mb-4">
+                    <!-- Kept enhanced content below image -->
+                    <div class="p-8">
+                        <h3 class="text-xl font-semibold mb-3 text-text-primary dark:text-slate-100">DevOps &
+                            Infrastructure Setup</h3>
+                        <p class="text-text-secondary dark:text-slate-300 mb-5 leading-relaxed">
                             Established offline GitLab instances, CI/CD pipelines, and robust development
                             infrastructures to streamline software delivery and enhance team productivity.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Docker</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Git</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">CI/CD</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Linux</span>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <!-- Used accent2 for these pills -->
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Docker</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">GitLab CI</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Linux</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">MkDocs</span>
+                            <span class="skill-pill text-xs px-3 py-1 rounded-full">Ansible</span>
                         </div>
-                        <button class="text-blue-500 hover:text-blue-700 font-medium transition flex items-center">
+                        <button data-modal="project-devops" class="open-modal text-primary dark:text-blue-400
+                            hover:text-primary-dark dark:hover:text-blue-300 font-medium transition duration-300 flex
+                            items-center group">
                             <span>View Details</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
+                            <i
+                                class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                         </button>
                     </div>
                 </div>
@@ -1065,221 +1304,227 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-slate-50">
+    <!-- KEEPING: New Timeline Style -->
+    <section id="experience" class="py-24 bg-bg-secondary dark:bg-slate-900">
         <div class="container mx-auto px-6 md:px-12">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4 text-slate-900">Professional Journey</h2>
-                <p class="text-lg text-slate-700 max-w-3xl mx-auto">
-                    A chronological overview of my career progression and key achievements
+            <div class="text-center mb-20 fade-in-scroll">
+                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Professional Journey</h2>
+                <p class="text-lg text-text-secondary dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                    Tracing my career path through impactful roles in robotics research, development, and leadership.
+                    Click entries for details.
                 </p>
             </div>
 
             <div class="timeline-wrapper">
-                <!-- Current Coordinator Position -->
-                <div class="timeline-item fade-in">
+                <!-- Timeline Item: Coordinator -->
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2024 - Current</span>
+                    <div class="timeline-content open-modal" data-modal="modal-coordinator">
+                        <span class="timeline-date">2024 - Present</span>
                         <h3 class="timeline-title">Software Engineering Coordinator</h3>
                         <div class="timeline-company">LA2 Dynamics</div>
                         <p class="timeline-description">
-                            Leading software team expansion and infrastructure development for quadruped robotics
-                            systems.
-                            Established CI/CD pipelines and documentation systems.
+                            Leading software team expansion, architecting infrastructure (CI/CD, Docs), and coordinating
+                            development for advanced quadruped robots.
                         </p>
                         <div class="timeline-duration">
-                            <i class="fas fa-map-marker-alt text-sm"></i>
-                            Istanbul, Türkiye
+                            <i class="fas fa-map-marker-alt"></i> Istanbul, Türkiye &nbsp; | &nbsp; <i
+                                class="fas fa-users-cog"></i> Leadership & DevOps
                         </div>
                     </div>
                 </div>
-
-                <!-- AUV Team Captain -->
-                <div class="timeline-item fade-in">
+                <!-- Timeline Item: AUV Captain -->
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2021 - Current</span>
+                    <div class="timeline-content open-modal" data-modal="modal-auv-experience">
+                        <!-- Unique ID for exp modal -->
+                        <span class="timeline-date">2021 - Present</span>
                         <h3 class="timeline-title">Team Captain</h3>
                         <div class="timeline-company">ITU AUV Team</div>
                         <p class="timeline-description">
-                            Led development of award-winning autonomous underwater vehicles. Coordinated
-                            cross-disciplinary
-                            team of 25 members for international competitions.
+                            Led a 25-member interdisciplinary team in developing award-winning AUVs. Oversaw technical
+                            strategy, project management, and competition participation.
                         </p>
                         <div class="timeline-duration">
-                            <i class="fas fa-trophy text-sm"></i>
-                            1st Place Singapore AUV Challenge 2022
+                            <i class="fas fa-trophy"></i> 1st SAUVC '22, 2nd ERL '23 &nbsp; | &nbsp; <i
+                                class="fas fa-ship"></i> Autonomous Systems
                         </div>
                     </div>
                 </div>
-
-                <!-- Poly Design 3D -->
-                <div class="timeline-item fade-in">
+                <!-- Timeline Item: Poly Design -->
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2019 - Current</span>
+                    <div class="timeline-content open-modal" data-modal="modal-poly-experience">
+                        <!-- Unique ID for exp modal -->
+                        <span class="timeline-date">2019 - Present</span>
                         <h3 class="timeline-title">Founder & Developer</h3>
                         <div class="timeline-company">Poly Design 3D</div>
                         <p class="timeline-description">
-                            Developed commercial plugins for 3ds Max and Blender with 500+ active users. Automated
-                            complex
-                            3D modeling tasks and optimized artist workflows.
+                            Developed and marketed commercial plugins (C++/Python) for 3ds Max & Blender, serving 5000+
+                            users globally by automating complex 3D workflows.
                         </p>
                         <div class="timeline-duration">
-                            <i class="fas fa-users text-sm"></i>
-                            500+ Users Worldwide
+                            <i class="fas fa-globe-americas"></i> Global User Base &nbsp; | &nbsp; <i
+                                class="fas fa-code"></i> C++, Python, 3D APIs
                         </div>
                     </div>
                 </div>
-
-                <!-- LA2 Dynamics Full-time -->
-                <div class="timeline-item fade-in">
+                <!-- Timeline Item: LA2 Full-time -->
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content open-modal" data-modal="modal-engineer">
                         <span class="timeline-date">2023 - 2024</span>
                         <h3 class="timeline-title">Software Engineer</h3>
                         <div class="timeline-company">LA2 Dynamics</div>
                         <p class="timeline-description">
-                            Developed locomotion algorithms and control systems for quadruped robots. Implemented sensor
-                            fusion and real-time communication systems.
+                            Developed and optimized locomotion algorithms (NMPC/WBC), control systems, and sensor fusion
+                            pipelines for quadruped robots using C++ and ROS.
                         </p>
                         <div class="timeline-duration">
-                            <i class="fas fa-microchip text-sm"></i>
-                            STM32 · ROS · C++
+                            <i class="fas fa-robot"></i> Quadruped Control &nbsp; | &nbsp; <i class="fas fa-cogs"></i>
+                            C++, ROS, Real-time Systems
                         </div>
                     </div>
                 </div>
-
-                <!-- Turkish Aerospace -->
-                <div class="timeline-item fade-in">
+                <!-- Timeline Item: TAI -->
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content open-modal" data-modal="modal-aerospace">
                         <span class="timeline-date">Summer 2023</span>
                         <h3 class="timeline-title">Software Engineering Intern</h3>
-                        <div class="timeline-company">Turkish Aerospace</div>
+                        <div class="timeline-company">Turkish Aerospace Industries (TAI)</div>
                         <p class="timeline-description">
-                            Developed virtual joystick application for flight simulators using C++/Qt. Gained experience
-                            in
-                            aerospace software development processes.
+                            Developed a C++/Qt virtual joystick application for flight simulators, integrating with
+                            existing systems and adhering to aerospace software standards.
                         </p>
                         <div class="timeline-duration">
-                            <i class="fas fa-plane text-sm"></i>
-                            Ankara, Türkiye
+                            <i class="fas fa-plane"></i> Aerospace Simulation &nbsp; | &nbsp; <i
+                                class="fab fa-cuttlefish"></i> C++, Qt
                         </div>
                     </div>
                 </div>
-
-                <!-- Robotics Engineer -->
-                <div class="timeline-item fade-in">
+                <!-- Timeline Item: LA2 Robotics Eng -->
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content open-modal" data-modal="modal-robotics-eng">
                         <span class="timeline-date">Early 2023</span>
                         <h3 class="timeline-title">Robotics Engineer</h3>
                         <div class="timeline-company">LA2 Dynamics</div>
                         <p class="timeline-description">
-                            Designed hardware/software architecture for new quadruped platform. Developed embedded
-                            systems
-                            and sensor integration solutions.
+                            Contributed to hardware/software architecture design for a new quadruped platform, focusing
+                            on embedded systems (STM32) and sensor integration.
                         </p>
                         <div class="timeline-duration">
-                            <i class="fas fa-robot text-sm"></i>
-                            Robotics System Design
+                            <i class="fas fa-drafting-compass"></i> System Design &nbsp; | &nbsp; <i
+                                class="fas fa-microchip"></i> Embedded C, Hardware Interfacing
                         </div>
                     </div>
                 </div>
-
-                <!-- Education Researcher -->
-                <div class="timeline-item fade-in">
+                <!-- Timeline Item: ITU Research -->
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content open-modal" data-modal="modal-research">
                         <span class="timeline-date">2022 - 2023</span>
                         <h3 class="timeline-title">Research Engineer</h3>
                         <div class="timeline-company">ITU Robotics Lab</div>
                         <p class="timeline-description">
-                            Researched quadruped locomotion algorithms. Conducted real-world testing and validation of
-                            control systems on physical platforms.
+                            Researched quadruped locomotion algorithms, conducted simulation (Gazebo) and real-world
+                            experiments, contributing to motion planning studies.
                         </p>
                         <div class="timeline-duration">
-                            <i class="fas fa-flask text-sm"></i>
-                            Motion Planning Research
+                            <i class="fas fa-flask"></i> Robotics Research &nbsp; | &nbsp; <i
+                                class="fas fa-calculator"></i> Simulation, Algorithm Validation
                         </div>
                     </div>
                 </div>
-
-                <!-- SOGA Design -->
-                <div class="timeline-item fade-in">
+                <!-- Timeline Item: SOGA -->
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content open-modal" data-modal="modal-soga">
                         <span class="timeline-date">2018</span>
-                        <h3 class="timeline-title">3D Developer</h3>
+                        <h3 class="timeline-title">3D Developer (Part-time)</h3>
                         <div class="timeline-company">SOGA Design Office</div>
                         <p class="timeline-description">
-                            Developed custom 3ds Max plugins for architectural visualization. Assisted in 3D modeling
-                            workflows for international projects.
+                            Developed custom 3ds Max plugins (MaxScript) for architectural visualization workflows and
+                            assisted with 3D modeling tasks for client projects.
                         </p>
                         <div class="timeline-duration">
-                            <i class="fas fa-cube text-sm"></i>
-                            Maxscript · 3D Modeling
+                            <i class="fas fa-building"></i> ArchViz Tools &nbsp; | &nbsp; <i class="fas fa-code"></i>
+                            Maxscript, 3D Modeling
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> <!-- End timeline-wrapper -->
         </div>
     </section>
 
-
     <!-- Awards Section -->
-    <section id="awards" class="py-20 bg-white">
+    <!-- KEPT: Enhanced Style but refined -->
+    <!-- ADDED: Emphasis classes and optional link -->
+    <section id="awards" class="py-24 bg-bg-primary dark:bg-slate-800"> <!-- Adjusted padding -->
         <div class="container mx-auto px-6 md:px-12">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4 text-slate-900">Honours & Awards</h2>
-                <p class="text-lg text-slate-700 max-w-3xl mx-auto">
-                    Recognition for my contributions in robotics and software development, including awards from
+            <div class="text-center mb-16 fade-in-scroll">
+                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Honours & Awards</h2>
+                <p class="text-lg text-text-secondary dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                    Recognition for contributions in robotics and software development, including awards from
                     international competitions.
                 </p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Award Item -->
-                <div class="flex items-center gap-4">
-                    <div class="bg-blue-100 p-4 rounded-full award-badge">
-                        <i class="fas fa-trophy text-blue-500 text-3xl"></i>
+            <!-- Kept enhanced grid layout -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Award Item 1: Roboboat -->
+                <!-- Added rank-1 class -->
+                <div class="award-card rank-1 flex flex-col items-center text-center p-8 rounded-xl fade-in-scroll">
+                    <!-- Increased padding -->
+                    <div class="award-badge p-5 rounded-full mb-5">
+                        <i class="fas fa-trophy text-4xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900">Roboboat Competition - First Place</h3>
-                        <p class="text-slate-700">Feb 2024 | Sarasota, Florida, USA</p>
-                    </div>
+                    <h3 class="text-xl font-semibold text-text-primary dark:text-slate-100 mb-2">Roboboat Competition -
+                        1st Place</h3> <!-- Increased margin bottom -->
+                    <p class="text-text-secondary dark:text-slate-400 text-sm mb-4">Feb 2024 | Sarasota, FL, USA</p>
+                    <!-- Increased margin bottom -->
+                    <!-- Optional Link -->
+                    <!-- <a href="#" target="_blank" rel="noopener noreferrer" class="text-sm text-primary dark:text-blue-400 hover:underline">Competition Link</a> -->
                 </div>
-                <!-- Award Item -->
-                <div class="flex items-center gap-4">
-                    <div class="bg-blue-100 p-4 rounded-full award-badge">
-                        <i class="fas fa-trophy text-blue-500 text-3xl"></i>
+                <!-- Award Item 2: ERL -->
+                <!-- Added rank-2 class -->
+                <div class="award-card rank-2 flex flex-col items-center text-center p-8 rounded-xl fade-in-scroll"
+                    style="animation-delay: 0.1s;">
+                    <div class="award-badge p-5 rounded-full mb-5">
+                        <i class="fas fa-medal text-4xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900">European Robotics League RAMI Competition - Second
-                            Place & Best Presentation</h3>
-                        <p class="text-slate-700">Jul 2023 | La Spezia, Italy</p>
-                    </div>
+                    <h3 class="text-xl font-semibold text-text-primary dark:text-slate-100 mb-2">European Robotics
+                        League RAMI - 2nd Place & Best Presentation</h3>
+                    <p class="text-text-secondary dark:text-slate-400 text-sm mb-4">Jul 2023 | La Spezia, Italy</p>
+                    <!-- <a href="#" target="_blank" rel="noopener noreferrer" class="text-sm text-primary dark:text-blue-400 hover:underline">Competition Link</a> -->
                 </div>
-                <!-- Award Item -->
-                <div class="flex items-center gap-4">
-                    <div class="bg-blue-100 p-4 rounded-full award-badge">
-                        <i class="fas fa-trophy text-blue-500 text-3xl"></i>
+                <!-- Award Item 3: SAUVC -->
+                <!-- Added rank-1 class -->
+                <div class="award-card rank-1 flex flex-col items-center text-center p-8 rounded-xl fade-in-scroll"
+                    style="animation-delay: 0.2s;">
+                    <div class="award-badge p-5 rounded-full mb-5">
+                        <i class="fas fa-award text-4xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900">Singapore AUV Challenge - First Place</h3>
-                        <p class="text-slate-700">Sep 2022 | Dover, Singapore</p>
-                    </div>
+                    <h3 class="text-xl font-semibold text-text-primary dark:text-slate-100 mb-2">Singapore AUV Challenge
+                        - 1st Place</h3>
+                    <p class="text-text-secondary dark:text-slate-400 text-sm mb-4">Sep 2022 | Dover, Singapore</p>
+                    <!-- <a href="#" target="_blank" rel="noopener noreferrer" class="text-sm text-primary dark:text-blue-400 hover:underline">Competition Link</a> -->
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="relative py-20 bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden">
-        <div id="contact-particles" class="absolute inset-0 z-0"></div>
+    <!-- REVERTED: Original Contact Section Structure -->
+    <!-- KEPT: Particles JS -->
+    <!-- ADDED: Dark mode classes for theme compatibility -->
+    <section id="contact"
+        class="relative py-20 bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-900 dark:to-slate-800 overflow-hidden">
+        <!-- Adjusted dark gradient -->
+        <div id="contact-particles" class="absolute inset-0 z-0 opacity-60"></div> <!-- Kept particles -->
 
-        <div class="relative container mx-auto px-6 md:px-12 z-10">
-            <div class="text-center mb-16">
+        <div class="contact-content relative container mx-auto px-6 md:px-12 z-10"> <!-- Kept contact-content -->
+            <div class="text-center mb-16 fade-in-scroll"> <!-- Kept enhanced fade -->
                 <h2 class="text-3xl font-bold mb-4 text-white">Let's Connect</h2>
                 <p class="text-lg text-slate-300 max-w-3xl mx-auto">
                     Have a project in mind or just want to chat about robotics? Drop me a message or connect through my
@@ -1287,13 +1532,15 @@
                 </p>
             </div>
 
+            <!-- Original Grid Layout -->
             <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-                <!-- Contact Cards -->
-                <div class="space-y-6">
+                <!-- Original Contact Cards -->
+                <!-- Added fade-in, dark mode styles -->
+                <div class="space-y-6 fade-in-scroll" style="animation-delay: 0.1s;">
                     <div
-                        class="p-6 bg-white bg-opacity-5 backdrop-blur-sm rounded-xl border border-white border-opacity-10 hover:border-opacity-20 transition-all">
+                        class="p-6 bg-white/5 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-white/20 transition-all">
                         <div class="flex items-center gap-4">
-                            <div class="p-3 bg-blue-500 rounded-lg">
+                            <div class="p-3 bg-blue-500 dark:bg-blue-600 rounded-lg">
                                 <i class="fas fa-map-marker-alt text-white text-xl"></i>
                             </div>
                             <div>
@@ -1302,11 +1549,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div
-                        class="p-6 bg-white bg-opacity-5 backdrop-blur-sm rounded-xl border border-white border-opacity-10 hover:border-opacity-20 transition-all">
+                        class="p-6 bg-white/5 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-white/20 transition-all">
                         <div class="flex items-center gap-4">
-                            <div class="p-3 bg-blue-500 rounded-lg">
+                            <div class="p-3 bg-blue-500 dark:bg-blue-600 rounded-lg">
                                 <i class="fas fa-envelope text-white text-xl"></i>
                             </div>
                             <div>
@@ -1316,61 +1562,78 @@
                             </div>
                         </div>
                     </div>
-
                     <div
-                        class="p-6 bg-white bg-opacity-5 backdrop-blur-sm rounded-xl border border-white border-opacity-10 hover:border-opacity-20 transition-all">
+                        class="p-6 bg-white/5 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-white/20 transition-all">
                         <div class="flex items-center gap-4">
-                            <div class="p-3 bg-blue-500 rounded-lg">
+                            <div class="p-3 bg-blue-500 dark:bg-blue-600 rounded-lg">
                                 <i class="fab fa-linkedin-in text-white text-xl"></i>
                             </div>
                             <div>
                                 <h3 class="text-white font-semibold">LinkedIn</h3>
                                 <a href="https://www.linkedin.com/in/batuhanozer/" target="_blank"
+                                    rel="noopener noreferrer"
                                     class="text-slate-300 hover:text-blue-400 transition">linkedin.com/in/batuhanozer</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Added GitHub Link (optional, based on previous structure) -->
+                    <div
+                        class="p-6 bg-white/5 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-white/20 transition-all">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 bg-blue-500 dark:bg-blue-600 rounded-lg">
+                                <i class="fab fa-github text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold">GitHub</h3>
+                                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer"
+                                    class="text-slate-300 hover:text-blue-400 transition">github.com/yourusername</a>
+                                <!-- Replace 'yourusername' -->
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <form class="space-y-6">
+                <!-- Original Contact Form Structure -->
+                <!-- Added fade-in, dark mode styles -->
+                <form action="#" method="POST" class="space-y-6 fade-in-scroll" style="animation-delay: 0.2s;">
+                    <input type="hidden" name="_subject" value="New Portfolio Contact"> <!-- For Formspree etc. -->
                     <div class="relative">
-                        <input type="text" placeholder="Your Name"
-                            class="w-full bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-20 text-white placeholder-slate-400 p-4 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 transition-all">
+                        <input type="text" name="name" placeholder="Your Name" required
+                            class="w-full bg-white/5 dark:bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-slate-400 p-4 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
                         <i class="fas fa-user absolute right-4 top-4 text-slate-400"></i>
                     </div>
-
                     <div class="relative">
-                        <input type="email" placeholder="Your Email"
-                            class="w-full bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-20 text-white placeholder-slate-400 p-4 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 transition-all">
+                        <input type="email" name="email" placeholder="Your Email" required
+                            class="w-full bg-white/5 dark:bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-slate-400 p-4 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
                         <i class="fas fa-envelope absolute right-4 top-4 text-slate-400"></i>
                     </div>
-
                     <div class="relative">
-                        <textarea placeholder="Your Message" rows="5"
-                            class="w-full bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-20 text-white placeholder-slate-400 p-4 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 transition-all"></textarea>
+                        <textarea name="message" placeholder="Your Message" rows="5" required
+                            class="w-full bg-white/5 dark:bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-slate-400 p-4 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"></textarea>
                         <i class="fas fa-comment-dots absolute right-4 top-4 text-slate-400"></i>
                     </div>
-
                     <button type="submit"
-                        class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium py-4 rounded-lg transition-all hover:shadow-lg hover:shadow-blue-500/20 hover:-translate-y-0.5">
-                        Send Message
+                        class="w-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white font-medium py-3.5 rounded-lg transition-all hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500">
+                        <i class="fas fa-paper-plane mr-2"></i> Send Message
                     </button>
+                    <p class="text-xs text-slate-400 text-center">Form requires backend integration.</p>
                 </form>
             </div>
 
-            <!-- Social Links -->
+            <!-- Original Social Links (ensure these match the info cards) -->
+            <!-- Added dark mode styles -->
             <div class="flex justify-center gap-6 mt-12">
-                <a href="https://github.com/yourusername" target="_blank"
-                    class="text-slate-300 hover:text-white transition-all">
+                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer"
+                    class="text-slate-300 hover:text-white transition-all transform hover:scale-110">
                     <i class="fab fa-github text-2xl"></i>
                 </a>
-                <a href="https://twitter.com/yourusername" target="_blank"
-                    class="text-slate-300 hover:text-white transition-all">
+                <!-- Add Twitter back if desired -->
+                <!-- <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer"
+                    class="text-slate-300 hover:text-white transition-all transform hover:scale-110">
                     <i class="fab fa-twitter text-2xl"></i>
-                </a>
-                <a href="https://linkedin.com/in/batuhanozer" target="_blank"
-                    class="text-slate-300 hover:text-white transition-all">
+                </a> -->
+                <a href="https://linkedin.com/in/batuhanozer" target="_blank" rel="noopener noreferrer"
+                    class="text-slate-300 hover:text-white transition-all transform hover:scale-110">
                     <i class="fab fa-linkedin-in text-2xl"></i>
                 </a>
             </div>
@@ -1378,208 +1641,357 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 bg-white border-t border-slate-200">
+    <!-- Kept enhanced footer -->
+    <footer class="py-8 bg-bg-primary dark:bg-slate-900 border-t border-border-color dark:border-slate-700/50">
         <div class="container mx-auto px-6 md:px-12 text-center">
-            <p class="text-sm text-slate-600">&copy; 2025 Batuhan Ozer. All rights reserved.</p>
+            <p class="text-sm text-text-secondary dark:text-slate-400">&copy; <span id="current-year"></span> Batuhan
+                Ozer. All rights reserved.</p>
+            <p class="text-xs text-slate-400 dark:text-slate-500 mt-2">Built with <i
+                    class="fas fa-heart text-red-500"></i> using Tailwind CSS & Vanilla JS</p>
         </div>
     </footer>
 
-    <!-- Modal Structure -->
+    <!-- ==== MODALS ==== -->
+    <!-- KEEPING: All Enhanced Modals -->
+
+    <!-- Project Modals -->
+    <div id="project-quadruped" class="modal">
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center rounded-lg mb-6"><i
+                    class="fas fa-robot text-6xl text-slate-400 dark:text-slate-500"></i></div>
+            <h3 class="text-2xl font-bold mb-4">Quadruped Robot Control System</h3>
+            <p class="text-text-secondary dark:text-slate-300 mb-4">Detailed description of the quadruped project.
+                Challenges faced, solutions implemented (e.g., specific MPC formulation, RL training details, STM32
+                communication protocol). Mention key outcomes or performance metrics achieved.</p>
+            <h4 class="font-semibold mb-2 text-primary dark:text-blue-400">Tech Stack:</h4>
+            <p class="text-text-secondary dark:text-slate-300">C++, ROS/ROS2, Python, STM32 (C), NMPC/WBC/RL Algorithms,
+                Gazebo Simulation, Qt Framework, Git, Docker.</p>
+        </div>
+    </div>
+    <div id="project-auv" class="modal">
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center rounded-lg mb-6"><i
+                    class="fas fa-water text-6xl text-slate-400 dark:text-slate-500"></i></div>
+            <h3 class="text-2xl font-bold mb-4">Competition-Winning AUV</h3>
+            <p class="text-text-secondary dark:text-slate-300 mb-4">Details about the AUV software architecture,
+                perception pipeline (YOLO tuning, OpenCV processing), state machine logic, navigation challenges
+                underwater, and specific contributions leading to competition success.</p>
+            <h4 class="font-semibold mb-2 text-primary dark:text-blue-400">Tech Stack:</h4>
+            <p class="text-text-secondary dark:text-slate-300">Python, ROS, OpenCV, YOLOv5/v7, State Machines (SMACH),
+                Sensor Fusion (EKF), Linux.</p>
+        </div>
+    </div>
+    <div id="project-poly" class="modal">
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center rounded-lg mb-6"><i
+                    class="fas fa-cubes text-6xl text-slate-400 dark:text-slate-500"></i></div>
+            <h3 class="text-2xl font-bold mb-4">Poly Design 3D Plugin Suite</h3>
+            <p class="text-text-secondary dark:text-slate-300 mb-4">Details about the specific plugins developed, the
+                problems they solve for 3D artists, technical challenges (API limitations, performance optimization),
+                and user feedback/impact. Maybe showcase a specific plugin.</p>
+            <h4 class="font-semibold mb-2 text-accent2 dark:text-fuchsia-400">Tech Stack:</h4>
+            <p class="text-text-secondary dark:text-slate-300">C++ (3ds Max SDK), Python (Blender API, 3ds Max
+                PySide2/PyQt), Maxscript, UI/UX Design.</p>
+        </div>
+    </div>
+    <div id="project-devops" class="modal">
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <div class="h-60 bg-slate-200 dark:bg-slate-700 flex items-center justify-center rounded-lg mb-6"><i
+                    class="fas fa-server text-6xl text-slate-400 dark:text-slate-500"></i></div>
+            <h3 class="text-2xl font-bold mb-4">Robust Dev Infrastructure</h3>
+            <p class="text-text-secondary dark:text-slate-300 mb-4">Details about setting up the offline GitLab
+                instance, designing the CI/CD pipeline stages (build, test, deploy), Docker configurations,
+                documentation generation process (MkDocs), and the benefits observed (e.g., reduced build times, fewer
+                integration issues).</p>
+            <h4 class="font-semibold mb-2 text-accent2 dark:text-fuchsia-400">Tech Stack:</h4>
+            <p class="text-text-secondary dark:text-slate-300">Docker, GitLab CI/CD (.gitlab-ci.yml), Linux Server
+                Administration, Bash Scripting, Ansible (optional), MkDocs/Sphinx.</p>
+        </div>
+    </div>
+
+    <!-- Experience Modals (Unique IDs added) -->
     <div id="modal-coordinator" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 class="text-2xl font-bold mb-4">Software Engineering Coordinator, LA2 Dynamics</h3>
-            <p class="text-slate-700">
-                As the Software Engineering Coordinator, I oversee the expansion of our team and manage the development
-                process. My role includes establishing robust offline server infrastructure, documentation systems, and
-                implementing CI/CD pipelines to ensure quality and efficiency.
-            </p>
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Software Engineering Coordinator, LA2 Dynamics (2024 - Present)</h3>
+            <p class="text-text-secondary dark:text-slate-300">Leading the expansion of the software team and managing
+                the development lifecycle. Key responsibilities include establishing robust offline server
+                infrastructure (GitLab, CI/CD), implementing comprehensive documentation systems (MkDocs), defining
+                coding standards, and coordinating software releases for quadruped robotics systems.</p>
+            <p class="mt-4 text-text-secondary dark:text-slate-300">Focusing on improving team velocity, code quality,
+                and scalability of the software platform.</p>
         </div>
     </div>
-
-    <div id="modal-auv" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 class="text-2xl font-bold mb-4">Team Captain, ITU AUV Team</h3>
-            <p class="text-slate-700">
-                Leading the ITU AUV Team, I coordinate cross-disciplinary efforts to design and develop autonomous
-                underwater vehicles. Under my leadership, our team secured international awards and continuously pushes
-                the boundaries of underwater robotics technology.
-            </p>
+    <div id="modal-auv-experience" class="modal">
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Team Captain, ITU AUV Team (2021 - Present)</h3>
+            <p class="text-text-secondary dark:text-slate-300">Led a cross-disciplinary team of 25+ members in
+                designing, building, and programming autonomous underwater vehicles for international competitions.
+                Coordinated software (Python, ROS, CV), electronics (PCB design, sensors), and mechanical (CAD,
+                manufacturing) sub-teams. Managed project timelines, resources, and technical strategy, resulting in
+                multiple first and second-place awards.</p>
         </div>
     </div>
-
-    <div id="modal-poly" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 class="text-2xl font-bold mb-4">Software Developer, Poly Design 3D</h3>
-            <p class="text-slate-700">
-                I founded Poly Design 3D to create innovative plugins for Autodesk 3ds Max and Blender, streamlining
-                workflows for 3D artists and designers. My work here combines technical proficiency with creative
-                problem-solving.
-            </p>
+    <div id="modal-poly-experience" class="modal">
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Founder & Developer, Poly Design 3D (2019 - Present)</h3>
+            <p class="text-text-secondary dark:text-slate-300">Independently developed and commercialized a suite of
+                plugins for Autodesk 3ds Max and Blender, utilized by over 5,000 users worldwide. Handled all aspects
+                from ideation, C++/Python/MaxScript development, UI/UX design, testing, documentation, marketing, and
+                customer support. Focused on automating complex modeling tasks and enhancing creative workflows for
+                artists and designers.</p>
         </div>
     </div>
-
     <div id="modal-engineer" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 class="text-2xl font-bold mb-4">Software Engineer, LA2 Dynamics</h3>
-            <p class="text-slate-700">
-                In this role, I further refined the locomotion and control systems for quadruped robots, integrating
-                both embedded and high-level software components to enhance performance.
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Software Engineer, LA2 Dynamics (2023 - 2024)</h3>
+            <p class="text-text-secondary dark:text-slate-300">Developed and integrated advanced locomotion algorithms
+                (NMPC, WBC) and control systems for quadruped robots using C++ and ROS. Implemented real-time sensor
+                fusion pipelines and optimized communication protocols between embedded controllers (STM32) and the main
+                onboard computer. Contributed to simulation environments (Gazebo) for algorithm testing and validation.
             </p>
+        </div>
+    </div>
+    <div id="modal-aerospace" class="modal">
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Software Engineering Intern, Turkish Aerospace (Summer 2023)</h3>
+            <p class="text-text-secondary dark:text-slate-300">Developed a virtual joystick application using C++ and
+                the Qt framework for integration into flight simulator systems. Gained experience in aerospace software
+                development practices, version control (Git), and working within large, complex system architectures.
+            </p>
+        </div>
+    </div>
+    <div id="modal-robotics-eng" class="modal">
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Robotics Engineer, LA2 Dynamics (Early 2023)</h3>
+            <p class="text-text-secondary dark:text-slate-300">Contributed to the initial hardware and software
+                architecture design for a new quadruped robot platform. Focused on selecting appropriate sensors,
+                developing embedded firmware (C on STM32) for low-level control and sensor data acquisition, and
+                establishing communication interfaces.</p>
+        </div>
+    </div>
+    <div id="modal-research" class="modal">
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">Research Engineer, ITU Robotics Lab (2022 - 2023)</h3>
+            <p class="text-text-secondary dark:text-slate-300">Researched state-of-the-art quadruped locomotion
+                algorithms. Implemented and tested control strategies in simulation (Gazebo) and on physical robot
+                platforms. Analyzed experimental data and contributed to research documentation and presentations on
+                motion planning and control.</p>
+        </div>
+    </div>
+    <div id="modal-soga" class="modal">
+        <div class="modal-content"> <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-4">3D Developer (Part-time), SOGA Design Office (2018)</h3>
+            <p class="text-text-secondary dark:text-slate-300">Developed custom MaxScript tools to automate repetitive
+                tasks in architectural visualization workflows within Autodesk 3ds Max. Assisted senior artists with 3D
+                modeling, texturing, and rendering for international architectural projects.</p>
         </div>
     </div>
 
-    <div id="modal-aerospace" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 class="text-2xl font-bold mb-4">Software Engineer, Turkish Aerospace</h3>
-            <p class="text-slate-700">
-                During my internship at Turkish Aerospace, I developed a virtual joystick application for a flight
-                simulator using C++ and Qt, while gaining insight into complex aerospace system architectures.
-            </p>
-        </div>
-    </div>
 
     <!-- Dark/Light Mode Toggle -->
-    <div class="theme-toggle" id="theme-toggle">
-        <i class="fas fa-moon text-slate-800"></i>
+    <!-- KEEPING: Enhanced Toggle -->
+    <div class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+        <i class="fas fa-moon text-xl"></i>
+        <i class="fas fa-sun text-xl hidden"></i>
     </div>
 
     <!-- JavaScript -->
-    <script>
-        // Mobile Navigation Toggle
-        document.getElementById('mobile-nav-toggle').addEventListener('click', function () {
-            document.getElementById('mobile-nav').classList.toggle('hidden');
-        });
-
-        // Scroll Animation (Fade-In)
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-        const appearOnScroll = new IntersectionObserver(function (entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            });
-        }, appearOptions);
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
-        });
-
-        // Modal Functionality
-        const openModalButtons = document.querySelectorAll('.open-modal');
-        const closeModalButtons = document.querySelectorAll('.close-modal');
-        openModalButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const modalId = this.getAttribute('data-modal');
-                document.getElementById(modalId).classList.add('show');
-            });
-        });
-        closeModalButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                this.closest('.modal').classList.remove('show');
-            });
-        });
-        window.addEventListener('click', function (e) {
-            if (e.target.classList.contains('modal')) {
-                e.target.classList.remove('show');
-            }
-        });
-
-        // Dark/Light Mode Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('bg-slate-800');
-            document.body.classList.toggle('text-slate-200');
-            // Toggle other elements as needed for dark mode
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.classList.toggle('text-slate-700');
-                link.classList.toggle('hover:text-blue-500');
-            });
-            // Toggle icon inside the theme toggle button
-            const toggleIcon = themeToggle.querySelector('i');
-            if (toggleIcon.classList.contains('fa-moon')) {
-                toggleIcon.classList.remove('fa-moon');
-                toggleIcon.classList.add('fa-sun');
-            } else {
-                toggleIcon.classList.remove('fa-sun');
-                toggleIcon.classList.add('fa-moon');
-            }
-        });
-    </script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#3b82f6" },
-                opacity: { value: 0.5 },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: "#3b82f6", opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 2, out_mode: "bounce", bounce: true }
-            },
-            interactivity: {
-                detect_on: "window",  // Change from "canvas" to "window"
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" }
-                },
-                modes: {
-                    push: { particles_nb: 4 },  // Fewer particles for a softer effect
-                    repulse: { distance: 100, duration: 0.4 }
-                }
+        // ==== Theme Toggle ====
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const moonIcon = themeToggle.querySelector('.fa-moon');
+        const sunIcon = themeToggle.querySelector('.fa-sun');
+
+        const applyTheme = (theme) => {
+            // Clear existing theme classes
+            htmlElement.classList.remove('light', 'dark');
+            // Add the new theme class
+            htmlElement.classList.add(theme);
+
+            if (theme === 'dark') {
+                moonIcon.classList.add('hidden');
+                sunIcon.classList.remove('hidden');
+            } else {
+                moonIcon.classList.remove('hidden');
+                sunIcon.classList.add('hidden');
             }
+            // Re-initialize particles with correct colors if particlesJS is loaded
+            if (typeof particlesJS !== 'undefined') {
+                initParticles(); // Call particle initialization function
+            }
+        };
+
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); // Default to system or light
+        applyTheme(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
         });
 
-    </script>
-    <!-- Add this script for contact section particles -->
-    <script>
-        particlesJS('contact-particles', {
-            particles: {
-                number: { value: 60, density: { enable: true, value_area: 800 } },
-                color: { value: "#3b82f6" },
-                shape: { type: "circle" },
-                opacity: { value: 0.3, random: false },
-                size: { value: 2, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#3b82f6",
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 1.5,
-                    direction: "none",
-                    random: false,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false,
+        // ==== Mobile Navigation ====
+        const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (mobileNavToggle && mobileNav) {
+            mobileNavToggle.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+            });
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
+                });
+            });
+        }
+
+        // ==== Scroll Animations (Intersection Observer) ====
+        const animatedElements = document.querySelectorAll('.fade-in-scroll, .timeline-item');
+        const scrollObserverOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
-            },
-            interactivity: {
-                detect_on: "window",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
-                },
-                modes: {
-                    repulse: { distance: 100, duration: 0.4 },
-                    push: { particles_nb: 3 }
-                }
-            },
-            retina_detect: true
+            });
+        }, scrollObserverOptions);
+        animatedElements.forEach(el => { scrollObserver.observe(el); });
+
+        // ==== Modal Functionality ====
+        const openModalButtons = document.querySelectorAll('.open-modal');
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        const modals = document.querySelectorAll('.modal');
+        const openModal = (modalId) => {
+            const modal = document.getElementById(modalId);
+            if (modal) { modal.classList.add('show'); document.body.style.overflow = 'hidden'; }
+        };
+        const closeModal = (modal) => {
+            if (modal) { modal.classList.remove('show'); document.body.style.overflow = ''; }
+        };
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.stopPropagation();
+                const modalId = this.getAttribute('data-modal');
+                if (modalId) { openModal(modalId); }
+                else { console.warn("Modal trigger missing 'data-modal'", this); }
+            });
         });
+        closeModalButtons.forEach(button => { button.addEventListener('click', function () { closeModal(this.closest('.modal')); }); });
+        modals.forEach(modal => { modal.addEventListener('click', function (event) { if (event.target === this) { closeModal(this); } }); });
+        document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { modals.forEach(modal => { if (modal.classList.contains('show')) { closeModal(modal); } }); } });
+
+        // ==== Navigation Active State on Scroll ====
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('#main-nav .nav-link'); // Desktop links
+        const mobileNavLinks = document.querySelectorAll('#mobile-nav .nav-link'); // Mobile links
+        const allNavLinks = [...navLinks, ...mobileNavLinks]; // Combine node lists
+
+        const navObserverOptions = { rootMargin: '-20% 0px -70% 0px', threshold: 0 };
+        const highlightNav = (id) => {
+            allNavLinks.forEach(link => {
+                link.classList.remove('active');
+                // Check href attribute directly
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('active');
+                }
+            });
+        };
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { highlightNav(entry.target.id); }
+            });
+        }, navObserverOptions);
+        sections.forEach(section => { navObserver.observe(section); });
+
+        // ==== Smooth Scroll for Nav Links ====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navHeight = document.getElementById('main-nav')?.offsetHeight || 70;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    // Manually highlight immediately (but only if it's not the hero section)
+                    if (targetId !== '#hero') {
+                        highlightNav(targetId.substring(1));
+                    } else {
+                        allNavLinks.forEach(link => link.classList.remove('active')); // Clear active for hero
+                    }
+                }
+            });
+        });
+
+        // ==== Particles.js Initialization Function ====
+        function initParticles() {
+            // Destroy existing instances if they exist
+            if (window.pJSDom && window.pJSDom.length > 0) {
+                window.pJSDom.forEach(instance => instance.pJS.fn.vendors.destroypJS());
+                window.pJSDom = []; // Reset the array
+            }
+
+            const isDarkMode = document.documentElement.classList.contains('dark');
+            const particleColor = isDarkMode ? '#60A5FA' : '#3B82F6'; // Primary
+            const particleLinkColor = isDarkMode ? '#60A5FA' : '#3B82F6';
+            // Keep accent color subtle or remove if not desired for original look
+            // const particleAccentColor = isDarkMode ? '#D946EF' : '#C026D3';
+
+            // Hero Particles (Original Style Config)
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: particleColor }, // Single color from original
+                    opacity: { value: 0.5 },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: particleLinkColor, opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2, out_mode: "bounce", bounce: true } // Bounce from original
+                },
+                interactivity: {
+                    detect_on: "window",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" }, // Repulse from original
+                        onclick: { enable: true, mode: "push" } // Push from original
+                    },
+                    modes: { push: { particles_nb: 4 }, repulse: { distance: 100, duration: 0.4 } }
+                },
+                retina_detect: true
+            });
+
+            // Contact Particles (Original Style Config)
+            particlesJS('contact-particles', {
+                particles: {
+                    number: { value: 60, density: { enable: true, value_area: 800 } },
+                    color: { value: particleColor }, // Single color
+                    shape: { type: "circle" },
+                    opacity: { value: 0.3, random: false },
+                    size: { value: 2, random: true },
+                    line_linked: { enable: true, distance: 150, color: particleLinkColor, opacity: 0.2, width: 1 },
+                    move: { enable: true, speed: 1.5, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+                },
+                interactivity: {
+                    detect_on: "window",
+                    events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                    modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 3 } }
+                },
+                retina_detect: true
+            });
+        }
+
+        // Initial particle load
+        if (typeof particlesJS !== 'undefined') {
+            initParticles();
+        } else {
+            console.warn("particlesJS library not loaded.");
+        }
+
+
+        // ==== Update Footer Year ====
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
     </script>
 
 </body>
