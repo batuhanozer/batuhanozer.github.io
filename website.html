@@ -870,6 +870,9 @@
             border: 1px solid var(--border-color);
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
             will-change: transform, box-shadow;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .award-card:hover {
@@ -889,23 +892,46 @@
         }
 
         .award-badge {
-            background-color: rgba(var(--primary-rgb), 0.1);
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
             will-change: transform;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .award-card:hover .award-badge {
             transform: scale(1.15) rotate(-5deg);
-            background-color: rgba(var(--accent2-rgb), 0.15);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .award-image {
+            position: relative;
+            transition: transform 0.5s ease;
+            overflow: hidden;
+        }
+
+        .award-card:hover .award-image {
+            transform: scale(1.05);
+        }
+
+        .award-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(var(--primary-rgb), 0.1), rgba(var(--primary-rgb), 0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .award-card:hover .award-image::after {
+            opacity: 1;
         }
 
         .award-badge i {
-            color: var(--primary);
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .award-card:hover .award-badge i {
-            color: var(--accent2);
+            transform: rotate(-10deg) scale(1.1);
         }
 
         .award-card.rank-1 h3,
@@ -2221,29 +2247,88 @@
                     international competitions.
                 </p>
             </div>
-            <!-- Add scroll-reveal to grid -->
+            <!-- Award cards with enhanced styling -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 scroll-reveal" data-reveal-type="fadeInUp">
-                <!-- Add scroll-reveal-child to cards -->
-                <div class="award-card rank-1 flex flex-col items-center text-center p-8 rounded-xl scroll-reveal-child will-change-transform will-change-opacity"
+                <!-- Award 1: Roboboat -->
+                <div class="award-card rank-1 flex flex-col items-center text-center rounded-xl scroll-reveal-child will-change-transform will-change-opacity overflow-hidden"
                     data-reveal-delay="0">
-                    <div class="award-badge p-5 rounded-full mb-5"> <i class="fas fa-trophy text-4xl"></i> </div>
-                    <h3 class="text-xl font-semibold text-text-primary dark:text-slate-100 mb-2">Roboboat Competition -
-                        1st Place</h3>
-                    <p class="text-text-secondary dark:text-slate-400 text-sm mb-4">Feb 2024 | Sarasota, FL, USA</p>
+                    <div class="award-image w-full h-60 bg-cover bg-top"
+                        style="background-image: url('https://robonation.org/wp-content/uploads/sites/4/2022/06/2022_06_23-RoboBoat_Day4-33.jpg')">
+                        <div
+                            class="w-full h-full flex items-center justify-center bg-gradient-to-b from-black/30 to-black/70">
+                            <div class="award-badge p-5 rounded-full bg-white/20 backdrop-blur-sm">
+                                <i class="fas fa-trophy text-4xl text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-semibold text-text-primary dark:text-slate-100 mb-2">Roboboat
+                            Competition - 1st Place</h3>
+                        <p class="text-text-secondary dark:text-slate-400 text-sm mb-3">Feb 2024 | Sarasota, FL, USA</p>
+                        <p class="text-text-secondary dark:text-slate-300 mb-4 text-sm flex-1">
+                            Achieved first place in this prestigious autonomous surface vehicle competition,
+                            demonstrating superior navigation, obstacle avoidance, and autonomous task completion
+                            capabilities.
+                        </p>
+                        <a href="https://roboboat.org/2024/02/12/roboboat-2024-final-standings/" target="_blank"
+                            class="mt-2 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-medium transition-all duration-300 hover:-translate-y-1">
+                            <i class="fas fa-external-link-alt mr-2"></i> Competition Website
+                        </a>
+                    </div>
                 </div>
-                <div class="award-card rank-2 flex flex-col items-center text-center p-8 rounded-xl scroll-reveal-child will-change-transform will-change-opacity"
+
+                <!-- Award 2: European Robotics League -->
+                <div class="award-card rank-2 flex flex-col items-center text-center rounded-xl scroll-reveal-child will-change-transform will-change-opacity overflow-hidden"
                     data-reveal-delay="150">
-                    <div class="award-badge p-5 rounded-full mb-5"> <i class="fas fa-medal text-4xl"></i> </div>
-                    <h3 class="text-xl font-semibold text-text-primary dark:text-slate-100 mb-2">European Robotics
-                        League RAMI - 2nd Place & Best Presentation</h3>
-                    <p class="text-text-secondary dark:text-slate-400 text-sm mb-4">Jul 2023 | La Spezia, Italy</p>
+                    <div class="award-image w-full h-60 bg-cover bg-top"
+                        style="background-image: url('https://auv.itu.edu.tr/images/2023_italya_rami.jpg')">
+                        <div
+                            class="w-full h-full flex items-center justify-center bg-gradient-to-b from-black/30 to-black/70">
+                            <div class="award-badge p-5 rounded-full bg-white/20 backdrop-blur-sm">
+                                <i class="fas fa-medal text-4xl text-blue-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-semibold text-text-primary dark:text-slate-100 mb-2">European Robotics
+                            League RAMI - 2nd Place & Best Presentation</h3>
+                        <p class="text-text-secondary dark:text-slate-400 text-sm mb-3">Jul 2023 | La Spezia, Italy</p>
+                        <p class="text-text-secondary dark:text-slate-300 mb-4 text-sm flex-1">
+                            Secured second place overall and received the Best Presentation award for our innovative
+                            approach to underwater autonomous vehicle development and intervention tasks.
+                        </p>
+                        <a href="https://www.eu-robotics.net/robotics_league/" target="_blank"
+                            class="mt-2 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-medium transition-all duration-300 hover:-translate-y-1">
+                            <i class="fas fa-external-link-alt mr-2"></i> ERL Website
+                        </a>
+                    </div>
                 </div>
-                <div class="award-card rank-1 flex flex-col items-center text-center p-8 rounded-xl scroll-reveal-child will-change-transform will-change-opacity"
+
+                <!-- Award 3: Singapore AUV Challenge -->
+                <div class="award-card rank-1 flex flex-col items-center text-center rounded-xl scroll-reveal-child will-change-transform will-change-opacity overflow-hidden"
                     data-reveal-delay="300">
-                    <div class="award-badge p-5 rounded-full mb-5"> <i class="fas fa-award text-4xl"></i> </div>
-                    <h3 class="text-xl font-semibold text-text-primary dark:text-slate-100 mb-2">Singapore AUV Challenge
-                        - 1st Place</h3>
-                    <p class="text-text-secondary dark:text-slate-400 text-sm mb-4">Sep 2022 | Dover, Singapore</p>
+                    <div class="award-image w-full h-60 bg-cover bg-top"
+                        style="background-image: url('https://sauvc.org/2022/img/competitors/itu.jpg')">
+                        <div
+                            class="w-full h-full flex items-center justify-center bg-gradient-to-b from-black/30 to-black/70">
+                            <div class="award-badge p-5 rounded-full bg-white/20 backdrop-blur-sm">
+                                <i class="fas fa-award text-4xl text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-semibold text-text-primary dark:text-slate-100 mb-2">Singapore AUV
+                            Challenge - 1st Place</h3>
+                        <p class="text-text-secondary dark:text-slate-400 text-sm mb-3">Sep 2022 | Dover, Singapore</p>
+                        <p class="text-text-secondary dark:text-slate-300 mb-4 text-sm flex-1">
+                            Won first place in Asia's largest underwater robotics competition, demonstrating excellence
+                            in computer vision, navigation, and autonomous decision-making in underwater environments.
+                        </p>
+                        <a href="https://sauvc.org/2022/" target="_blank"
+                            class="mt-2 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-medium transition-all duration-300 hover:-translate-y-1">
+                            <i class="fas fa-external-link-alt mr-2"></i> SAUVC Website
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
