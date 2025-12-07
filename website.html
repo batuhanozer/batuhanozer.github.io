@@ -160,8 +160,8 @@
             border-radius: 100px;
             border: 1px solid rgba(var(--border-color-rgb), 0.2);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08),
-                        0 1px 3px rgba(0, 0, 0, 0.05),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                0 1px 3px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -169,40 +169,38 @@
             background: rgba(15, 23, 42, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3),
-                        0 1px 3px rgba(0, 0, 0, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+                0 1px 3px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         #main-nav.scrolled .nav-container {
             background: rgba(var(--bg-primary-rgb), 0.9);
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12),
-                        0 2px 6px rgba(0, 0, 0, 0.08);
+                0 2px 6px rgba(0, 0, 0, 0.08);
         }
 
         .dark #main-nav.scrolled .nav-container {
             background: rgba(15, 23, 42, 0.92);
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4),
-                        0 2px 6px rgba(0, 0, 0, 0.3);
+                0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
         /* Logo/Brand Styling */
         .nav-brand {
             font-weight: 700;
             font-size: 1.25rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--accent2) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-primary);
             letter-spacing: -0.02em;
             transition: all 0.3s ease;
         }
 
         .nav-brand:hover {
-            background: linear-gradient(135deg, var(--accent2) 0%, var(--accent) 50%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
             transform: scale(1.02);
+        }
+
+        .nav-brand span {
+            color: var(--primary);
         }
 
         /* Modern Nav Links with Pill Hover */
@@ -388,9 +386,9 @@
             inset: -2px;
             border-radius: inherit;
             background: linear-gradient(135deg,
-                rgba(var(--primary-rgb), 0.3),
-                rgba(var(--accent-rgb), 0.3),
-                rgba(var(--accent2-rgb), 0.3));
+                    rgba(var(--primary-rgb), 0.3),
+                    rgba(var(--accent-rgb), 0.3),
+                    rgba(var(--accent2-rgb), 0.3));
             z-index: -1;
             opacity: 0;
             filter: blur(20px);
@@ -413,8 +411,13 @@
         }
 
         @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 60px 60px; }
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 60px 60px;
+            }
         }
 
         /* Floating Orbs for Hero Background */
@@ -454,10 +457,23 @@
         }
 
         @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -30px) scale(1.05); }
-            50% { transform: translate(-20px, 20px) scale(0.95); }
-            75% { transform: translate(20px, 30px) scale(1.02); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(30px, -30px) scale(1.05);
+            }
+
+            50% {
+                transform: translate(-20px, 20px) scale(0.95);
+            }
+
+            75% {
+                transform: translate(20px, 30px) scale(1.02);
+            }
         }
 
         /* Section Divider Wave */
@@ -499,8 +515,15 @@
         }
 
         @keyframes iconFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(3deg); }
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(3deg);
+            }
         }
 
         /* Better Focus States */
@@ -511,19 +534,37 @@
         }
 
         /* Smooth Page Load */
-        .page-loaded .hero-content > * {
+        .page-loaded .hero-content>* {
             animation: smoothReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             opacity: 0;
         }
 
-        .page-loaded .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-        .page-loaded .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
-        .page-loaded .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
-        .page-loaded .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+        .page-loaded .hero-content>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .page-loaded .hero-content>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .page-loaded .hero-content>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .page-loaded .hero-content>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
 
         @keyframes smoothReveal {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Noise Texture Overlay (subtle) */
@@ -539,30 +580,33 @@
 
         /* Shimmer Effect for Loading States */
         .shimmer {
-            background: linear-gradient(
-                90deg,
-                rgba(var(--bg-secondary-rgb), 0) 0%,
-                rgba(var(--bg-secondary-rgb), 0.5) 50%,
-                rgba(var(--bg-secondary-rgb), 0) 100%
-            );
+            background: linear-gradient(90deg,
+                    rgba(var(--bg-secondary-rgb), 0) 0%,
+                    rgba(var(--bg-secondary-rgb), 0.5) 50%,
+                    rgba(var(--bg-secondary-rgb), 0) 100%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
         }
 
         @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
         }
 
         /* ========== END MODERN UI ENHANCEMENTS ========== */
 
         html {
-            font-size: 16px;
+            font-size: 15px;
         }
 
         @media (max-width: 639px) {
             html {
-                font-size: 14px;
+                font-size: 13px;
             }
         }
 
@@ -1852,9 +1896,11 @@
                         <i class="fas fa-moon"></i>
                         <i class="fas fa-sun"></i>
                     </button>
-                    <button id="mobile-nav-toggle" class="text-slate-700 dark:text-slate-300 focus:outline-none p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                    <button id="mobile-nav-toggle"
+                        class="text-slate-700 dark:text-slate-300 focus:outline-none p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
@@ -1865,22 +1911,28 @@
         <div id="mobile-nav" class="lg:hidden hidden">
             <div class="container mx-auto px-4 pt-2 pb-4">
                 <div class="nav-container !rounded-2xl !p-4 flex flex-col space-y-1">
-                    <a href="#about" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                    <a href="#about"
+                        class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
                         <i class="fas fa-user w-5 mr-3 text-primary/60"></i>About
                     </a>
-                    <a href="#expertise" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                    <a href="#expertise"
+                        class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
                         <i class="fas fa-code w-5 mr-3 text-primary/60"></i>Expertise
                     </a>
-                    <a href="#projects" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                    <a href="#projects"
+                        class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
                         <i class="fas fa-rocket w-5 mr-3 text-primary/60"></i>Projects
                     </a>
-                    <a href="#experience" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                    <a href="#experience"
+                        class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
                         <i class="fas fa-briefcase w-5 mr-3 text-primary/60"></i>Experience
                     </a>
-                    <a href="#awards" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                    <a href="#awards"
+                        class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
                         <i class="fas fa-trophy w-5 mr-3 text-primary/60"></i>Awards
                     </a>
-                    <a href="#contact" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                    <a href="#contact"
+                        class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
                         <i class="fas fa-envelope w-5 mr-3 text-primary/60"></i>Contact
                     </a>
                     <div class="pt-3 mt-2 border-t border-slate-200 dark:border-slate-700">
@@ -2157,7 +2209,8 @@
     <section id="expertise" class="py-24 bg-bg-secondary dark:bg-slate-900 overflow-hidden">
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-16 scroll-reveal" data-reveal-type="fadeInUp">
-                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Areas of <span class="gradient-text">Expertise</span></h2>
+                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Areas of <span
+                        class="gradient-text">Expertise</span></h2>
                 <p class="text-lg text-text-secondary dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
                     My work spans several specialized domains in robotics and software development, with a focus on
                     creating robust, efficient systems that solve complex challenges.
@@ -2343,7 +2396,8 @@
     <section id="projects" class="py-24 bg-bg-primary dark:bg-slate-800 overflow-hidden">
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-16 scroll-reveal" data-reveal-type="fadeInUp">
-                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Featured <span class="gradient-text">Projects</span></h2>
+                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Featured <span
+                        class="gradient-text">Projects</span></h2>
                 <p class="text-lg text-text-secondary dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
                     A selection of my most notable work, demonstrating my expertise in robotics, software development,
                     and system design.
@@ -2537,7 +2591,8 @@
     <section id="experience" class="py-24 bg-bg-secondary dark:bg-slate-900 overflow-hidden">
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-20 scroll-reveal" data-reveal-type="fadeInUp">
-                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Professional <span class="gradient-text">Journey</span></h2>
+                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Professional <span
+                        class="gradient-text">Journey</span></h2>
                 <p class="text-lg text-text-secondary dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
                     Tracing my career path through impactful roles in robotics research, development, and leadership.
                     Click entries for details.
@@ -2723,7 +2778,8 @@
     <section id="awards" class="py-24 bg-bg-primary dark:bg-slate-800 overflow-hidden">
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-16 scroll-reveal" data-reveal-type="fadeInUp">
-                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Honours & <span class="gradient-text">Awards</span></h2>
+                <h2 class="text-3xl font-bold mb-4 text-text-primary dark:text-slate-100">Honours & <span
+                        class="gradient-text">Awards</span></h2>
                 <p class="text-lg text-text-secondary dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
                     Recognition for contributions in robotics and software development, including awards from
                     international competitions.
@@ -2863,116 +2919,100 @@
     <!-- Contact Section -->
     <section id="contact"
         class="relative py-24 bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-900 dark:to-slate-800 overflow-hidden">
-        <div id="contact-particles" class="opacity-80"></div> <!-- Reduced opacity -->
+        <div id="contact-particles" class="opacity-80"></div>
 
         <div class="contact-content relative container mx-auto px-6 md:px-12 z-10">
-            <div class="text-center mb-16 scroll-reveal" data-reveal-type="fadeInUp">
+            <div class="text-center mb-12 scroll-reveal" data-reveal-type="fadeInUp">
                 <h2 class="text-3xl font-bold mb-4 text-white">Let's Connect</h2>
-                <p class="text-lg text-slate-300 max-w-3xl mx-auto">
-                    Have a project in mind or just want to chat about robotics? Drop me a message or connect through my
-                    socials.
+                <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+                    Interested in robotics, AI, or just want to say hi? Feel free to reach out through any of these
+                    platforms.
                 </p>
             </div>
 
-            <!-- Add scroll-reveal to grid -->
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 scroll-reveal" data-reveal-type="fadeInUp">
-                <!-- Contact Info Cards Column -->
-                <div class="space-y-6">
-                    <!-- Add scroll-reveal-child to cards -->
-                    <div class="p-6 bg-white/5 dark:bg-white/10 backdrop-blur-md rounded-xl border border-white/10 hover:border-white/25 hover:bg-white/10 transition-all duration-300 scroll-reveal-child will-change-transform will-change-opacity"
-                        data-reveal-delay="100">
-                        <div class="flex items-center gap-4">
-                            <div class="p-3 bg-blue-500 dark:bg-blue-600 rounded-lg shadow-md"><i
-                                    class="fas fa-map-marker-alt text-white text-xl"></i></div>
-                            <div>
-                                <h3 class="text-white font-semibold">Location</h3>
-                                <p class="text-slate-300">Istanbul, Türkiye</p>
-                            </div>
+            <!-- Contact Cards Grid -->
+            <div class="max-w-3xl mx-auto grid sm:grid-cols-2 gap-4 mb-12 scroll-reveal" data-reveal-type="fadeInUp">
+                <!-- Email Card -->
+                <a href="mailto:batuhanozer52@gmail.com"
+                    class="group p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:border-blue-500/50 hover:bg-white/10 transition-all duration-300 scroll-reveal-child"
+                    data-reveal-delay="100">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="p-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-envelope text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-1">Email</h3>
+                            <p class="text-slate-400 text-sm group-hover:text-blue-400 transition-colors">
+                                batuhanozer52@gmail.com</p>
                         </div>
                     </div>
-                    <div class="p-6 bg-white/5 dark:bg-white/10 backdrop-blur-md rounded-xl border border-white/10 hover:border-white/25 hover:bg-white/10 transition-all duration-300 scroll-reveal-child will-change-transform will-change-opacity"
-                        data-reveal-delay="200">
-                        <div class="flex items-center gap-4">
-                            <div class="p-3 bg-blue-500 dark:bg-blue-600 rounded-lg shadow-md"><i
-                                    class="fas fa-envelope text-white text-xl"></i></div>
-                            <div>
-                                <h3 class="text-white font-semibold">Email</h3>
-                                <a href="mailto:batuhanozer52@gmail.com"
-                                    class="text-slate-300 hover:text-blue-400 transition">batuhanozer52@gmail.com</a>
-                            </div>
+                </a>
+
+                <!-- LinkedIn Card -->
+                <a href="https://www.linkedin.com/in/batuhanozer/" target="_blank" rel="noopener noreferrer"
+                    class="group p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:border-blue-500/50 hover:bg-white/10 transition-all duration-300 scroll-reveal-child"
+                    data-reveal-delay="200">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="p-4 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="fab fa-linkedin-in text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-1">LinkedIn</h3>
+                            <p class="text-slate-400 text-sm group-hover:text-blue-400 transition-colors">
+                                linkedin.com/in/batuhanozer</p>
                         </div>
                     </div>
-                    <div class="p-6 bg-white/5 dark:bg-white/10 backdrop-blur-md rounded-xl border border-white/10 hover:border-white/25 hover:bg-white/10 transition-all duration-300 scroll-reveal-child will-change-transform will-change-opacity"
-                        data-reveal-delay="300">
-                        <div class="flex items-center gap-4">
-                            <div class="p-3 bg-blue-500 dark:bg-blue-600 rounded-lg shadow-md"><i
-                                    class="fab fa-linkedin-in text-white text-xl"></i></div>
-                            <div>
-                                <h3 class="text-white font-semibold">LinkedIn</h3>
-                                <a href="https://www.linkedin.com/in/batuhanozer/" target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="text-slate-300 hover:text-blue-400 transition">linkedin.com/in/batuhanozer</a>
-                            </div>
+                </a>
+
+                <!-- GitHub Card -->
+                <a href="https://github.com/batuhanozer" target="_blank" rel="noopener noreferrer"
+                    class="group p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:border-purple-500/50 hover:bg-white/10 transition-all duration-300 scroll-reveal-child"
+                    data-reveal-delay="300">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="p-4 bg-gradient-to-br from-slate-700 to-slate-800 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="fab fa-github text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-1">GitHub</h3>
+                            <p class="text-slate-400 text-sm group-hover:text-purple-400 transition-colors">
+                                github.com/batuhanozer</p>
                         </div>
                     </div>
-                    <div class="p-6 bg-white/5 dark:bg-white/10 backdrop-blur-md rounded-xl border border-white/10 hover:border-white/25 hover:bg-white/10 transition-all duration-300 scroll-reveal-child will-change-transform will-change-opacity"
-                        data-reveal-delay="400">
-                        <div class="flex items-center gap-4">
-                            <div class="p-3 bg-blue-500 dark:bg-blue-600 rounded-lg shadow-md"><i
-                                    class="fab fa-github text-white text-xl"></i></div>
-                            <div>
-                                <h3 class="text-white font-semibold">GitHub</h3>
-                                <a href="https://github.com/batuhanozer" target="_blank" rel="noopener noreferrer"
-                                    class="text-slate-300 hover:text-blue-400 transition">github.com/batuhanozer</a>
-                            </div>
+                </a>
+
+                <!-- Location Card -->
+                <div class="p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 scroll-reveal-child"
+                    data-reveal-delay="400">
+                    <div class="flex items-center gap-4">
+                        <div class="p-4 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl shadow-lg">
+                            <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-1">Location</h3>
+                            <p class="text-slate-400 text-sm">Istanbul, Türkiye</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Contact Form Column -->
-                <!-- Add scroll-reveal-child -->
-                <form action="#" method="POST"
-                    class="space-y-6 scroll-reveal-child will-change-transform will-change-opacity"
-                    data-reveal-delay="200">
-                    <input type="hidden" name="_subject" value="New Portfolio Contact">
-                    <div class="relative">
-                        <input type="text" name="name" placeholder="Your Name" required
-                            class="w-full bg-white/5 dark:bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-slate-400 p-4 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 peer">
-                        <i
-                            class="fas fa-user absolute right-4 top-4 text-slate-400 peer-focus:text-primary transition-colors"></i>
-                    </div>
-                    <div class="relative">
-                        <input type="email" name="email" placeholder="Your Email" required
-                            class="w-full bg-white/5 dark:bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-slate-400 p-4 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 peer">
-                        <i
-                            class="fas fa-envelope absolute right-4 top-4 text-slate-400 peer-focus:text-primary transition-colors"></i>
-                    </div>
-                    <div class="relative">
-                        <textarea name="message" placeholder="Your Message" rows="5" required
-                            class="w-full bg-white/5 dark:bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-slate-400 p-4 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300 resize-none peer"></textarea>
-                        <i
-                            class="fas fa-comment-dots absolute right-4 top-4 text-slate-400 peer-focus:text-primary transition-colors"></i>
-                    </div>
-                    <button type="submit"
-                        class="w-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white font-semibold py-3.5 rounded-lg transition-all duration-300 ease-out hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-1 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500 active:scale-[0.98] active:translate-y-0 will-change-transform">
-                        <i class="fas fa-paper-plane mr-2"></i> Send Message
-                    </button>
-                    <p class="text-xs text-slate-400 text-center pt-2">Form requires backend integration (e.g.,
-                        Formspree).</p>
-                </form>
             </div>
 
-            <!-- Social Links -->
-            <div class="flex justify-center gap-8 mt-16 scroll-reveal" data-reveal-type="fadeInUp"
-                data-reveal-delay="400">
-                <a href="https://github.com/batuhanozer" target="_blank" rel="noopener noreferrer"
-                    class="text-slate-300 hover:text-white transition-all transform hover:scale-125 hover:-translate-y-1 duration-300 ease-out will-change-transform">
-                    <i class="fab fa-github text-2xl"></i>
-                </a>
-                <a href="https://linkedin.com/in/batuhanozer" target="_blank" rel="noopener noreferrer"
-                    class="text-slate-300 hover:text-white transition-all transform hover:scale-125 hover:-translate-y-1 duration-300 ease-out will-change-transform">
-                    <i class="fab fa-linkedin-in text-2xl"></i>
-                </a>
+            <!-- Quick Connect CTA -->
+            <div class="text-center scroll-reveal" data-reveal-type="fadeInUp" data-reveal-delay="500">
+                <p class="text-slate-400 mb-6">Or connect with me directly</p>
+                <div class="flex justify-center gap-4">
+                    <a href="mailto:batuhanozer52@gmail.com"
+                        class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-1 transition-all duration-300">
+                        <i class="fas fa-envelope"></i>
+                        Send Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/batuhanozer/" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/20 text-white font-semibold rounded-full hover:bg-white/20 hover:-translate-y-1 transition-all duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                        LinkedIn
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -3211,32 +3251,41 @@
                 <i class="fas fa-laptop-code"></i>
             </div>
             <h3 class="text-2xl font-bold mb-3">Software Engineering Coordinator</h3>
-            <h4 class="text-lg text-primary dark:text-blue-400 mb-4">LA2 Dynamics | April 2024 - Present | Full-time</h4>
+            <h4 class="text-lg text-primary dark:text-blue-400 mb-4">LA2 Dynamics | April 2024 - Present | Full-time
+            </h4>
 
             <p class="text-text-secondary dark:text-slate-300 mb-5">
-                I lead the end-to-end development of our quadruped robot "Sarbot", coordinating both hardware and software domains. Through this role, I bridge hardware, embedded systems, and advanced control algorithms, ensuring the reliability, performance, and innovation of our quadruped robotics platform.
+                I lead the end-to-end development of our quadruped robot "Sarbot", coordinating both hardware and
+                software domains. Through this role, I bridge hardware, embedded systems, and advanced control
+                algorithms, ensuring the reliability, performance, and innovation of our quadruped robotics platform.
             </p>
 
             <div class="feature-list">
                 <div class="feature-item">
                     <i class="fas fa-microchip"></i>
-                    <div><strong>System & Hardware Architecture</strong> - Planned and coordinated hardware design, selected critical electronic components, and oversaw the design of custom embedded control boards</div>
+                    <div><strong>System & Hardware Architecture</strong> - Planned and coordinated hardware design,
+                        selected critical electronic components, and oversaw the design of custom embedded control
+                        boards</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-cogs"></i>
-                    <div><strong>Embedded Systems</strong> - Developed and supervised STM32-based firmware for high-frequency motor control and real-time communication (UDP, RS485, I2C, CAN, SPI)</div>
+                    <div><strong>Embedded Systems</strong> - Developed and supervised STM32-based firmware for
+                        high-frequency motor control and real-time communication (UDP, RS485, I2C, CAN, SPI)</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-brain"></i>
-                    <div><strong>Advanced Control</strong> - Implemented nonlinear MPC for locomotion control and integrated reinforcement learning policies trained in NVIDIA Isaac Lab onto the real robot</div>
+                    <div><strong>Advanced Control</strong> - Implemented nonlinear MPC for locomotion control and
+                        integrated reinforcement learning policies trained in NVIDIA Isaac Lab onto the real robot</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-flask"></i>
-                    <div><strong>Testing & Validation</strong> - Designed structured test frameworks, bridging hardware-in-the-loop and simulation-to-reality experiments</div>
+                    <div><strong>Testing & Validation</strong> - Designed structured test frameworks, bridging
+                        hardware-in-the-loop and simulation-to-reality experiments</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-server"></i>
-                    <div><strong>Infrastructure & Coordination</strong> - Established internal GitLab, CI/CD pipelines, and documentation systems, ensuring scalable and reliable development</div>
+                    <div><strong>Infrastructure & Coordination</strong> - Established internal GitLab, CI/CD pipelines,
+                        and documentation systems, ensuring scalable and reliable development</div>
                 </div>
             </div>
 
@@ -3270,25 +3319,36 @@
             <h4 class="text-lg text-primary dark:text-blue-400 mb-4">ITU AUV Team | Oct 2021 - Present</h4>
 
             <p class="text-text-secondary dark:text-slate-300 mb-5">
-                Progressed from Software Developer to Team Mentor, leading 30+ members across electronics, software, and mechanical teams. Under my leadership and mentorship, the team achieved 4 international competition awards.
+                Progressed from Software Developer to Team Mentor, leading 30+ members across electronics, software, and
+                mechanical teams. Under my leadership and mentorship, the team achieved 4 international competition
+                awards.
             </p>
 
             <div class="feature-list">
                 <div class="feature-item">
                     <i class="fas fa-user-tie"></i>
-                    <div><strong>Team Mentor (Sep 2024 - Present)</strong> - Provide mentorship and strategic guidance to ITU AUV Team, supporting knowledge transfer, team coordination, and long-term project strategy. Under my mentorship, the team achieved 3rd place at RoboSub 2025 among 54 international teams.</div>
+                    <div><strong>Team Mentor (Sep 2024 - Present)</strong> - Provide mentorship and strategic guidance
+                        to ITU AUV Team, supporting knowledge transfer, team coordination, and long-term project
+                        strategy. Under my mentorship, the team achieved 3rd place at RoboSub 2025 among 54
+                        international teams.</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-users-cog"></i>
-                    <div><strong>Team Captain (Mar 2023 - Sep 2024)</strong> - Led 30+ members across electronics, software, and mechanical teams. Achieved 2nd place & Best Presentation at ERL RAMI 2023 and 1st place at Roboboat 2024.</div>
+                    <div><strong>Team Captain (Mar 2023 - Sep 2024)</strong> - Led 30+ members across electronics,
+                        software, and mechanical teams. Achieved 2nd place & Best Presentation at ERL RAMI 2023 and 1st
+                        place at Roboboat 2024.</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-code"></i>
-                    <div><strong>Software Team Leader (Feb 2022 - Mar 2023)</strong> - Directed software development focusing on vision, control, localization, and mapping. Led the team to 1st place at Singapore AUV Challenge 2022 (42 teams from 19 countries).</div>
+                    <div><strong>Software Team Leader (Feb 2022 - Mar 2023)</strong> - Directed software development
+                        focusing on vision, control, localization, and mapping. Led the team to 1st place at Singapore
+                        AUV Challenge 2022 (42 teams from 19 countries).</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-laptop-code"></i>
-                    <div><strong>Software Developer (Oct 2021 - Feb 2022)</strong> - Contributed to early development of AUV navigation and vision software, laying the foundation for robust control and mapping systems.</div>
+                    <div><strong>Software Developer (Oct 2021 - Feb 2022)</strong> - Contributed to early development of
+                        AUV navigation and vision software, laying the foundation for robust control and mapping
+                        systems.</div>
                 </div>
             </div>
 
@@ -3314,28 +3374,35 @@
                 <i class="fas fa-cubes"></i>
             </div>
             <h3 class="text-2xl font-bold mb-3">Founder & Software Developer</h3>
-            <h4 class="text-lg text-accent2 dark:text-fuchsia-400 mb-4">Poly Design 3D | Jan 2019 - Present | Founder</h4>
+            <h4 class="text-lg text-accent2 dark:text-fuchsia-400 mb-4">Poly Design 3D | Jan 2019 - Present | Founder
+            </h4>
 
             <p class="text-text-secondary dark:text-slate-300 mb-5">
-                Founded and grew a software business creating 10+ commercial plugins for 3D modeling applications (Autodesk 3ds Max, Blender). Developed tools in C++, Python, and Maxscript that are used globally by 3D artists and studios, improving workflow efficiency and creative productivity.
+                Founded and grew a software business creating 10+ commercial plugins for 3D modeling applications
+                (Autodesk 3ds Max, Blender). Developed tools in C++, Python, and Maxscript that are used globally by 3D
+                artists and studios, improving workflow efficiency and creative productivity.
             </p>
 
             <div class="feature-list">
                 <div class="feature-item">
                     <i class="fas fa-rocket"></i>
-                    <div><strong>Entrepreneurship</strong> - Founded and grew a software business from the ground up, handling all aspects from product design to customer support</div>
+                    <div><strong>Entrepreneurship</strong> - Founded and grew a software business from the ground up,
+                        handling all aspects from product design to customer support</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-code"></i>
-                    <div><strong>Multi-Platform Development</strong> - Developed 10+ commercial plugins using C++, Python, and Maxscript for Autodesk 3ds Max and Blender</div>
+                    <div><strong>Multi-Platform Development</strong> - Developed 10+ commercial plugins using C++,
+                        Python, and Maxscript for Autodesk 3ds Max and Blender</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-globe"></i>
-                    <div><strong>Global Impact</strong> - Tools used globally by 3D artists and studios, improving workflow efficiency and creative productivity</div>
+                    <div><strong>Global Impact</strong> - Tools used globally by 3D artists and studios, improving
+                        workflow efficiency and creative productivity</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-handshake"></i>
-                    <div><strong>Full Product Lifecycle</strong> - Experience spans from product design and development to release and customer adoption</div>
+                    <div><strong>Full Product Lifecycle</strong> - Experience spans from product design and development
+                        to release and customer adoption</div>
                 </div>
             </div>
 
@@ -3367,25 +3434,32 @@
             <h4 class="text-lg text-primary dark:text-blue-400 mb-4">LA2 Dynamics | Oct 2023 - Apr 2024 | Full-time</h4>
 
             <p class="text-text-secondary dark:text-slate-300 mb-5">
-                Contributed to the quadruped robot project with a focus on embedded systems and locomotion control algorithms. Implemented and refined control and navigation systems, enhancing robot performance and reliability. Gained hands-on experience in system design and integration within a robotics startup environment.
+                Contributed to the quadruped robot project with a focus on embedded systems and locomotion control
+                algorithms. Implemented and refined control and navigation systems, enhancing robot performance and
+                reliability. Gained hands-on experience in system design and integration within a robotics startup
+                environment.
             </p>
 
             <div class="feature-list">
                 <div class="feature-item">
                     <i class="fas fa-cogs"></i>
-                    <div><strong>Embedded Systems</strong> - Worked on STM32-based firmware development for motor control and real-time communication systems</div>
+                    <div><strong>Embedded Systems</strong> - Worked on STM32-based firmware development for motor
+                        control and real-time communication systems</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-brain"></i>
-                    <div><strong>Locomotion Control</strong> - Implemented and refined control algorithms for quadruped robot locomotion and stability</div>
+                    <div><strong>Locomotion Control</strong> - Implemented and refined control algorithms for quadruped
+                        robot locomotion and stability</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-compass"></i>
-                    <div><strong>Navigation Systems</strong> - Developed and optimized navigation and state estimation modules for autonomous operation</div>
+                    <div><strong>Navigation Systems</strong> - Developed and optimized navigation and state estimation
+                        modules for autonomous operation</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-puzzle-piece"></i>
-                    <div><strong>System Integration</strong> - Gained hands-on experience integrating hardware and software components in a robotics startup environment</div>
+                    <div><strong>System Integration</strong> - Gained hands-on experience integrating hardware and
+                        software components in a robotics startup environment</div>
                 </div>
             </div>
 
@@ -3412,28 +3486,35 @@
                 <i class="fas fa-plane"></i>
             </div>
             <h3 class="text-2xl font-bold mb-3">Software Engineer Intern</h3>
-            <h4 class="text-lg text-primary dark:text-blue-400 mb-4">Turkish Aerospace Industries (TAI) | Jul 2023 - Aug 2023 | Internship</h4>
+            <h4 class="text-lg text-primary dark:text-blue-400 mb-4">Turkish Aerospace Industries (TAI) | Jul 2023 - Aug
+                2023 | Internship</h4>
 
             <p class="text-text-secondary dark:text-slate-300 mb-5">
-                Worked in the control and software department for the Hürjet training jet. Developed a virtual joystick application for the flight simulator using C++ and Qt. Gained exposure to complex aerospace software architectures, strengthening skills in C++ development and system-level design.
+                Worked in the control and software department for the Hürjet training jet. Developed a virtual joystick
+                application for the flight simulator using C++ and Qt. Gained exposure to complex aerospace software
+                architectures, strengthening skills in C++ development and system-level design.
             </p>
 
             <div class="feature-list">
                 <div class="feature-item">
                     <i class="fas fa-fighter-jet"></i>
-                    <div><strong>Hürjet Project</strong> - Worked in the control and software department for Turkey's indigenous training jet aircraft</div>
+                    <div><strong>Hürjet Project</strong> - Worked in the control and software department for Turkey's
+                        indigenous training jet aircraft</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-gamepad"></i>
-                    <div><strong>Virtual Joystick</strong> - Developed a virtual joystick application for the flight simulator using C++ and Qt framework</div>
+                    <div><strong>Virtual Joystick</strong> - Developed a virtual joystick application for the flight
+                        simulator using C++ and Qt framework</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-sitemap"></i>
-                    <div><strong>Aerospace Architecture</strong> - Gained exposure to complex aerospace software architectures and development practices</div>
+                    <div><strong>Aerospace Architecture</strong> - Gained exposure to complex aerospace software
+                        architectures and development practices</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-code"></i>
-                    <div><strong>C++ & Qt</strong> - Strengthened skills in C++ development and system-level design with Qt framework</div>
+                    <div><strong>C++ & Qt</strong> - Strengthened skills in C++ development and system-level design with
+                        Qt framework</div>
                 </div>
             </div>
 
@@ -3462,25 +3543,31 @@
             <h4 class="text-lg text-primary dark:text-blue-400 mb-4">LA2 Dynamics | Feb 2023 - Jul 2023 | Part-time</h4>
 
             <p class="text-text-secondary dark:text-slate-300 mb-5">
-                Joined the founding team of the quadruped robotics project. Contributed to hardware and software selection, system design, and development of both embedded firmware and high-level locomotion software. Built strong practical skills in robotics engineering, working on a robot project from the ground up.
+                Joined the founding team of the quadruped robotics project. Contributed to hardware and software
+                selection, system design, and development of both embedded firmware and high-level locomotion software.
+                Built strong practical skills in robotics engineering, working on a robot project from the ground up.
             </p>
 
             <div class="feature-list">
                 <div class="feature-item">
                     <i class="fas fa-rocket"></i>
-                    <div><strong>Founding Team Member</strong> - Part of the initial team that launched the quadruped robot project from concept to prototype</div>
+                    <div><strong>Founding Team Member</strong> - Part of the initial team that launched the quadruped
+                        robot project from concept to prototype</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-cogs"></i>
-                    <div><strong>Hardware & Software Selection</strong> - Contributed to selecting critical components including sensors, actuators, and computing platforms</div>
+                    <div><strong>Hardware & Software Selection</strong> - Contributed to selecting critical components
+                        including sensors, actuators, and computing platforms</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-microchip"></i>
-                    <div><strong>Embedded Firmware</strong> - Developed STM32-based firmware for motor control and sensor data acquisition</div>
+                    <div><strong>Embedded Firmware</strong> - Developed STM32-based firmware for motor control and
+                        sensor data acquisition</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-brain"></i>
-                    <div><strong>Locomotion Software</strong> - Contributed to high-level locomotion algorithms and control system architecture</div>
+                    <div><strong>Locomotion Software</strong> - Contributed to high-level locomotion algorithms and
+                        control system architecture</div>
                 </div>
             </div>
 
@@ -3507,28 +3594,35 @@
                 <i class="fas fa-microscope"></i>
             </div>
             <h3 class="text-2xl font-bold mb-3">Education Researcher</h3>
-            <h4 class="text-lg text-primary dark:text-blue-400 mb-4">ITU Robotics Laboratory | Oct 2022 - Feb 2023 | Part-time</h4>
+            <h4 class="text-lg text-primary dark:text-blue-400 mb-4">ITU Robotics Laboratory | Oct 2022 - Feb 2023 |
+                Part-time</h4>
 
             <p class="text-text-secondary dark:text-slate-300 mb-5">
-                At the ITU Robotics Laboratory, conducted research on quadruped locomotion, testing walking algorithms from literature on real robots. Contributed to the advancement of robotic locomotion and strengthened expertise in control systems and their practical applications.
+                At the ITU Robotics Laboratory, conducted research on quadruped locomotion, testing walking algorithms
+                from literature on real robots. Contributed to the advancement of robotic locomotion and strengthened
+                expertise in control systems and their practical applications.
             </p>
 
             <div class="feature-list">
                 <div class="feature-item">
                     <i class="fas fa-book-open"></i>
-                    <div><strong>Literature Research</strong> - Studied and analyzed state-of-the-art quadruped locomotion algorithms from academic papers</div>
+                    <div><strong>Literature Research</strong> - Studied and analyzed state-of-the-art quadruped
+                        locomotion algorithms from academic papers</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-robot"></i>
-                    <div><strong>Hardware Testing</strong> - Tested walking algorithms from literature on real quadruped robots</div>
+                    <div><strong>Hardware Testing</strong> - Tested walking algorithms from literature on real quadruped
+                        robots</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-cogs"></i>
-                    <div><strong>Control Systems</strong> - Strengthened expertise in control systems and their practical applications for robotic locomotion</div>
+                    <div><strong>Control Systems</strong> - Strengthened expertise in control systems and their
+                        practical applications for robotic locomotion</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-chart-line"></i>
-                    <div><strong>Research Contribution</strong> - Contributed to the advancement of robotic locomotion research at the laboratory</div>
+                    <div><strong>Research Contribution</strong> - Contributed to the advancement of robotic locomotion
+                        research at the laboratory</div>
                 </div>
             </div>
 
@@ -3555,28 +3649,35 @@
                 <i class="fas fa-building"></i>
             </div>
             <h3 class="text-2xl font-bold mb-3">Software Developer</h3>
-            <h4 class="text-lg text-amber-600 dark:text-amber-400 mb-4">SOGA Design Office | Jul 2018 - Aug 2018 | Full-time</h4>
+            <h4 class="text-lg text-amber-600 dark:text-amber-400 mb-4">SOGA Design Office | Jul 2018 - Aug 2018 |
+                Full-time</h4>
 
             <p class="text-text-secondary dark:text-slate-300 mb-5">
-                Developed a requested 3ds Max plugin (Maxscript) for an international architectural firm. Also contributed to 3D modeling and interior design tasks, enhancing skills in computer graphics and design software.
+                Developed a requested 3ds Max plugin (Maxscript) for an international architectural firm. Also
+                contributed to 3D modeling and interior design tasks, enhancing skills in computer graphics and design
+                software.
             </p>
 
             <div class="feature-list">
                 <div class="feature-item">
                     <i class="fas fa-code text-amber-500 dark:text-amber-400"></i>
-                    <div><strong>Plugin Development</strong> - Developed a custom 3ds Max plugin using Maxscript based on client requirements</div>
+                    <div><strong>Plugin Development</strong> - Developed a custom 3ds Max plugin using Maxscript based
+                        on client requirements</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-cubes"></i>
-                    <div><strong>3D Modeling</strong> - Contributed to 3D modeling tasks for architectural visualization projects</div>
+                    <div><strong>3D Modeling</strong> - Contributed to 3D modeling tasks for architectural visualization
+                        projects</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-couch"></i>
-                    <div><strong>Interior Design</strong> - Assisted with interior design visualization and rendering tasks</div>
+                    <div><strong>Interior Design</strong> - Assisted with interior design visualization and rendering
+                        tasks</div>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-globe"></i>
-                    <div><strong>International Projects</strong> - Worked on projects for international architectural clients</div>
+                    <div><strong>International Projects</strong> - Worked on projects for international architectural
+                        clients</div>
                 </div>
             </div>
 
@@ -3623,7 +3724,7 @@
             localStorage.setItem('theme', newTheme);
         };
 
-        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark theme
         applyTheme(savedTheme); // Apply initial theme
 
         // Add click listeners to all theme toggles
