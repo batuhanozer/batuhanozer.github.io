@@ -466,6 +466,33 @@
                         <i class="fas fa-envelope"></i> Contact Me
                     </a>
                 </div>
+
+                <!-- Skills Bar -->
+                <div class="mt-16 w-full max-w-5xl glass-panel rounded-2xl p-6 reveal-text delay-300 mx-auto">
+                    <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-slate-400">
+                        <div class="flex items-center gap-2 hover:text-white transition-colors group">
+                            <i class="fab fa-cuttlefish text-xl text-primary group-hover:scale-110 transition-transform"></i> <span class="font-medium">C/C++</span>
+                        </div>
+                        <div class="flex items-center gap-2 hover:text-white transition-colors group">
+                            <i class="fab fa-python text-xl text-primary group-hover:scale-110 transition-transform"></i> <span class="font-medium">Python</span>
+                        </div>
+                        <div class="flex items-center gap-2 hover:text-white transition-colors group">
+                            <i class="fas fa-robot text-xl text-primary group-hover:scale-110 transition-transform"></i> <span class="font-medium">ROS</span>
+                        </div>
+                        <div class="flex items-center gap-2 hover:text-white transition-colors group">
+                            <i class="fab fa-docker text-xl text-primary group-hover:scale-110 transition-transform"></i> <span class="font-medium">Docker</span>
+                        </div>
+                        <div class="flex items-center gap-2 hover:text-white transition-colors group">
+                            <i class="fas fa-microchip text-xl text-primary group-hover:scale-110 transition-transform"></i> <span class="font-medium">Embedded</span>
+                        </div>
+                        <div class="flex items-center gap-2 hover:text-white transition-colors group">
+                            <i class="fas fa-eye text-xl text-primary group-hover:scale-110 transition-transform"></i> <span class="font-medium">Perception</span>
+                        </div>
+                        <div class="flex items-center gap-2 hover:text-white transition-colors group">
+                            <i class="fas fa-cubes text-xl text-primary group-hover:scale-110 transition-transform"></i> <span class="font-medium">3D Design</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
@@ -476,7 +503,7 @@
         <section id="about" class="py-24 px-6 relative">
             <div class="max-w-7xl mx-auto">
                 <div class="flex flex-col lg:flex-row gap-16">
-                    <div class="lg:w-2/5 sticky top-24 h-fit">
+                    <div class="lg:w-2/5 lg:sticky lg:top-24 h-fit">
                         <h2 class="font-display text-4xl md:text-5xl font-bold mb-8">About <span
                                 class="text-slate-500">Me</span></h2>
                         <div class="space-y-6 text-slate-400 text-lg leading-relaxed">
@@ -665,11 +692,17 @@
                             <i class="fas fa-paw"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Quadruped Robotics</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
                             Developing advanced locomotion using nonlinear MPC and reinforcement learning (PPO) trained
                             in NVIDIA Isaac Lab with sim2real transfer. Full-stack from embedded STM32 to high-level
                             control.
                         </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">C++</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">MPC</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Isaac Lab</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">PPO</span>
+                        </div>
                     </div>
 
                     <div
@@ -679,10 +712,16 @@
                             <i class="fas fa-water"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Underwater Robotics</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
                             Building autonomous underwater vehicles with robust navigation, state-machine control, and
                             perception systems. Specializing in underwater computer vision and sensor fusion.
                         </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Python</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">OpenCV</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Control</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Sensor Fusion</span>
+                        </div>
                     </div>
 
                     <div
@@ -692,10 +731,16 @@
                             <i class="fas fa-eye"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Computer Vision & AI</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
                             Implementing vision systems including YOLO-based object detection, visual odometry, stereo
                             vision, and point cloud processing.
                         </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">CUDA</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">YOLO</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">ML</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Point Cloud</span>
+                        </div>
                     </div>
 
                     <div
@@ -705,10 +750,16 @@
                             <i class="fas fa-cubes"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">3D Software Dev</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
                             Creating plugins/tools for Autodesk 3ds Max and Blender, enhancing artist workflows and
                             automating tasks.
                         </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">C++</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Python</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Maxscript</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Graphics</span>
+                        </div>
                     </div>
 
                     <div
@@ -718,10 +769,16 @@
                             <i class="fas fa-server"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">DevOps & Infra</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
                             Setting up offline GitLab instances, CI/CD pipelines, and Dockerized environments for
                             efficient software development.
                         </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Docker</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Git</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">CI/CD</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Linux</span>
+                        </div>
                     </div>
 
                     <div
@@ -731,10 +788,15 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Team Leadership</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
                             Leading technical teams in competitive environments, coordinating between disciplines, and
                             managing projects from conception to completion.
                         </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Management</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Coordination</span>
+                            <span class="px-2 py-1 bg-white/5 rounded text-xs text-slate-300 border border-white/5">Leadership</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -749,85 +811,138 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="group relative rounded-3xl overflow-hidden aspect-[4/5] cursor-pointer hover-target"
+                    <!-- Project 1: Sarbot -->
+                    <div class="spotlight-card rounded-3xl overflow-hidden group hover:border-primary/50 transition-colors duration-500 cursor-pointer flex flex-col h-full hover-target"
                         onclick="openModal('modal-quadruped')">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10"></div>
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-slate-900 z-0 group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute inset-0 flex items-center justify-center opacity-30">
-                                <i class="fas fa-robot text-9xl text-white"></i>
+                        <!-- Header / Banner -->
+                        <div class="h-48 bg-gradient-to-br from-blue-900/20 to-slate-900 relative flex items-center justify-center overflow-hidden shrink-0">
+                            <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                            <i class="fas fa-robot text-6xl text-primary/50 group-hover:scale-110 group-hover:text-primary transition-all duration-500"></i>
+                            <div class="absolute top-4 right-4 px-3 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded-full border border-green-500/20 backdrop-blur-sm">
+                                Active Development
                             </div>
                         </div>
-
-                        <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
-                            <div class="mb-4 flex gap-2">
-                                <span
-                                    class="px-3 py-1 bg-white/20 backdrop-blur rounded-full text-xs font-bold text-white">MPC</span>
-                                <span
-                                    class="px-3 py-1 bg-white/20 backdrop-blur rounded-full text-xs font-bold text-white">Isaac
-                                    Lab</span>
+                        
+                        <!-- Content -->
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-primary transition-colors">Sarbot Quadruped</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
+                                Leading end-to-end development at LA2 Dynamics. Nonlinear MPC, RL policies trained in Isaac Lab, and custom STM32 firmware.
+                            </p>
+                            
+                            <!-- Metrics -->
+                            <div class="grid grid-cols-3 gap-2 mb-6 border-y border-white/5 py-4">
+                                <div class="text-center">
+                                    <div class="text-lg font-bold text-white">MPC</div>
+                                    <div class="text-[10px] text-slate-500 uppercase tracking-wider">Control</div>
+                                </div>
+                                <div class="text-center border-l border-white/5">
+                                    <div class="text-lg font-bold text-white">RL</div>
+                                    <div class="text-[10px] text-slate-500 uppercase tracking-wider">Sim2Real</div>
+                                </div>
+                                <div class="text-center border-l border-white/5">
+                                    <div class="text-lg font-bold text-white">STM32</div>
+                                    <div class="text-[10px] text-slate-500 uppercase tracking-wider">Embedded</div>
+                                </div>
                             </div>
-                            <h3 class="text-3xl font-bold font-display text-white mb-2">Sarbot Quadruped</h3>
-                            <p class="text-slate-300 text-sm line-clamp-3">End-to-end development at LA2 Dynamics.
-                                Nonlinear MPC, RL policies, STM32 firmware.</p>
-                            <div
-                                class="mt-6 flex items-center gap-2 text-primary font-bold text-sm opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                                View Details <i class="fas fa-arrow-right"></i>
+
+                            <!-- Tags -->
+                            <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-primary border border-white/5">C++</span>
+                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-primary border border-white/5">Isaac Lab</span>
+                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-primary border border-white/5">ROS</span>
+                            </div>
+
+                            <div class="flex items-center text-sm font-bold text-white group-hover:text-primary transition-colors pt-2">
+                                View Technical Details <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
                             </div>
                         </div>
                     </div>
 
-                    <div class="group relative rounded-3xl overflow-hidden aspect-[4/5] cursor-pointer hover-target"
+                    <!-- Project 2: AUV -->
+                    <div class="spotlight-card rounded-3xl overflow-hidden group hover:border-cyan-500/50 transition-colors duration-500 cursor-pointer flex flex-col h-full hover-target"
                         onclick="openModal('modal-auv')">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10"></div>
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-cyan-900/40 to-slate-900 z-0 group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute inset-0 flex items-center justify-center opacity-30">
-                                <i class="fas fa-water text-9xl text-white"></i>
+                        <div class="h-48 bg-gradient-to-br from-cyan-900/20 to-slate-900 relative flex items-center justify-center overflow-hidden shrink-0">
+                            <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                            <i class="fas fa-water text-6xl text-cyan-400/50 group-hover:scale-110 group-hover:text-cyan-400 transition-all duration-500"></i>
+                            <div class="absolute top-4 right-4 px-3 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded-full border border-green-500/20 backdrop-blur-sm">
+                                Active Mentorship
                             </div>
                         </div>
-
-                        <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
-                            <div class="mb-4 flex gap-2">
-                                <span
-                                    class="px-3 py-1 bg-white/20 backdrop-blur rounded-full text-xs font-bold text-white">ROS</span>
-                                <span
-                                    class="px-3 py-1 bg-white/20 backdrop-blur rounded-full text-xs font-bold text-white">YOLO</span>
+                        
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">Award-Winning AUVs</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
+                                4x International Awards. Autonomous navigation, sensor fusion, and underwater vision systems for competitions.
+                            </p>
+                            
+                            <div class="grid grid-cols-3 gap-2 mb-6 border-y border-white/5 py-4">
+                                <div class="text-center">
+                                    <div class="text-lg font-bold text-white">4</div>
+                                    <div class="text-[10px] text-slate-500 uppercase tracking-wider">Awards</div>
+                                </div>
+                                <div class="text-center border-l border-white/5">
+                                    <div class="text-lg font-bold text-white">50+</div>
+                                    <div class="text-[10px] text-slate-500 uppercase tracking-wider">Teams</div>
+                                </div>
+                                <div class="text-center border-l border-white/5">
+                                    <div class="text-lg font-bold text-white">5</div>
+                                    <div class="text-[10px] text-slate-500 uppercase tracking-wider">Countries</div>
+                                </div>
                             </div>
-                            <h3 class="text-3xl font-bold font-display text-white mb-2">Award-Winning AUVs</h3>
-                            <p class="text-slate-300 text-sm line-clamp-3">4x International Awards. Autonomous
-                                navigation, sensor fusion, and underwater vision systems.</p>
-                            <div
-                                class="mt-6 flex items-center gap-2 text-cyan-400 font-bold text-sm opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                                View Details <i class="fas fa-arrow-right"></i>
+
+                            <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-cyan-400 border border-white/5">Python</span>
+                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-cyan-400 border border-white/5">ROS</span>
+                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-cyan-400 border border-white/5">YOLO</span>
+                            </div>
+
+                            <div class="flex items-center text-sm font-bold text-white group-hover:text-cyan-400 transition-colors pt-2">
+                                View Technical Details <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
                             </div>
                         </div>
                     </div>
 
-                    <div class="group relative rounded-3xl overflow-hidden aspect-[4/5] cursor-pointer hover-target"
+                    <!-- Project 3: Poly Design -->
+                    <div class="spotlight-card rounded-3xl overflow-hidden group hover:border-fuchsia-500/50 transition-colors duration-500 cursor-pointer flex flex-col h-full hover-target"
                         onclick="openModal('modal-poly')">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10"></div>
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-fuchsia-900/40 to-slate-900 z-0 group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute inset-0 flex items-center justify-center opacity-30">
-                                <i class="fas fa-cubes text-9xl text-white"></i>
+                        <div class="h-48 bg-gradient-to-br from-fuchsia-900/20 to-slate-900 relative flex items-center justify-center overflow-hidden shrink-0">
+                            <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                            <i class="fas fa-cubes text-6xl text-fuchsia-400/50 group-hover:scale-110 group-hover:text-fuchsia-400 transition-all duration-500"></i>
+                            <div class="absolute top-4 right-4 px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-bold rounded-full border border-purple-500/20 backdrop-blur-sm">
+                                Commercial Product
                             </div>
                         </div>
-
-                        <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
-                            <div class="mb-4 flex gap-2">
-                                <span
-                                    class="px-3 py-1 bg-white/20 backdrop-blur rounded-full text-xs font-bold text-white">C++
-                                    SDK</span>
-                                <span
-                                    class="px-3 py-1 bg-white/20 backdrop-blur rounded-full text-xs font-bold text-white">Python</span>
+                        
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-fuchsia-400 transition-colors">Poly Design 3D</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
+                                Commercial plugins for 3ds Max & Blender. Streamlining 3D workflows for 5,000+ artists globally.
+                            </p>
+                            
+                            <div class="grid grid-cols-3 gap-2 mb-6 border-y border-white/5 py-4">
+                                <div class="text-center">
+                                    <div class="text-lg font-bold text-white">12</div>
+                                    <div class="text-[10px] text-slate-500 uppercase tracking-wider">Plugins</div>
+                                </div>
+                                <div class="text-center border-l border-white/5">
+                                    <div class="text-lg font-bold text-white">5K+</div>
+                                    <div class="text-[10px] text-slate-500 uppercase tracking-wider">Users</div>
+                                </div>
+                                <div class="text-center border-l border-white/5">
+                                    <div class="text-lg font-bold text-white">80%</div>
+                                    <div class="text-[10px] text-slate-500 uppercase tracking-wider">Saved</div>
+                                </div>
                             </div>
-                            <h3 class="text-3xl font-bold font-display text-white mb-2">Poly Design 3D</h3>
-                            <p class="text-slate-300 text-sm line-clamp-3">Commercial plugins for 3ds Max & Blender used
-                                by 5,000+ artists globally.</p>
-                            <div
-                                class="mt-6 flex items-center gap-2 text-fuchsia-400 font-bold text-sm opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                                View Details <i class="fas fa-arrow-right"></i>
+
+                            <div class="flex flex-wrap gap-2 mb-6 mt-auto">
+                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-fuchsia-400 border border-white/5">C++ SDK</span>
+                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-fuchsia-400 border border-white/5">Python</span>
+                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-fuchsia-400 border border-white/5">Maxscript</span>
+                            </div>
+
+                            <div class="flex items-center text-sm font-bold text-white group-hover:text-fuchsia-400 transition-colors pt-2">
+                                View Technical Details <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
                             </div>
                         </div>
                     </div>
@@ -896,13 +1011,14 @@
                     </div>
 
                     <div
-                        class="timeline-item relative pl-12 md:pl-0 md:grid md:grid-cols-5 md:gap-8 items-start group hover-target">
+                        class="timeline-item relative pl-12 md:pl-0 md:grid md:grid-cols-5 md:gap-8 items-start group hover-target cursor-pointer"
+                        onclick="openModal('modal-exp-engineer')">
                         <div class="md:col-span-1 md:text-right text-sm text-slate-500 font-mono pt-1">2023 - 2024</div>
                         <div
                             class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-slate-700 rounded-full ring-4 ring-bg group-hover:bg-white transition-colors">
                         </div>
                         <div class="md:col-span-4">
-                            <h3 class="text-xl font-bold text-white">Software Engineer</h3>
+                            <h3 class="text-xl font-bold text-white group-hover:text-white transition-colors">Software Engineer</h3>
                             <div class="text-slate-400 text-sm mb-3">LA2 Dynamics</div>
                             <p class="text-slate-400 text-sm leading-relaxed">
                                 Developed advanced locomotion algorithms (NMPC/WBC) and embedded control systems.
@@ -912,7 +1028,8 @@
                     </div>
 
                     <div
-                        class="timeline-item relative pl-12 md:pl-0 md:grid md:grid-cols-5 md:gap-8 items-start group hover-target">
+                        class="timeline-item relative pl-12 md:pl-0 md:grid md:grid-cols-5 md:gap-8 items-start group hover-target cursor-pointer"
+                        onclick="openModal('modal-exp-intern')">
                         <div class="md:col-span-1 md:text-right text-sm text-slate-500 font-mono pt-1">Summer 2023</div>
                         <div
                             class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-slate-700 rounded-full ring-4 ring-bg group-hover:bg-sky-500 transition-colors">
@@ -929,13 +1046,14 @@
                     </div>
 
                     <div
-                        class="timeline-item relative pl-12 md:pl-0 md:grid md:grid-cols-5 md:gap-8 items-start group hover-target">
+                        class="timeline-item relative pl-12 md:pl-0 md:grid md:grid-cols-5 md:gap-8 items-start group hover-target cursor-pointer"
+                        onclick="openModal('modal-exp-robotics')">
                         <div class="md:col-span-1 md:text-right text-sm text-slate-500 font-mono pt-1">Early 2023</div>
                         <div
                             class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-slate-700 rounded-full ring-4 ring-bg group-hover:bg-white transition-colors">
                         </div>
                         <div class="md:col-span-4">
-                            <h3 class="text-xl font-bold text-white">Robotics Engineer</h3>
+                            <h3 class="text-xl font-bold text-white group-hover:text-white transition-colors">Robotics Engineer</h3>
                             <div class="text-slate-400 text-sm mb-3">LA2 Dynamics</div>
                             <p class="text-slate-400 text-sm leading-relaxed">
                                 Founding team member. Hardware/software architecture design, sensor selection, and
@@ -945,7 +1063,8 @@
                     </div>
 
                     <div
-                        class="timeline-item relative pl-12 md:pl-0 md:grid md:grid-cols-5 md:gap-8 items-start group hover-target">
+                        class="timeline-item relative pl-12 md:pl-0 md:grid md:grid-cols-5 md:gap-8 items-start group hover-target cursor-pointer"
+                        onclick="openModal('modal-exp-soga')">
                         <div class="md:col-span-1 md:text-right text-sm text-slate-500 font-mono pt-1">2018</div>
                         <div
                             class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-slate-700 rounded-full ring-4 ring-bg group-hover:bg-orange-500 transition-colors">
@@ -970,45 +1089,77 @@
                         class="text-gradient">Awards</span></h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="glass-panel p-6 rounded-2xl text-center group hover:bg-white/5 transition-colors">
-                        <div
-                            class="w-16 h-16 mx-auto bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-400 text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-trophy"></i>
+                    <!-- Card 1 -->
+                    <a href="https://roboboat.org/2024/02/12/roboboat-2024-final-standings/" target="_blank" class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" style="background-image: url('https://robonation.org/wp-content/uploads/sites/4/2022/06/2022_06_23-RoboBoat_Day4-33.jpg');"></div>
+                        <div class="absolute inset-0 bg-surface/90 group-hover:bg-surface/80 transition-colors duration-300"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 mx-auto bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-400 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(234,179,8,0.2)]">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold font-display text-white mb-1">1st Place</h3>
+                            <p class="text-slate-300 font-medium mb-2">Roboboat Competition</p>
+                            <p class="text-slate-500 text-sm">Feb 2024 | USA</p>
+                            <div class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                View Results <i class="fas fa-external-link-alt"></i>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold font-display text-white">1st Place</h3>
-                        <p class="text-slate-300 font-medium mb-1">Roboboat Competition</p>
-                        <p class="text-slate-500 text-sm">Feb 2024 | USA</p>
-                    </div>
+                    </a>
 
-                    <div class="glass-panel p-6 rounded-2xl text-center group hover:bg-white/5 transition-colors">
-                        <div
-                            class="w-16 h-16 mx-auto bg-slate-500/20 rounded-full flex items-center justify-center text-slate-300 text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-medal"></i>
+                    <!-- Card 2 -->
+                    <a href="https://metricsproject.eu/inspection-maintenance/rami-2nd-field-campaign-marine/" target="_blank" class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" style="background-image: url('https://auv.itu.edu.tr/images/2023_italya_rami.jpg');"></div>
+                        <div class="absolute inset-0 bg-surface/90 group-hover:bg-surface/80 transition-colors duration-300"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 mx-auto bg-slate-500/20 rounded-full flex items-center justify-center text-slate-300 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(148,163,184,0.2)]">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold font-display text-white mb-1">2nd Place</h3>
+                            <p class="text-slate-300 font-medium mb-2">ERL RAMI</p>
+                            <p class="text-slate-500 text-sm">Jul 2023 | Italy</p>
+                            <div class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                View Results <i class="fas fa-external-link-alt"></i>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold font-display text-white">2nd Place</h3>
-                        <p class="text-slate-300 font-medium mb-1">ERL RAMI</p>
-                        <p class="text-slate-500 text-sm">Jul 2023 | Italy</p>
-                    </div>
+                    </a>
 
-                    <div class="glass-panel p-6 rounded-2xl text-center group hover:bg-white/5 transition-colors">
-                        <div
-                            class="w-16 h-16 mx-auto bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-400 text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-trophy"></i>
+                    <!-- Card 3 -->
+                    <a href="https://sauvc.org/2022/" target="_blank" class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" style="background-image: url('https://sauvc.org/2022/img/competitors/itu.jpg');"></div>
+                        <div class="absolute inset-0 bg-surface/90 group-hover:bg-surface/80 transition-colors duration-300"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 mx-auto bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-400 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(234,179,8,0.2)]">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold font-display text-white mb-1">1st Place</h3>
+                            <p class="text-slate-300 font-medium mb-2">Singapore AUV</p>
+                            <p class="text-slate-500 text-sm">Sep 2022 | Singapore</p>
+                            <div class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                View Results <i class="fas fa-external-link-alt"></i>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold font-display text-white">1st Place</h3>
-                        <p class="text-slate-300 font-medium mb-1">Singapore AUV</p>
-                        <p class="text-slate-500 text-sm">Sep 2022 | Singapore</p>
-                    </div>
+                    </a>
 
-                    <div class="glass-panel p-6 rounded-2xl text-center group hover:bg-white/5 transition-colors">
-                        <div
-                            class="w-16 h-16 mx-auto bg-amber-700/20 rounded-full flex items-center justify-center text-amber-600 text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-medal"></i>
+                    <!-- Card 4 -->
+                    <a href="https://robosub.org/2025/08/18/robosub-2025-final-standings/" target="_blank" class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" style="background-image: url('https://robonation.org/wp-content/uploads/sites/4/2023/01/robosub-scaled.jpg');"></div>
+                        <div class="absolute inset-0 bg-surface/90 group-hover:bg-surface/80 transition-colors duration-300"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 mx-auto bg-amber-700/20 rounded-full flex items-center justify-center text-amber-600 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(180,83,9,0.2)]">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold font-display text-white mb-1">3rd Place</h3>
+                            <p class="text-slate-300 font-medium mb-2">RoboSub</p>
+                            <p class="text-slate-500 text-sm">Aug 2025 | USA</p>
+                            <div class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                View Results <i class="fas fa-external-link-alt"></i>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold font-display text-white">3rd Place</h3>
-                        <p class="text-slate-300 font-medium mb-1">RoboSub</p>
-                        <p class="text-slate-500 text-sm">Aug 2025 | USA</p>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1039,15 +1190,19 @@
                         <h3 class="text-white font-bold mb-1">LinkedIn</h3>
                         <p class="text-slate-400 text-sm">Connect Professionally</p>
                     </a>
-                </div>
-
-                <div class="flex justify-center gap-8 text-2xl">
                     <a href="https://github.com/batuhanozer" target="_blank"
-                        class="text-slate-400 hover:text-white transition-colors hover-target"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/batuhanozer/" target="_blank"
-                        class="text-slate-400 hover:text-white transition-colors hover-target"><i
-                            class="fab fa-linkedin-in"></i></a>
+                        class="p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group hover-target">
+                        <i
+                            class="fab fa-github text-3xl mb-4 text-white group-hover:scale-110 transition-transform block"></i>
+                        <h3 class="text-white font-bold mb-1">GitHub</h3>
+                        <p class="text-slate-400 text-sm">Check my Code</p>
+                    </a>
+                    <div class="p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group hover-target cursor-default">
+                        <i
+                            class="fas fa-map-marker-alt text-3xl mb-4 text-red-500 group-hover:scale-110 transition-transform block"></i>
+                        <h3 class="text-white font-bold mb-1">Location</h3>
+                        <p class="text-slate-400 text-sm">Istanbul, Türkiye</p>
+                    </div>
                 </div>
             </div>
 
@@ -1270,6 +1425,85 @@
     </div>
 
 
+    <div id="modal-exp-engineer" class="modal fixed inset-0 z-[10001] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('modal-exp-engineer')"></div>
+        <div
+            class="modal-content relative bg-surface border border-white/10 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-3xl p-8">
+            <button onclick="closeModal('modal-exp-engineer')"
+                class="absolute top-6 right-6 text-2xl hover-target">&times;</button>
+            <h3 class="text-2xl font-bold mb-2">Software Engineer</h3>
+            <p class="text-primary mb-4">LA2 Dynamics | Oct 2023 - Apr 2024</p>
+            <div class="text-slate-300 space-y-4">
+                <p>Contributed to the quadruped robot project with a focus on embedded systems and locomotion control algorithms.</p>
+                <ul class="list-disc pl-5 space-y-2 text-slate-400">
+                    <li><strong>Embedded Systems:</strong> Worked on STM32-based firmware development for motor control.</li>
+                    <li><strong>Locomotion Control:</strong> Implemented and refined control algorithms for quadruped robot locomotion.</li>
+                    <li><strong>Navigation Systems:</strong> Developed navigation and state estimation modules.</li>
+                    <li><strong>System Integration:</strong> Integrated hardware and software components in a robotics startup environment.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-exp-intern" class="modal fixed inset-0 z-[10001] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('modal-exp-intern')"></div>
+        <div
+            class="modal-content relative bg-surface border border-white/10 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-3xl p-8">
+            <button onclick="closeModal('modal-exp-intern')"
+                class="absolute top-6 right-6 text-2xl hover-target">&times;</button>
+            <h3 class="text-2xl font-bold mb-2">Software Engineer Intern</h3>
+            <p class="text-primary mb-4">Turkish Aerospace Industries (TAI) | Jul 2023 - Aug 2023</p>
+            <div class="text-slate-300 space-y-4">
+                <p>Worked in the control and software department for the Hürjet training jet.</p>
+                <ul class="list-disc pl-5 space-y-2 text-slate-400">
+                    <li><strong>Hürjet Project:</strong> Worked on Turkey's indigenous training jet aircraft.</li>
+                    <li><strong>Virtual Joystick:</strong> Developed a virtual joystick application for flight simulator using C++ and Qt.</li>
+                    <li><strong>Aerospace Architecture:</strong> Gained exposure to complex aerospace software architectures.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-exp-robotics" class="modal fixed inset-0 z-[10001] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('modal-exp-robotics')"></div>
+        <div
+            class="modal-content relative bg-surface border border-white/10 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-3xl p-8">
+            <button onclick="closeModal('modal-exp-robotics')"
+                class="absolute top-6 right-6 text-2xl hover-target">&times;</button>
+            <h3 class="text-2xl font-bold mb-2">Robotics Engineer</h3>
+            <p class="text-primary mb-4">LA2 Dynamics | Feb 2023 - Jul 2023</p>
+            <div class="text-slate-300 space-y-4">
+                <p>Joined the founding team of the quadruped robotics project.</p>
+                <ul class="list-disc pl-5 space-y-2 text-slate-400">
+                    <li><strong>Founding Team:</strong> Part of the initial team launching the project.</li>
+                    <li><strong>Hardware Selection:</strong> Contributed to selecting sensors and actuators.</li>
+                    <li><strong>Embedded Firmware:</strong> Developed STM32 firmware for motor control.</li>
+                    <li><strong>Locomotion Software:</strong> Contributed to high-level locomotion algorithms.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-exp-soga" class="modal fixed inset-0 z-[10001] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('modal-exp-soga')"></div>
+        <div
+            class="modal-content relative bg-surface border border-white/10 w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-3xl p-8">
+            <button onclick="closeModal('modal-exp-soga')"
+                class="absolute top-6 right-6 text-2xl hover-target">&times;</button>
+            <h3 class="text-2xl font-bold mb-2">3D Developer</h3>
+            <p class="text-primary mb-4">SOGA Design Office | Jul 2018 - Aug 2018</p>
+            <div class="text-slate-300 space-y-4">
+                <p>Developed a requested 3ds Max plugin for an international architectural firm.</p>
+                <ul class="list-disc pl-5 space-y-2 text-slate-400">
+                    <li><strong>Plugin Development:</strong> Created custom 3ds Max tools using Maxscript.</li>
+                    <li><strong>3D Modeling:</strong> Contributed to architectural visualization tasks.</li>
+                    <li><strong>International Projects:</strong> Worked on projects for global clients.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
@@ -1288,6 +1522,19 @@
                 requestAnimationFrame(raf);
             }
             requestAnimationFrame(raf);
+
+            // Handle anchor clicks
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        lenis.scrollTo(targetElement);
+                    }
+                });
+            });
         }
 
         // 2. Advanced GSAP Cursor
