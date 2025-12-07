@@ -965,6 +965,9 @@
         .timeline-wrapper {
             position: relative;
             padding-left: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
         }
 
         .timeline-wrapper::before {
@@ -980,7 +983,7 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: 2.5rem;
+            margin-bottom: 0;
             padding-left: 2.5rem;
             /* Initial state for JS animation */
             opacity: 0;
@@ -1163,9 +1166,13 @@
             background-color: rgba(var(--primary-rgb), 0.18);
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .timeline-wrapper {
                 padding-left: 0;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                column-gap: 0;
+                row-gap: 3rem;
             }
 
             .timeline-wrapper::before {
@@ -1174,18 +1181,22 @@
             }
 
             .timeline-item {
-                width: 48%;
-                padding-left: 0;
-                padding-right: 2.5rem;
-                margin-left: auto;
+                width: 100%;
+                padding: 0;
+                margin: 0;
             }
 
             .timeline-item:nth-child(odd) {
-                margin-left: 0;
-                margin-right: auto;
-                padding-left: 2.5rem;
-                padding-right: 0;
+                justify-self: end;
                 text-align: right;
+                padding-right: 3.5rem;
+                padding-left: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                justify-self: start;
+                padding-left: 3.5rem;
+                padding-right: 0;
             }
 
             .timeline-item:nth-child(odd) .timeline-content::before {
@@ -1196,10 +1207,14 @@
             .timeline-item:nth-child(odd) .timeline-dot {
                 left: auto;
                 right: -10px;
+                top: 15%;
+                bottom: auto;
             }
 
             .timeline-item:nth-child(even) .timeline-dot {
                 left: -10px;
+                top: auto;
+                bottom: 15%;
             }
 
             .timeline-item:nth-child(odd) .timeline-date,
