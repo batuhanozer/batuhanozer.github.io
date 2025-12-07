@@ -305,10 +305,25 @@
             }
         }
 
-        /* Hero reveal text - ensure visibility */
+        /* Hero reveal text - CSS Animation */
         .reveal-text {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Stagger delays */
+        .reveal-text:nth-of-type(1) { animation-delay: 0.1s; }
+        .reveal-text:nth-of-type(2) { animation-delay: 0.2s; }
+        .reveal-text:nth-of-type(3) { animation-delay: 0.3s; }
+        .reveal-text:nth-of-type(4) { animation-delay: 0.4s; }
+        .reveal-text:nth-of-type(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Ensure modals work on mobile */
@@ -2167,16 +2182,7 @@
         // 4. GSAP Scroll Animations
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Text Stagger
-        gsap.from(".reveal-text", {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: "power3.out",
-            delay: 0.2,
-            clearProps: "all"
-        });
+
 
         // Sections Fade In
         const sections = document.querySelectorAll('section');
