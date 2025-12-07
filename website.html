@@ -407,17 +407,20 @@
         .text-always-white {
             color: #ffffff !important;
         }
-        
+
         /* Honours Cards - Adaptive Overlay */
         .honours-overlay {
             background-color: rgba(255, 255, 255, 0.9);
         }
+
         .dark .honours-overlay {
             background-color: rgba(15, 23, 42, 0.9);
         }
+
         .group:hover .honours-overlay {
             background-color: rgba(255, 255, 255, 0.8);
         }
+
         .dark .group:hover .honours-overlay {
             background-color: rgba(15, 23, 42, 0.8);
         }
@@ -911,21 +914,29 @@
                     <div class="spotlight-card rounded-3xl overflow-hidden group hover:border-primary/50 transition-colors duration-500 cursor-pointer flex flex-col h-full hover-target"
                         onclick="openModal('modal-quadruped')">
                         <!-- Header / Banner -->
-                        <div class="h-48 bg-gradient-to-br from-blue-50 to-slate-100 dark:from-blue-900/20 dark:to-slate-900 relative flex items-center justify-center overflow-hidden shrink-0">
-                            <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-                            <i class="fas fa-robot text-6xl text-primary/20 dark:text-primary/50 group-hover:scale-110 group-hover:text-primary transition-all duration-500"></i>
-                            <div class="absolute top-4 right-4 px-3 py-1 bg-green-500/20 text-green-600 dark:text-green-400 text-xs font-bold rounded-full border border-green-500/20 backdrop-blur-sm">
+                        <div
+                            class="h-48 bg-gradient-to-br from-blue-50 to-slate-100 dark:from-blue-900/20 dark:to-slate-900 relative flex items-center justify-center overflow-hidden shrink-0">
+                            <div
+                                class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
+                            </div>
+                            <i
+                                class="fas fa-robot text-6xl text-primary/20 dark:text-primary/50 group-hover:scale-110 group-hover:text-primary transition-all duration-500"></i>
+                            <div
+                                class="absolute top-4 right-4 px-3 py-1 bg-green-500/20 text-green-600 dark:text-green-400 text-xs font-bold rounded-full border border-green-500/20 backdrop-blur-sm">
                                 Active Development
                             </div>
                         </div>
-                        
+
                         <!-- Content -->
                         <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary transition-colors">Sarbot Quadruped</h3>
+                            <h3
+                                class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary transition-colors">
+                                Sarbot Quadruped</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                                Leading end-to-end development at LA2 Dynamics. Nonlinear MPC, RL policies trained in Isaac Lab, and custom STM32 firmware.
+                                Leading end-to-end development at LA2 Dynamics. Nonlinear MPC, RL policies trained in
+                                Isaac Lab, and custom STM32 firmware.
                             </p>
-                            
+
                             <!-- Metrics -->
                             <div class="grid grid-cols-3 gap-2 mb-6 border-y border-slate-200 dark:border-white/5 py-4">
                                 <div class="text-center">
@@ -944,13 +955,19 @@
 
                             <!-- Tags -->
                             <div class="flex flex-wrap gap-2 mb-6 mt-auto">
-                                <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-primary border border-slate-200 dark:border-white/5">C++</span>
-                                <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-primary border border-slate-200 dark:border-white/5">Isaac Lab</span>
-                                <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-primary border border-slate-200 dark:border-white/5">ROS</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-primary border border-slate-200 dark:border-white/5">C++</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-primary border border-slate-200 dark:border-white/5">Isaac
+                                    Lab</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-primary border border-slate-200 dark:border-white/5">ROS</span>
                             </div>
 
-                            <div class="flex items-center text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors pt-2">
-                                View Technical Details <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                            <div
+                                class="flex items-center text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors pt-2">
+                                View Technical Details <i
+                                    class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
                             </div>
                         </div>
                     </div>
@@ -958,20 +975,28 @@
                     <!-- Project 2: AUV -->
                     <div class="spotlight-card rounded-3xl overflow-hidden group hover:border-cyan-500/50 transition-colors duration-500 cursor-pointer flex flex-col h-full hover-target"
                         onclick="openModal('modal-auv')">
-                        <div class="h-48 bg-gradient-to-br from-cyan-50 to-slate-100 dark:from-cyan-900/20 dark:to-slate-900 relative flex items-center justify-center overflow-hidden shrink-0">
-                            <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-                            <i class="fas fa-water text-6xl text-cyan-400/30 dark:text-cyan-400/50 group-hover:scale-110 group-hover:text-cyan-400 transition-all duration-500"></i>
-                            <div class="absolute top-4 right-4 px-3 py-1 bg-green-500/20 text-green-600 dark:text-green-400 text-xs font-bold rounded-full border border-green-500/20 backdrop-blur-sm">
+                        <div
+                            class="h-48 bg-gradient-to-br from-cyan-50 to-slate-100 dark:from-cyan-900/20 dark:to-slate-900 relative flex items-center justify-center overflow-hidden shrink-0">
+                            <div
+                                class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
+                            </div>
+                            <i
+                                class="fas fa-water text-6xl text-cyan-400/30 dark:text-cyan-400/50 group-hover:scale-110 group-hover:text-cyan-400 transition-all duration-500"></i>
+                            <div
+                                class="absolute top-4 right-4 px-3 py-1 bg-green-500/20 text-green-600 dark:text-green-400 text-xs font-bold rounded-full border border-green-500/20 backdrop-blur-sm">
                                 Active Mentorship
                             </div>
                         </div>
-                        
+
                         <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-3 group-hover:text-cyan-400 transition-colors">Award-Winning AUVs</h3>
+                            <h3
+                                class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-3 group-hover:text-cyan-400 transition-colors">
+                                Award-Winning AUVs</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                                4x International Awards. Autonomous navigation, sensor fusion, and underwater vision systems for competitions.
+                                4x International Awards. Autonomous navigation, sensor fusion, and underwater vision
+                                systems for competitions.
                             </p>
-                            
+
                             <div class="grid grid-cols-3 gap-2 mb-6 border-y border-slate-200 dark:border-white/5 py-4">
                                 <div class="text-center">
                                     <div class="text-lg font-bold text-slate-900 dark:text-white">4</div>
@@ -988,13 +1013,18 @@
                             </div>
 
                             <div class="flex flex-wrap gap-2 mb-6 mt-auto">
-                                <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-cyan-600 dark:text-cyan-400 border border-slate-200 dark:border-white/5">Python</span>
-                                <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-cyan-600 dark:text-cyan-400 border border-slate-200 dark:border-white/5">ROS</span>
-                                <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-cyan-600 dark:text-cyan-400 border border-slate-200 dark:border-white/5">YOLO</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-cyan-600 dark:text-cyan-400 border border-slate-200 dark:border-white/5">Python</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-cyan-600 dark:text-cyan-400 border border-slate-200 dark:border-white/5">ROS</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-cyan-600 dark:text-cyan-400 border border-slate-200 dark:border-white/5">YOLO</span>
                             </div>
 
-                            <div class="flex items-center text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-400 transition-colors pt-2">
-                                View Technical Details <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                            <div
+                                class="flex items-center text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-400 transition-colors pt-2">
+                                View Technical Details <i
+                                    class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
                             </div>
                         </div>
                     </div>
@@ -1002,20 +1032,28 @@
                     <!-- Project 3: Poly Design -->
                     <div class="spotlight-card rounded-3xl overflow-hidden group hover:border-fuchsia-500/50 transition-colors duration-500 cursor-pointer flex flex-col h-full hover-target"
                         onclick="openModal('modal-poly')">
-                        <div class="h-48 bg-gradient-to-br from-fuchsia-50 to-slate-100 dark:from-fuchsia-900/20 dark:to-slate-900 relative flex items-center justify-center overflow-hidden shrink-0">
-                            <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-                            <i class="fas fa-cubes text-6xl text-fuchsia-400/30 dark:text-fuchsia-400/50 group-hover:scale-110 group-hover:text-fuchsia-400 transition-all duration-500"></i>
-                            <div class="absolute top-4 right-4 px-3 py-1 bg-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-bold rounded-full border border-purple-500/20 backdrop-blur-sm">
+                        <div
+                            class="h-48 bg-gradient-to-br from-fuchsia-50 to-slate-100 dark:from-fuchsia-900/20 dark:to-slate-900 relative flex items-center justify-center overflow-hidden shrink-0">
+                            <div
+                                class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
+                            </div>
+                            <i
+                                class="fas fa-cubes text-6xl text-fuchsia-400/30 dark:text-fuchsia-400/50 group-hover:scale-110 group-hover:text-fuchsia-400 transition-all duration-500"></i>
+                            <div
+                                class="absolute top-4 right-4 px-3 py-1 bg-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-bold rounded-full border border-purple-500/20 backdrop-blur-sm">
                                 Commercial Product
                             </div>
                         </div>
-                        
+
                         <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-3 group-hover:text-fuchsia-400 transition-colors">Poly Design 3D</h3>
+                            <h3
+                                class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-3 group-hover:text-fuchsia-400 transition-colors">
+                                Poly Design 3D</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                                Commercial plugins for 3ds Max & Blender. Streamlining 3D workflows for 5,000+ artists globally.
+                                Commercial plugins for 3ds Max & Blender. Streamlining 3D workflows for 5,000+ artists
+                                globally.
                             </p>
-                            
+
                             <div class="grid grid-cols-3 gap-2 mb-6 border-y border-slate-200 dark:border-white/5 py-4">
                                 <div class="text-center">
                                     <div class="text-lg font-bold text-slate-900 dark:text-white">12</div>
@@ -1032,13 +1070,19 @@
                             </div>
 
                             <div class="flex flex-wrap gap-2 mb-6 mt-auto">
-                                <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-fuchsia-600 dark:text-fuchsia-400 border border-slate-200 dark:border-white/5">C++ SDK</span>
-                                <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-fuchsia-600 dark:text-fuchsia-400 border border-slate-200 dark:border-white/5">Python</span>
-                                <span class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-fuchsia-600 dark:text-fuchsia-400 border border-slate-200 dark:border-white/5">Maxscript</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-fuchsia-600 dark:text-fuchsia-400 border border-slate-200 dark:border-white/5">C++
+                                    SDK</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-fuchsia-600 dark:text-fuchsia-400 border border-slate-200 dark:border-white/5">Python</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-100 dark:bg-white/5 rounded text-xs text-fuchsia-600 dark:text-fuchsia-400 border border-slate-200 dark:border-white/5">Maxscript</span>
                             </div>
 
-                            <div class="flex items-center text-sm font-bold text-slate-900 dark:text-white group-hover:text-fuchsia-400 transition-colors pt-2">
-                                View Technical Details <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                            <div
+                                class="flex items-center text-sm font-bold text-slate-900 dark:text-white group-hover:text-fuchsia-400 transition-colors pt-2">
+                                View Technical Details <i
+                                    class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
                             </div>
                         </div>
                     </div>
@@ -1182,151 +1226,174 @@
                 <h2 class="font-display text-4xl md:text-5xl font-bold mb-12 text-center">Honours & <span
                         class="text-gradient">Awards</span></h2>
 
-                                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-                                                    <!-- Card 1 -->
+                    <!-- Card 1 -->
 
-                                                    <a href="https://roboboat.org/2024/02/12/roboboat-2024-final-standings/" target="_blank" class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
+                    <a href="https://roboboat.org/2024/02/12/roboboat-2024-final-standings/" target="_blank"
+                        class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
 
-                                                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" style="background-image: url('https://robonation.org/wp-content/uploads/sites/4/2022/06/2022_06_23-RoboBoat_Day4-33.jpg');"></div>
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60"
+                            style="background-image: url('https://robonation.org/wp-content/uploads/sites/4/2022/06/2022_06_23-RoboBoat_Day4-33.jpg');">
+                        </div>
 
-                                                        <div class="absolute inset-0 honours-overlay transition-colors duration-300"></div>
+                        <div class="absolute inset-0 honours-overlay transition-colors duration-300"></div>
 
-                                                        
 
-                                                        <div class="relative z-10">
 
-                                                            <div class="w-16 h-16 mx-auto bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-400 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(234,179,8,0.2)]">
+                        <div class="relative z-10">
 
-                                                                <i class="fas fa-trophy"></i>
+                            <div
+                                class="w-16 h-16 mx-auto bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-400 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(234,179,8,0.2)]">
 
-                                                            </div>
+                                <i class="fas fa-trophy"></i>
 
-                                                            <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-1">1st Place</h3>
+                            </div>
 
-                                                            <p class="text-slate-600 dark:text-gray-300 font-medium mb-2">Roboboat Competition</p>
+                            <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-1">1st Place
+                            </h3>
 
-                                                            <p class="text-slate-500 dark:text-gray-400 text-sm">Feb 2024 | USA</p>
+                            <p class="text-slate-600 dark:text-gray-300 font-medium mb-2">Roboboat Competition</p>
 
-                                                            <div class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                            <p class="text-slate-500 dark:text-gray-400 text-sm">Feb 2024 | USA</p>
 
-                                                                View Results <i class="fas fa-external-link-alt"></i>
+                            <div
+                                class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
 
-                                                            </div>
+                                View Results <i class="fas fa-external-link-alt"></i>
 
-                                                        </div>
+                            </div>
 
-                                                    </a>
+                        </div>
 
-                                
+                    </a>
 
-                                                    <!-- Card 2 -->
 
-                                                    <a href="https://metricsproject.eu/inspection-maintenance/rami-2nd-field-campaign-marine/" target="_blank" class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
 
-                                                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" style="background-image: url('https://auv.itu.edu.tr/images/2023_italya_rami.jpg');"></div>
+                    <!-- Card 2 -->
 
-                                                        <div class="absolute inset-0 honours-overlay transition-colors duration-300"></div>
+                    <a href="https://metricsproject.eu/inspection-maintenance/rami-2nd-field-campaign-marine/"
+                        target="_blank"
+                        class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
 
-                                                        
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60"
+                            style="background-image: url('https://auv.itu.edu.tr/images/2023_italya_rami.jpg');"></div>
 
-                                                        <div class="relative z-10">
+                        <div class="absolute inset-0 honours-overlay transition-colors duration-300"></div>
 
-                                                            <div class="w-16 h-16 mx-auto bg-slate-500/20 rounded-full flex items-center justify-center text-slate-300 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(148,163,184,0.2)]">
 
-                                                                <i class="fas fa-medal"></i>
 
-                                                            </div>
+                        <div class="relative z-10">
 
-                                                            <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-1">2nd Place</h3>
+                            <div
+                                class="w-16 h-16 mx-auto bg-slate-500/20 rounded-full flex items-center justify-center text-slate-300 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(148,163,184,0.2)]">
 
-                                                            <p class="text-slate-600 dark:text-gray-300 font-medium mb-2">ERL RAMI</p>
+                                <i class="fas fa-medal"></i>
 
-                                                            <p class="text-slate-500 dark:text-gray-400 text-sm">Jul 2023 | Italy</p>
+                            </div>
 
-                                                            <div class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                            <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-1">2nd Place
+                            </h3>
 
-                                                                View Results <i class="fas fa-external-link-alt"></i>
+                            <p class="text-slate-600 dark:text-gray-300 font-medium mb-2">ERL RAMI</p>
 
-                                                            </div>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm">Jul 2023 | Italy</p>
 
-                                                        </div>
+                            <div
+                                class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
 
-                                                    </a>
+                                View Results <i class="fas fa-external-link-alt"></i>
 
-                                
+                            </div>
 
-                                                    <!-- Card 3 -->
+                        </div>
 
-                                                    <a href="https://sauvc.org/2022/" target="_blank" class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
+                    </a>
 
-                                                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" style="background-image: url('https://sauvc.org/2022/img/competitors/itu.jpg');"></div>
 
-                                                        <div class="absolute inset-0 honours-overlay transition-colors duration-300"></div>
 
-                                                        
+                    <!-- Card 3 -->
 
-                                                        <div class="relative z-10">
+                    <a href="https://sauvc.org/2022/" target="_blank"
+                        class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
 
-                                                            <div class="w-16 h-16 mx-auto bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-400 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(234,179,8,0.2)]">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60"
+                            style="background-image: url('https://sauvc.org/2022/img/competitors/itu.jpg');"></div>
 
-                                                                <i class="fas fa-trophy"></i>
+                        <div class="absolute inset-0 honours-overlay transition-colors duration-300"></div>
 
-                                                            </div>
 
-                                                            <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-1">1st Place</h3>
 
-                                                            <p class="text-slate-600 dark:text-gray-300 font-medium mb-2">Singapore AUV</p>
+                        <div class="relative z-10">
 
-                                                            <p class="text-slate-500 dark:text-gray-400 text-sm">Sep 2022 | Singapore</p>
+                            <div
+                                class="w-16 h-16 mx-auto bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-400 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(234,179,8,0.2)]">
 
-                                                            <div class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                <i class="fas fa-trophy"></i>
 
-                                                                View Results <i class="fas fa-external-link-alt"></i>
+                            </div>
 
-                                                            </div>
+                            <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-1">1st Place
+                            </h3>
 
-                                                        </div>
+                            <p class="text-slate-600 dark:text-gray-300 font-medium mb-2">Singapore AUV</p>
 
-                                                    </a>
+                            <p class="text-slate-500 dark:text-gray-400 text-sm">Sep 2022 | Singapore</p>
 
-                                
+                            <div
+                                class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
 
-                                                    <!-- Card 4 -->
+                                View Results <i class="fas fa-external-link-alt"></i>
 
-                                                    <a href="https://robosub.org/2025/08/18/robosub-2025-final-standings/" target="_blank" class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
+                            </div>
 
-                                                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" style="background-image: url('https://robonation.org/wp-content/uploads/sites/4/2023/01/robosub-scaled.jpg');"></div>
+                        </div>
 
-                                                        <div class="absolute inset-0 honours-overlay transition-colors duration-300"></div>
+                    </a>
 
-                                                        
 
-                                                        <div class="relative z-10">
 
-                                                            <div class="w-16 h-16 mx-auto bg-amber-700/20 rounded-full flex items-center justify-center text-amber-600 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(180,83,9,0.2)]">
+                    <!-- Card 4 -->
 
-                                                                <i class="fas fa-medal"></i>
+                    <a href="https://robosub.org/2025/08/18/robosub-2025-final-standings/" target="_blank"
+                        class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center p-6 hover-target border border-white/5">
 
-                                                            </div>
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60"
+                            style="background-image: url('https://robonation.org/wp-content/uploads/sites/4/2023/01/robosub-scaled.jpg');">
+                        </div>
 
-                                                            <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-1">3rd Place</h3>
+                        <div class="absolute inset-0 honours-overlay transition-colors duration-300"></div>
 
-                                                            <p class="text-slate-600 dark:text-gray-300 font-medium mb-2">RoboSub</p>
 
-                                                            <p class="text-slate-500 dark:text-gray-400 text-sm">Aug 2025 | USA</p>
 
-                                                            <div class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                        <div class="relative z-10">
 
-                                                                View Results <i class="fas fa-external-link-alt"></i>
+                            <div
+                                class="w-16 h-16 mx-auto bg-amber-700/20 rounded-full flex items-center justify-center text-amber-600 text-2xl mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(180,83,9,0.2)]">
 
-                                                            </div>
+                                <i class="fas fa-medal"></i>
 
-                                                        </div>
+                            </div>
 
-                                                    </a>
+                            <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-1">3rd Place
+                            </h3>
 
-                                                </div>
+                            <p class="text-slate-600 dark:text-gray-300 font-medium mb-2">RoboSub</p>
+
+                            <p class="text-slate-500 dark:text-gray-400 text-sm">Aug 2025 | USA</p>
+
+                            <div
+                                class="mt-4 inline-flex items-center gap-2 text-primary text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+
+                                View Results <i class="fas fa-external-link-alt"></i>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
             </div>
         </section>
 
@@ -1493,7 +1560,7 @@
                 </div>
             </div>
             <div class="text-right pt-6 border-t border-white/10">
-                <a href="https://auv.itu.edu.tr" target="_blank"
+                <a href="https://auv.itu.edu.tr/indexEN.html" target="_blank"
                     class="inline-flex items-center gap-2 bg-cyan-600 text-white px-6 py-3 rounded-full font-bold hover:bg-cyan-500 transition-colors hover-target">
                     Visit Team Page <i class="fas fa-external-link-alt"></i>
                 </a>
@@ -1699,7 +1766,7 @@
             </div>
 
             <div class="text-right pt-6 border-t border-white/10">
-                <a href="https://auv.itu.edu.tr" target="_blank"
+                <a href="https://auv.itu.edu.tr/indexEN.html" target="_blank"
                     class="inline-flex items-center gap-2 bg-cyan-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-cyan-500 transition-colors hover-target">
                     Visit Team Page <i class="fas fa-external-link-alt"></i>
                 </a>
@@ -2085,7 +2152,7 @@
         // Circle follows with delay
         gsap.ticker.add(() => {
             if (!isDesktop) return;
-            
+
             const dt = 1.0 - Math.pow(1.0 - 0.2, gsap.ticker.deltaRatio());
             cursorX += (mouseX - cursorX) * dt;
             cursorY += (mouseY - cursorY) * dt;
