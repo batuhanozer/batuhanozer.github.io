@@ -142,40 +142,171 @@
             box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.5);
         }
 
-        /* Enhanced Glassmorphism Navbar */
+        /* ========== MODERN FLOATING NAVBAR ========== */
         #main-nav {
-            background: rgba(var(--bg-primary-rgb), 0.7) !important;
+            background: transparent !important;
+            border: none;
+            box-shadow: none;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+            background: rgba(var(--bg-primary-rgb), 0.75);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(var(--border-color-rgb), 0.3);
+            border-radius: 100px;
+            border: 1px solid rgba(var(--border-color-rgb), 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08),
+                        0 1px 3px rgba(0, 0, 0, 0.05),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        #main-nav.scrolled {
-            background: rgba(var(--bg-primary-rgb), 0.85) !important;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        .dark .nav-container {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3),
+                        0 1px 3px rgba(0, 0, 0, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        /* Modern Nav Links with Underline Animation */
+        #main-nav.scrolled .nav-container {
+            background: rgba(var(--bg-primary-rgb), 0.9);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12),
+                        0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .dark #main-nav.scrolled .nav-container {
+            background: rgba(15, 23, 42, 0.92);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4),
+                        0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Logo/Brand Styling */
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--accent2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-brand:hover {
+            background: linear-gradient(135deg, var(--accent2) 0%, var(--accent) 50%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transform: scale(1.02);
+        }
+
+        /* Modern Nav Links with Pill Hover */
         .nav-link {
             position: relative;
             font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .nav-link::after {
+        .nav-link::before {
             content: '';
             position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent2));
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 2px;
+            inset: 0;
+            border-radius: 100px;
+            background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.1), rgba(var(--accent2-rgb), 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            opacity: 1;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary) !important;
+        }
+
+        .dark .nav-link:hover,
+        .dark .nav-link.active {
+            color: var(--accent2) !important;
+        }
+
+        /* Nav CTA Button */
+        .nav-cta {
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--accent2));
+            color: white !important;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(var(--primary-rgb), 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.4);
+        }
+
+        /* Theme Toggle in Navbar */
+        .nav-theme-toggle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--border-color-rgb), 0.3);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-theme-toggle:hover {
+            background: rgba(var(--primary-rgb), 0.15);
+            color: var(--primary);
+            transform: rotate(15deg);
+        }
+
+        .dark .nav-theme-toggle:hover {
+            background: rgba(var(--accent2-rgb), 0.15);
+            color: var(--accent2);
+        }
+
+        .nav-theme-toggle i {
+            position: absolute;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-theme-toggle .fa-moon {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg);
+        }
+
+        .nav-theme-toggle .fa-sun {
+            opacity: 0;
+            transform: translateY(20px) rotate(-90deg);
+        }
+
+        .dark .nav-theme-toggle .fa-moon {
+            opacity: 0;
+            transform: translateY(-20px) rotate(90deg);
+        }
+
+        .dark .nav-theme-toggle .fa-sun {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg);
         }
 
         /* Gradient Text Utility */
@@ -1518,8 +1649,10 @@
         }
 
 
-        /* Theme toggle - Smooth icon transition */
+        /* Theme toggle - Hidden since moved to navbar */
         .theme-toggle {
+            display: none;
+            /* Moved to navbar - keeping styles for fallback */
             position: fixed;
             bottom: 2rem;
             right: 2rem;
@@ -1530,7 +1663,6 @@
             color: var(--text-primary);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--border-color);
-            display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
@@ -1684,49 +1816,79 @@
     <div class="scroll-progress" id="scroll-progress"></div>
 
     <!-- Navigation -->
-    <nav id="main-nav"
-        class="fixed w-full bg-white/80 dark:bg-slate-900/70 shadow-md z-50 py-4 backdrop-blur-lg border-b border-border-color/50 dark:border-slate-700/40 transition-all duration-300">
-        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">
-                Batuhan Ozer
-            </a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#about"
-                    class="nav-link text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors duration-200">About</a>
-                <a href="#expertise"
-                    class="nav-link text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors duration-200">Expertise</a>
-                <a href="#projects"
-                    class="nav-link text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors duration-200">Projects</a>
-                <a href="#experience"
-                    class="nav-link text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors duration-200">Experience</a>
-                <a href="#awards"
-                    class="nav-link text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors duration-200">Awards</a>
-                <a href="#contact"
-                    class="nav-link text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors duration-200">Contact</a>
+    <nav id="main-nav" class="fixed w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="nav-container flex justify-between items-center">
+                <!-- Logo/Brand -->
+                <a href="#hero" class="nav-brand font-heading flex items-center gap-2">
+                    <span class="text-lg">&#60;/&#62;</span>
+                    Batuhan Ozer
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="#about" class="nav-link text-slate-600 dark:text-slate-300">About</a>
+                    <a href="#expertise" class="nav-link text-slate-600 dark:text-slate-300">Expertise</a>
+                    <a href="#projects" class="nav-link text-slate-600 dark:text-slate-300">Projects</a>
+                    <a href="#experience" class="nav-link text-slate-600 dark:text-slate-300">Experience</a>
+                    <a href="#awards" class="nav-link text-slate-600 dark:text-slate-300">Awards</a>
+                    <a href="#contact" class="nav-link text-slate-600 dark:text-slate-300">Contact</a>
+                </div>
+
+                <!-- Right Side: Theme Toggle + CTA -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <button class="nav-theme-toggle" id="nav-theme-toggle" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <a href="#contact" class="nav-cta">
+                        <i class="fas fa-paper-plane mr-2"></i>Hire Me
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex lg:hidden items-center gap-3">
+                    <button class="nav-theme-toggle" id="nav-theme-toggle-mobile" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button id="mobile-nav-toggle" class="text-slate-700 dark:text-slate-300 focus:outline-none p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <button id="mobile-nav-toggle" class="md:hidden text-slate-700 dark:text-slate-300 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
-            </button>
         </div>
-        <div id="mobile-nav"
-            class="md:hidden hidden bg-white dark:bg-slate-800 shadow-lg absolute top-full left-0 right-0 border-t border-slate-100 dark:border-slate-700">
-            <div class="container mx-auto px-6 py-4 flex flex-col space-y-3">
-                <a href="#about"
-                    class="nav-link block py-2 px-3 rounded text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-700 transition duration-150">About</a>
-                <a href="#expertise"
-                    class="nav-link block py-2 px-3 rounded text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-700 transition duration-150">Expertise</a>
-                <a href="#projects"
-                    class="nav-link block py-2 px-3 rounded text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-700 transition duration-150">Projects</a>
-                <a href="#experience"
-                    class="nav-link block py-2 px-3 rounded text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-700 transition duration-150">Experience</a>
-                <a href="#awards"
-                    class="nav-link block py-2 px-3 rounded text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-700 transition duration-150">Awards</a>
-                <a href="#contact"
-                    class="nav-link block py-2 px-3 rounded text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-700 transition duration-150">Contact</a>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-nav" class="lg:hidden hidden">
+            <div class="container mx-auto px-4 pt-2 pb-4">
+                <div class="nav-container !rounded-2xl !p-4 flex flex-col space-y-1">
+                    <a href="#about" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                        <i class="fas fa-user w-5 mr-3 text-primary/60"></i>About
+                    </a>
+                    <a href="#expertise" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                        <i class="fas fa-code w-5 mr-3 text-primary/60"></i>Expertise
+                    </a>
+                    <a href="#projects" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                        <i class="fas fa-rocket w-5 mr-3 text-primary/60"></i>Projects
+                    </a>
+                    <a href="#experience" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                        <i class="fas fa-briefcase w-5 mr-3 text-primary/60"></i>Experience
+                    </a>
+                    <a href="#awards" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                        <i class="fas fa-trophy w-5 mr-3 text-primary/60"></i>Awards
+                    </a>
+                    <a href="#contact" class="mobile-nav-link block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all font-medium">
+                        <i class="fas fa-envelope w-5 mr-3 text-primary/60"></i>Contact
+                    </a>
+                    <div class="pt-3 mt-2 border-t border-slate-200 dark:border-slate-700">
+                        <a href="#contact" class="nav-cta block text-center py-3">
+                            <i class="fas fa-paper-plane mr-2"></i>Hire Me
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -3440,6 +3602,8 @@
     <script>
         // ==== Theme Toggle ====
         const themeToggle = document.getElementById('theme-toggle');
+        const navThemeToggle = document.getElementById('nav-theme-toggle');
+        const navThemeToggleMobile = document.getElementById('nav-theme-toggle-mobile');
         const htmlElement = document.documentElement;
         // No need to select icons here, CSS handles the transition
 
@@ -3453,14 +3617,19 @@
             }
         };
 
-        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        applyTheme(savedTheme); // Apply initial theme
-
-        themeToggle.addEventListener('click', () => {
+        const toggleTheme = () => {
             const newTheme = htmlElement.classList.contains('dark') ? 'light' : 'dark';
             applyTheme(newTheme);
             localStorage.setItem('theme', newTheme);
-        });
+        };
+
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(savedTheme); // Apply initial theme
+
+        // Add click listeners to all theme toggles
+        themeToggle.addEventListener('click', toggleTheme);
+        if (navThemeToggle) navThemeToggle.addEventListener('click', toggleTheme);
+        if (navThemeToggleMobile) navThemeToggleMobile.addEventListener('click', toggleTheme);
 
         // ==== Scroll Progress Indicator & Navbar Glassmorphism ====
         const scrollProgressBar = document.getElementById('scroll-progress');
@@ -3617,7 +3786,7 @@
         // ==== Navigation Active State on Scroll ====
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('#main-nav .nav-link'); // Desktop links
-        const mobileNavLinks = document.querySelectorAll('#mobile-nav .nav-link'); // Mobile links
+        const mobileNavLinks = document.querySelectorAll('#mobile-nav .mobile-nav-link'); // Mobile links
         const allNavLinks = [...navLinks, ...mobileNavLinks];
 
         // Adjusted rootMargin to highlight slightly earlier/longer
