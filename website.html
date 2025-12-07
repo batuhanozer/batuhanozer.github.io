@@ -641,7 +641,6 @@
         .hero-gradient {
             background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
             color: #F8FAFC;
-            /* Add will-change for potential parallax */
             will-change: background-position;
         }
 
@@ -1434,9 +1433,46 @@
         }
 
 
-        /* Modal styles - Keep, already good */
+        @keyframes modalEnter {
+            0% {
+                opacity: 0;
+                transform: perspective(1200px) translateY(40px) scale(0.9) rotateX(8deg);
+                border-radius: 2.2rem;
+            }
+
+            60% {
+                opacity: 1;
+                transform: perspective(1200px) translateY(-6px) scale(1.02) rotateX(0deg);
+                border-radius: 1.2rem;
+            }
+
+            100% {
+                opacity: 1;
+                transform: perspective(1200px) translateY(0) scale(1) rotateX(0deg);
+                border-radius: 1rem;
+            }
+        }
+
+        @keyframes modalExit {
+            0% {
+                opacity: 1;
+                transform: perspective(1200px) translateY(0) scale(1);
+                border-radius: 1rem;
+            }
+
+            40% {
+                opacity: 1;
+                transform: perspective(1200px) translateY(10px) scale(0.98);
+            }
+
+            100% {
+                opacity: 0;
+                transform: perspective(1200px) translateY(35px) scale(0.9);
+                border-radius: 1.6rem;
+            }
+        }
+
         .modal {
-            display: none;
             position: fixed;
             z-index: 100;
             left: 0;
@@ -1444,17 +1480,27 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(10px);
             opacity: 0;
             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .modal.show {
             display: flex;
             align-items: center;
             justify-content: center;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        .modal.show {
             opacity: 1;
+            pointer-events: auto;
+            visibility: visible;
+        }
+
+        .modal.closing {
+            opacity: 0;
+            pointer-events: none;
+            visibility: visible;
         }
 
         .modal-content {
@@ -1465,12 +1511,14 @@
             border-radius: 1rem;
             max-width: 850px;
             width: 92%;
-            transform: scale(0.95) translateY(15px);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(20px) scale(0.96);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
             position: relative;
             border: 1px solid var(--border-color);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-            will-change: transform;
+            will-change: transform, opacity;
+            opacity: 0;
+            transform-origin: 50% 15%;
         }
 
         .dark .modal-content {
@@ -1479,7 +1527,11 @@
         }
 
         .modal.show .modal-content {
-            transform: scale(1) translateY(0);
+            animation: modalEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .modal.closing .modal-content {
+            animation: modalExit 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         .close-modal {
@@ -3887,12 +3939,38 @@
         timelineItems.forEach(item => timelineObserver.observe(item));
 
 
-        // ==== Modal Functionality ==== (Keep as is, it works well)
+        // ==== Modal Functionality ====
         const openModalButtons = document.querySelectorAll('.open-modal');
         const closeModalButtons = document.querySelectorAll('.close-modal');
         const modals = document.querySelectorAll('.modal');
-        const openModal = (modalId) => { const modal = document.getElementById(modalId); if (modal) { modal.classList.add('show'); document.body.style.overflow = 'hidden'; } };
-        const closeModal = (modal) => { if (modal) { modal.classList.remove('show'); document.body.style.overflow = ''; } };
+        const openModal = (modalId) => {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            modal.classList.remove('closing');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        };
+        const closeModal = (modal) => {
+            if (!modal || !modal.classList.contains('show') || modal.classList.contains('closing')) return;
+            modal.classList.add('closing');
+            const modalContent = modal.querySelector('.modal-content');
+            const finishClose = () => {
+                modal.classList.remove('show', 'closing');
+                if (!document.querySelector('.modal.show')) {
+                    document.body.style.overflow = '';
+                }
+            };
+            if (modalContent) {
+                const handleAnimationEnd = (event) => {
+                    if (event.animationName !== 'modalExit') return;
+                    modalContent.removeEventListener('animationend', handleAnimationEnd);
+                    finishClose();
+                };
+                modalContent.addEventListener('animationend', handleAnimationEnd, { once: true });
+            } else {
+                setTimeout(finishClose, 450);
+            }
+        };
         openModalButtons.forEach(button => { button.addEventListener('click', function (event) { event.stopPropagation(); const modalId = this.getAttribute('data-modal'); if (modalId) { openModal(modalId); } else { console.warn("Modal trigger missing 'data-modal'", this); } }); });
         closeModalButtons.forEach(button => { button.addEventListener('click', function () { closeModal(this.closest('.modal')); }); });
         modals.forEach(modal => { modal.addEventListener('click', function (event) { if (event.target === this) { closeModal(this); } }); });
@@ -4029,7 +4107,6 @@
         } else {
             console.warn("particlesJS library not loaded.");
         }
-
 
         // ==== Update Footer Year ====
         document.getElementById('current-year').textContent = new Date().getFullYear();
